@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Host: www.cinazes.ru
-Sitemap: https://www.cinazes.ru/sitemap.xml
+Host: cinazes.ru
+Sitemap: https://cinazes.ru/sitemap.xml
