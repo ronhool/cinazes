@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: www.cinazes.ru
+Sitemap: https://www.cinazes.ru/sitemap.xml
