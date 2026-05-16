@@ -256,12 +256,6 @@
   background: var(--tp-bg);
 }
 
-.tp-foot {
-  text-align: center;
-  font-size: 13px;
-  color: rgba(11, 11, 12, 0.45);
-}
-
 @media (max-width: 720px) {
   .tp-main {
     padding-top: 32px;
