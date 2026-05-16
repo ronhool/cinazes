@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
     <link rel="preload" href="./assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
     <link rel="stylesheet" href="./styles.css?v=20260516b" />
+    <script defer src="./site-header.js"></script>
+    <script defer src="./cookie-notice.js" data-site-root="./"></script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
       (function (m, e, t, r, i, k, a) {
@@ -50,20 +52,72 @@
     <a class="skip" href="#bio">Перейти к содержанию</a>
 
     <header class="head">
-      <div class="wrap-wide head-row">
+      <div class="wrap-wide master-grid head-shell" data-mobile-menu>
         <div class="brand">чиназес</div>
-        <nav class="nav" aria-label="Навигация">
-          <a href="#bio">обо мне</a>
-          <a
-            href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            кейсы
-          </a>
-          <a href="./tools.html">tools</a>
-          <a href="https://t.me/ronhool" target="_blank" rel="noopener noreferrer">связаться</a>
-        </nav>
+        <div class="head-nav">
+          <div class="nav-group nav-group--center" aria-label="Основная навигация">
+            <a
+              href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              кейсы
+            </a>
+            <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+            <div class="nav-item-lab" data-lab-menu>
+              <button type="button" class="nav-trigger" data-lab-trigger aria-expanded="false" aria-haspopup="true">
+                Лаборатория
+                <span class="nav-caret" aria-hidden="true">+</span>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="./tools/typograph/" role="menuitem">Типограф</a>
+                <a href="./tools/layout-fix/" role="menuitem">Исправление раскладки</a>
+                <a href="./tools/sans-bullshit-sans-cyrillic/" role="menuitem">Sans Bullshit Sans Cyrillic</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-group nav-group--right" aria-label="Вторичная навигация">
+            <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+            <a class="nav-active" href="#bio">обо мне</a>
+          </div>
+          <div class="time-chip" data-moscow-time>москва --:--</div>
+        </div>
+        <div class="head-mobile-toggle">
+          <button type="button" class="mobile-menu-button" data-mobile-toggle aria-expanded="false" aria-controls="mobile-nav">
+            меню
+            <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+        <div class="head-mobile-panel" id="mobile-nav" data-mobile-panel>
+          <div class="head-mobile-inner">
+            <div class="head-mobile-row">
+              <div class="head-mobile-nav">
+                <a
+                  href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  кейсы
+                </a>
+                <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+                <div class="mobile-lab" data-mobile-lab>
+                  <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
+                    Лаборатория
+                    <span class="nav-caret" aria-hidden="true">+</span>
+                  </button>
+                  <div class="mobile-lab-links">
+                    <a href="./tools/typograph/">Типограф</a>
+                    <a href="./tools/layout-fix/">Исправление раскладки</a>
+                    <a href="./tools/sans-bullshit-sans-cyrillic/">Sans Bullshit Sans Cyrillic</a>
+                  </div>
+                </div>
+                <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+                <a href="#bio">обо мне</a>
+              </div>
+              <button type="button" class="mobile-menu-close" data-mobile-close>закрыть</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="wrap-wide">
         <img class="title" src="./assets/cinazes.svg" alt="CINAZES" />
@@ -71,7 +125,7 @@
     </header>
 
     <main class="main">
-      <div class="wrap-wide content-grid">
+      <div class="wrap-wide master-grid content-grid">
         <section id="bio" class="info">
           <div class="info-block">
             <img class="hero-photo" src="./assets/portrait.png" alt="Портрет Артёма Веретёнко" decoding="async" />
@@ -166,8 +220,8 @@
     </main>
 
     <footer id="contacts" class="foot">
-      <div class="wrap-wide content-grid">
-        <p class="site-copy">©чиназес. все права защищены</p>
+      <div class="wrap-wide master-grid content-grid">
+        <p class="site-copy">©чиназес. все права защищены · <a href="./privacy/">политика</a></p>
       </div>
     </footer>
   </body>

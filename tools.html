@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>tools — CINAZES</title>
-    <meta name="description" content="Инструменты CINAZES." />
+    <title>Лаборатория — CINAZES</title>
+    <meta
+      name="description"
+      content="Эксперименты, инструменты и специальные проекты на стыке типографики, визуальных систем и цифровой среды."
+    />
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
     <link rel="preload" href="./assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
     <link rel="stylesheet" href="./styles.css?v=20260516b" />
+    <script defer src="./site-header.js"></script>
+    <script defer src="./cookie-notice.js" data-site-root="./"></script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
       (function (m, e, t, r, i, k, a) {
@@ -43,40 +48,101 @@
     </script>
     <!-- /Yandex.Metrika counter -->
   </head>
-  <body class="page-sticky-foot">
+  <body class="page-sticky-foot lab-page">
     <noscript
       ><div><img src="https://mc.yandex.ru/watch/108416465" style="position: absolute; left: -9999px" alt="" /></div
     ></noscript>
-    <a class="skip" href="#tools">Перейти к содержанию</a>
+    <a class="skip" href="#laboratory">Перейти к содержанию</a>
 
     <header class="head head--compact">
-      <div class="wrap-wide head-row">
+      <div class="wrap-wide master-grid head-shell" data-mobile-menu>
         <a class="brand" href="./index.html">чиназес</a>
-        <nav class="nav" aria-label="Навигация">
-          <a href="./index.html#bio">обо мне</a>
-          <a
-            href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            кейсы
-          </a>
-          <a class="nav-active" href="./tools.html">tools</a>
-          <a href="https://t.me/ronhool" target="_blank" rel="noopener noreferrer">связаться</a>
-        </nav>
+        <div class="head-nav">
+          <div class="nav-group nav-group--center" aria-label="Основная навигация">
+            <a
+              href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              кейсы
+            </a>
+            <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+            <div class="nav-item-lab" data-lab-menu>
+              <button
+                type="button"
+                class="nav-trigger nav-active"
+                data-lab-trigger
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                Лаборатория
+                <span class="nav-caret" aria-hidden="true">+</span>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="./tools/typograph/" role="menuitem">Типограф</a>
+                <a href="./tools/layout-fix/" role="menuitem">Исправление раскладки</a>
+                <a href="./tools/sans-bullshit-sans-cyrillic/" role="menuitem">Sans Bullshit Sans Cyrillic</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-group nav-group--right" aria-label="Вторичная навигация">
+            <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+            <a href="./index.html#bio">обо мне</a>
+          </div>
+          <div class="time-chip" data-moscow-time>москва --:--</div>
+        </div>
+        <div class="head-mobile-toggle">
+          <button type="button" class="mobile-menu-button" data-mobile-toggle aria-expanded="false" aria-controls="mobile-nav">
+            меню
+            <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+        <div class="head-mobile-panel" id="mobile-nav" data-mobile-panel>
+          <div class="head-mobile-inner">
+            <div class="head-mobile-row">
+              <div class="head-mobile-nav">
+                <a
+                  href="https://www.figma.com/proto/m1Gn3YAgQcueTCiXjA98Ib/CASES?page-id=0%3A1&node-id=0-689&viewport=881%2C384%2C0.02&t=BJjS97weHAcEyXRb-1&scaling=scale-down-width&content-scaling=fixed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  кейсы
+                </a>
+                <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+                <div class="mobile-lab" data-mobile-lab>
+                  <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
+                    Лаборатория
+                    <span class="nav-caret" aria-hidden="true">+</span>
+                  </button>
+                  <div class="mobile-lab-links">
+                    <a href="./tools/typograph/">Типограф</a>
+                    <a href="./tools/layout-fix/">Исправление раскладки</a>
+                    <a href="./tools/sans-bullshit-sans-cyrillic/">Sans Bullshit Sans Cyrillic</a>
+                  </div>
+                </div>
+                <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+                <a href="./index.html#bio">обо мне</a>
+              </div>
+              <button type="button" class="mobile-menu-close" data-mobile-close>закрыть</button>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main class="main">
-      <div class="wrap-wide content-grid">
-        <section id="tools" class="info tools-page">
+    <main class="main lab-main">
+      <div class="wrap-wide master-grid content-grid">
+        <section id="laboratory" class="info tools-page">
           <div class="info-block">
             <div class="hero-text">
-              <h1 class="name main-text">tools.</h1>
-              <p class="bio main-text">Утилиты для типографики, брендинга и визуальных систем.</p>
+              <h1 class="name main-text">Лаборатория.</h1>
+              <p class="bio main-text">
+                Эксперименты, инструменты и специальные проекты на стыке типографики, визуальных
+                систем и цифровой среды.
+              </p>
             </div>
 
-            <ul class="tools-list" aria-label="Список инструментов">
+            <ul class="tools-list" aria-label="Список лаборатории">
               <li>
                 <a class="tool-card" href="./tools/typograph/">
                   <span class="tool-card__title">Типограф</span>
@@ -96,8 +162,8 @@
     </main>
 
     <footer id="contacts" class="foot">
-      <div class="wrap-wide content-grid">
-        <p class="site-copy">©чиназес. все права защищены</p>
+      <div class="wrap-wide master-grid content-grid">
+        <p class="site-copy">©чиназес. все права защищены · <a href="./privacy/">политика</a></p>
       </div>
     </footer>
   </body>

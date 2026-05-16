@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Исправление раскладки — восстановление текста</title>
+    <title>Sans Bullshit Sans Cyrillic — спецпроект</title>
     <meta
       name="description"
-      content="Инструмент для исправления текста, набранного не в той раскладке клавиатуры."
+      content="Спецпроект CINAZES о кириллице, типографике и визуальных системах."
     />
     <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
@@ -47,13 +47,12 @@
         trackLinks: true,
       });
     </script>
-    <!-- /Yandex.Metrika counter -->
   </head>
   <body class="page-sticky-foot typograph-page">
     <noscript
       ><div><img src="https://mc.yandex.ru/watch/108416465" style="position: absolute; left: -9999px" alt="" /></div
     ></noscript>
-    <a class="skip" href="#layout-fix-app">Перейти к содержанию</a>
+    <a class="skip" href="#sans-project-app">Перейти к содержанию</a>
 
     <header class="head head--compact">
       <div class="wrap-wide master-grid head-shell" data-mobile-menu>
@@ -67,7 +66,12 @@
             >
               кейсы
             </a>
-            <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+            <a
+              href="#"
+              class="nav-link-placeholder nav-active"
+              data-disabled-link
+              aria-disabled="true"
+            >шрифты</a>
             <div class="nav-item-lab" data-lab-menu>
               <button
                 type="button"
@@ -109,7 +113,7 @@
                 >
                   кейсы
                 </a>
-                <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+                <a href="#" class="nav-link-placeholder nav-active" data-disabled-link aria-disabled="true">шрифты</a>
                 <div class="mobile-lab" data-mobile-lab>
                   <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
                     Лаборатория
@@ -131,101 +135,25 @@
       </div>
     </header>
 
-    <main class="tp-main" id="layout-fix-app">
+    <main class="tp-main" id="sans-project-app">
       <div class="tp-wrap">
-        <h1 class="tp-title">Исправление раскладки</h1>
-
-        <div class="tp-tabs" role="tablist" aria-label="Разделы">
-          <button
-            type="button"
-            class="tp-tab tp-tab--active"
-            role="tab"
-            id="tab-tool"
-            aria-selected="true"
-            aria-controls="panel-tool"
-          >
-            Исправление раскладки
-          </button>
-          <button
-            type="button"
-            class="tp-tab"
-            role="tab"
-            id="tab-about"
-            aria-selected="false"
-            aria-controls="panel-about"
-            tabindex="-1"
-          >
-            О программе
-          </button>
-        </div>
-
-        <div class="tp-panel" id="panel-tool" role="tabpanel" aria-labelledby="tab-tool">
-          <p class="tp-lead">Исправляет текст, набранный не в той раскладке</p>
-
-          <div class="tp-boxes">
-            <div class="tp-box">
-              <button type="button" class="tp-box-action" id="layout-fix-clear-input" aria-label="Очистить поле ввода">
-                <span aria-hidden="true">×</span>
-              </button>
-              <textarea
-                id="layout-fix-input"
-                class="tp-textarea"
-                spellcheck="false"
-                placeholder="Вставьте текст вроде ghbdtn, руддщ или длинный фрагмент с переносами строк"
-              ></textarea>
-            </div>
-
-            <div class="tp-box">
-              <button type="button" class="tp-box-action" id="layout-fix-copy" aria-label="Скопировать результат">
-                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                  <rect x="5" y="5" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
-                  <rect x="3" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
-                </svg>
-              </button>
-              <textarea
-                id="layout-fix-output"
-                class="tp-textarea tp-textarea--output"
-                readonly
-                spellcheck="false"
-                placeholder="Результат появится здесь"
-              ></textarea>
-            </div>
-          </div>
-
-          <div class="tp-action-bar" role="toolbar" aria-label="Режимы">
-            <button type="button" class="tp-action tp-action--active" id="layout-fix-mode-auto">auto</button>
-            <button type="button" class="tp-action" id="layout-fix-mode-en-ru">en → ru</button>
-            <button type="button" class="tp-action" id="layout-fix-mode-ru-en">ru → en</button>
-          </div>
-
-          <div class="tp-stats" aria-live="polite">
-            <span><strong id="stat-converted">0</strong> characters converted</span>
-            <span>mode: <strong id="stat-mode">auto</strong></span>
-            <span>direction: <strong id="stat-direction">en → ru</strong></span>
-          </div>
-        </div>
-
-        <div class="tp-panel tp-panel--hidden" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
+        <h1 class="tp-title">Sans Bullshit Sans Cyrillic</h1>
+        <div class="tp-panel">
+          <p class="tp-lead">Спецпроект о кириллице, шрифтовых системах и графической ясности.</p>
           <div class="tp-about">
             <p>
-              Исправление раскладки — утилита для исправления текста, набранного в неправильной раскладке клавиатуры.
-              Вставьте фразу, и инструмент восстановит предполагаемый текст: ghbdtn станет “привет”, а руддщ станет
-              “hello”.
+              Sans Bullshit Sans Cyrillic — специальный проект CINAZES о характере кириллицы, её
+              типографических решениях и том, как шрифт работает как система, а не как декоративный жест.
             </p>
-            <p>Что исправляется:</p>
-            <ul>
-              <li>текст, набранный не в той раскладке</li>
-              <li>русские фразы, ошибочно набранные латиницей</li>
-              <li>английские фразы, ошибочно набранные кириллицей</li>
-              <li>смешанный регистр</li>
-              <li>длинные фрагменты с переносами строк</li>
-            </ul>
+            <p>
+              Здесь собираются наблюдения, эксперименты и материалы, связанные с визуальной структурой
+              кириллического набора, его ритмом, контрастом и поведением в реальной среде.
+            </p>
             <p>
               <a href="../../tools.html">← Лаборатория</a>
             </p>
           </div>
         </div>
-
         <a class="tp-back" href="../../tools.html">← Лаборатория</a>
       </div>
     </main>
@@ -235,7 +163,5 @@
         <p class="site-copy">©чиназес. все права защищены · <a href="../../privacy/">политика</a></p>
       </div>
     </footer>
-
-    <script type="module" src="./main.js"></script>
   </body>
 </html>
