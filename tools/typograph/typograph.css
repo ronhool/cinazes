@@ -1,167 +1,277 @@
-.typograph-tool {
-  --tp-detail: var(--left-detail-size, 15px);
+.typograph-page {
+  --tp-bg: #f3f3f4;
+  --tp-surface: #ffffff;
+  --tp-detail: 15px;
+  background: var(--tp-bg);
 }
 
-.typograph-tool .hero-text {
-  margin-top: 0;
+.typograph-page .head--compact {
+  padding-bottom: 0;
 }
 
-.typograph-tool .tool-subtitle {
+.typograph-page .main {
+  padding: 0;
+}
+
+.tp-main {
+  padding: 48px 0 64px;
+}
+
+.tp-wrap {
+  width: min(920px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.tp-title {
   margin: 0;
-  font-size: var(--tp-detail);
-  line-height: 1.34;
-  color: var(--muted);
-  max-width: 42em;
+  text-align: center;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.typograph-panels {
-  margin-top: 44px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 20px;
-  align-items: stretch;
-}
-
-.typograph-panel {
-  display: grid;
-  gap: 10px;
-  min-width: 0;
-}
-
-.typograph-label {
-  font-size: var(--tp-detail);
-  color: var(--muted);
-  letter-spacing: 0.02em;
-}
-
-.typograph-textarea {
-  width: 100%;
-  min-height: 320px;
-  resize: vertical;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--fg);
-  font-family: inherit;
-  font-size: var(--tp-detail);
-  line-height: 1.46;
-  padding: 16px;
-  outline: none;
-}
-
-.typograph-textarea:focus {
-  border-color: rgba(11, 11, 12, 0.35);
-}
-
-.typograph-textarea[readonly] {
-  background: #fafafa;
-}
-
-.typograph-arrow {
-  align-self: center;
-  font-size: var(--tp-detail);
-  color: var(--muted);
-  padding-top: 28px;
-}
-
-.typograph-controls {
-  margin-top: 28px;
+.tp-tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 18px;
-  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 28px;
 }
 
-.typograph-btn {
+.tp-tab {
   appearance: none;
-  border: 1px solid var(--fg);
-  background: var(--fg);
-  color: var(--bg);
+  border: 0;
+  background: #e8e8ea;
+  color: var(--fg);
   font-family: inherit;
   font-size: var(--tp-detail);
   line-height: 1;
-  padding: 10px 16px;
+  padding: 12px 22px;
   cursor: pointer;
 }
 
-.typograph-btn:hover {
-  background: var(--bg);
-  color: var(--fg);
+.tp-tab:first-child {
+  border-radius: 6px 0 0 6px;
 }
 
-.typograph-btn--ghost {
-  background: var(--bg);
-  color: var(--fg);
+.tp-tab:last-child {
+  border-radius: 0 6px 6px 0;
 }
 
-.typograph-btn--ghost:hover {
+.tp-tab--active {
   background: var(--fg);
   color: var(--bg);
 }
 
-.typograph-toggles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 22px;
-  margin-left: auto;
+.tp-tab:not(.tp-tab--active):hover {
+  background: #dedee1;
 }
 
-.typograph-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--tp-detail);
-  color: var(--muted);
-  cursor: pointer;
-  user-select: none;
+.tp-panel {
+  margin-top: 32px;
 }
 
-.typograph-toggle input {
-  accent-color: var(--fg);
+.tp-panel--hidden {
+  display: none;
 }
 
-.typograph-stats {
-  margin-top: 22px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 24px;
+.tp-lead {
+  margin: 0 0 24px;
+  text-align: center;
   font-size: var(--tp-detail);
   line-height: 1.34;
-  color: rgba(11, 11, 12, 0.72);
+  color: var(--muted);
 }
 
-.typograph-stats strong {
+.tp-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.tp-box {
+  position: relative;
+  background: var(--tp-surface);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(11, 11, 12, 0.08);
+  min-height: 280px;
+}
+
+.tp-box-action {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.tp-box-action:hover {
+  color: var(--fg);
+  background: rgba(11, 11, 12, 0.05);
+}
+
+.tp-box-action--done {
+  color: var(--fg);
+}
+
+.tp-textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: var(--tp-detail);
+  line-height: 1.5;
+  padding: 20px 44px 20px 20px;
+  resize: vertical;
+  outline: none;
+}
+
+.tp-textarea--output {
+  background: #fafafa;
+}
+
+.tp-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  margin-top: 28px;
+  background: #e8e8ea;
+  border-radius: 8px;
+  padding: 4px;
+  width: fit-content;
+  margin-inline: auto;
+  max-width: 100%;
+}
+
+.tp-action {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.tp-action:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.tp-action--active {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.tp-action--active:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.tp-stats {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  font-size: 13px;
+  line-height: 1.34;
+  color: rgba(11, 11, 12, 0.55);
+}
+
+.tp-stats strong {
   color: var(--fg);
   font-weight: 500;
 }
 
-.typograph-script {
+.tp-stats-script {
   color: var(--muted);
 }
 
-.typograph-back {
+.tp-about {
+  background: var(--tp-surface);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(11, 11, 12, 0.08);
+  padding: 32px 36px;
+  font-size: var(--tp-detail);
+  line-height: 1.46;
+  color: rgba(11, 11, 12, 0.82);
+}
+
+.tp-about p {
+  margin: 0 0 16px;
+}
+
+.tp-about ul {
+  margin: 0 0 20px;
+  padding-left: 1.2em;
+}
+
+.tp-about li + li {
+  margin-top: 6px;
+}
+
+.tp-about a {
+  color: inherit;
+}
+
+.tp-back {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 28px;
   font-size: var(--tp-detail);
   color: var(--muted);
 }
 
-@media (max-width: 860px) {
-  .typograph-panels {
+.tp-back:hover {
+  color: var(--fg);
+}
+
+.foot--compact {
+  padding: 0 0 32px;
+  background: var(--tp-bg);
+}
+
+.tp-foot {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(11, 11, 12, 0.45);
+}
+
+@media (max-width: 720px) {
+  .tp-main {
+    padding-top: 32px;
+  }
+
+  .tp-boxes {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 
-  .typograph-arrow {
-    padding-top: 0;
-    text-align: center;
-  }
-
-  .typograph-toggles {
-    margin-left: 0;
+  .tp-action-bar {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .typograph-textarea {
-    min-height: 220px;
+  .tp-action {
+    text-align: center;
   }
 }

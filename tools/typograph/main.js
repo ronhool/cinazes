@@ -3,11 +3,17 @@ import { scriptLabel } from "./lib/detect.js";
 
 const input = document.getElementById("typograph-input");
 const output = document.getElementById("typograph-output");
-const aggressiveToggle = document.getElementById("typograph-aggressive");
-const lineMergeToggle = document.getElementById("typograph-line-merge");
+const lineMergeBtn = document.getElementById("typograph-line-merge");
+const aggressiveBtn = document.getElementById("typograph-aggressive");
 const autoCleanBtn = document.getElementById("typograph-auto-clean");
 const copyBtn = document.getElementById("typograph-copy");
-const clearBtn = document.getElementById("typograph-clear");
+const clearInputBtn = document.getElementById("typograph-clear-input");
+
+const tabTool = document.getElementById("tab-tool");
+const tabAbout = document.getElementById("tab-about");
+const panelTool = document.getElementById("panel-tool");
+const panelAbout = document.getElementById("panel-about");
+const backLink = document.querySelector(".tp-back");
 
 const statReplacements = document.getElementById("stat-replacements");
 const statInvisible = document.getElementById("stat-invisible");
@@ -15,10 +21,15 @@ const statCharacters = document.getElementById("stat-characters");
 const statArtifacts = document.getElementById("stat-artifacts");
 const statScript = document.getElementById("stat-script");
 
+const state = {
+  lineMerge: false,
+  aggressive: false,
+};
+
 function getOptions() {
   return {
-    aggressive: aggressiveToggle.checked,
-    lineMerge: lineMergeToggle.checked,
+    aggressive: state.aggressive,
+    lineMerge: state.lineMerge,
   };
 }
 
@@ -39,24 +50,50 @@ function runClean() {
 async function copyOutput() {
   if (!output.value) return;
   await navigator.clipboard.writeText(output.value);
-  copyBtn.textContent = "скопировано";
-  window.setTimeout(() => {
-    copyBtn.textContent = "copy";
-  }, 1400);
+  copyBtn.classList.add("tp-box-action--done");
+  window.setTimeout(() => copyBtn.classList.remove("tp-box-action--done"), 1400);
 }
 
-function clearAll() {
+function clearInput() {
   input.value = "";
-  output.value = "";
-  updateStats(cleanText("", getOptions()));
+  runClean();
   input.focus();
 }
 
+function toggleOption(button, key) {
+  state[key] = !state[key];
+  button.classList.toggle("tp-action--active", state[key]);
+  button.setAttribute("aria-pressed", String(state[key]));
+  runClean();
+}
+
+function switchTab(target) {
+  const isTool = target === "tool";
+
+  tabTool.classList.toggle("tp-tab--active", isTool);
+  tabAbout.classList.toggle("tp-tab--active", !isTool);
+  tabTool.setAttribute("aria-selected", String(isTool));
+  tabAbout.setAttribute("aria-selected", String(!isTool));
+  tabTool.tabIndex = isTool ? 0 : -1;
+  tabAbout.tabIndex = isTool ? -1 : 0;
+
+  panelTool.hidden = !isTool;
+  panelAbout.hidden = isTool;
+  panelTool.classList.toggle("tp-panel--hidden", !isTool);
+  panelAbout.classList.toggle("tp-panel--hidden", isTool);
+
+  if (backLink) backLink.hidden = !isTool;
+}
+
 input.addEventListener("input", runClean);
-aggressiveToggle.addEventListener("change", runClean);
-lineMergeToggle.addEventListener("change", runClean);
 autoCleanBtn.addEventListener("click", runClean);
 copyBtn.addEventListener("click", copyOutput);
-clearBtn.addEventListener("click", clearAll);
+clearInputBtn.addEventListener("click", clearInput);
+
+lineMergeBtn.addEventListener("click", () => toggleOption(lineMergeBtn, "lineMerge"));
+aggressiveBtn.addEventListener("click", () => toggleOption(aggressiveBtn, "aggressive"));
+
+tabTool.addEventListener("click", () => switchTab("tool"));
+tabAbout.addEventListener("click", () => switchTab("about"));
 
 runClean();

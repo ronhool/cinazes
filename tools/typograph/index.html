@@ -47,13 +47,13 @@
     </script>
     <!-- /Yandex.Metrika counter -->
   </head>
-  <body>
+  <body class="typograph-page">
     <noscript
       ><div><img src="https://mc.yandex.ru/watch/108416465" style="position: absolute; left: -9999px" alt="" /></div
     ></noscript>
-    <a class="skip" href="#typograph">Перейти к содержанию</a>
+    <a class="skip" href="#typograph-app">Перейти к содержанию</a>
 
-    <header class="head">
+    <header class="head head--compact">
       <div class="wrap-wide head-row">
         <a class="brand" href="../../index.html">чиназес</a>
         <nav class="nav" aria-label="Навигация">
@@ -69,80 +69,100 @@
           <a href="https://t.me/ronhool" target="_blank" rel="noopener noreferrer">связаться</a>
         </nav>
       </div>
-      <div class="wrap-wide">
-        <a href="../../index.html" aria-label="На главную">
-          <img class="title" src="../../assets/cinazes.svg" alt="CINAZES" />
-        </a>
-      </div>
     </header>
 
-    <main class="main">
-      <div class="wrap-wide">
-        <section id="typograph" class="info typograph-tool">
-          <div class="info-block">
-            <div class="hero-text">
-              <h1 class="name main-text">Типограф.</h1>
-              <p class="tool-subtitle">Нормализует текст и удаляет артефакты набора.</p>
+    <main class="tp-main" id="typograph-app">
+      <div class="tp-wrap">
+        <h1 class="tp-title">Типограф</h1>
+
+        <div class="tp-tabs" role="tablist" aria-label="Разделы">
+          <button type="button" class="tp-tab tp-tab--active" role="tab" id="tab-tool" aria-selected="true" aria-controls="panel-tool">
+            Типограф
+          </button>
+          <button type="button" class="tp-tab" role="tab" id="tab-about" aria-selected="false" aria-controls="panel-about" tabindex="-1">
+            О программе
+          </button>
+        </div>
+
+        <div class="tp-panel" id="panel-tool" role="tabpanel" aria-labelledby="tab-tool">
+          <p class="tp-lead">Нормализует текст и удаляет артефакты набора.</p>
+
+          <div class="tp-boxes">
+            <div class="tp-box">
+              <button type="button" class="tp-box-action" id="typograph-clear-input" aria-label="Очистить поле ввода">
+                <span aria-hidden="true">×</span>
+              </button>
+              <textarea
+                id="typograph-input"
+                class="tp-textarea"
+                spellcheck="false"
+                placeholder="Вставьте текст из PDF, Figma, Word, Telegram, OCR…"
+              ></textarea>
             </div>
 
-            <div class="typograph-panels">
-              <label class="typograph-panel">
-                <span class="typograph-label">исходный текст</span>
-                <textarea
-                  id="typograph-input"
-                  class="typograph-textarea"
-                  spellcheck="false"
-                  placeholder="Вставьте текст из PDF, Figma, Word, Telegram, OCR…"
-                ></textarea>
-              </label>
-
-              <div class="typograph-arrow" aria-hidden="true">→</div>
-
-              <label class="typograph-panel">
-                <span class="typograph-label">очищенный текст</span>
-                <textarea
-                  id="typograph-output"
-                  class="typograph-textarea"
-                  readonly
-                  spellcheck="false"
-                  placeholder="Результат появится здесь"
-                ></textarea>
-              </label>
+            <div class="tp-box">
+              <button type="button" class="tp-box-action" id="typograph-copy" aria-label="Скопировать результат">
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <rect x="5" y="5" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
+                  <rect x="3" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </button>
+              <textarea
+                id="typograph-output"
+                class="tp-textarea tp-textarea--output"
+                readonly
+                spellcheck="false"
+                placeholder="Результат появится здесь"
+              ></textarea>
             </div>
-
-            <div class="typograph-controls">
-              <button type="button" class="typograph-btn" id="typograph-auto-clean">auto clean</button>
-              <button type="button" class="typograph-btn typograph-btn--ghost" id="typograph-copy">copy</button>
-              <button type="button" class="typograph-btn typograph-btn--ghost" id="typograph-clear">clear</button>
-
-              <div class="typograph-toggles">
-                <label class="typograph-toggle">
-                  <input type="checkbox" id="typograph-line-merge" />
-                  line merge
-                </label>
-                <label class="typograph-toggle">
-                  <input type="checkbox" id="typograph-aggressive" />
-                  aggressive cleanup
-                </label>
-              </div>
-            </div>
-
-            <div class="typograph-stats" aria-live="polite">
-              <span><strong id="stat-characters">0</strong> characters fixed</span>
-              <span><strong id="stat-artifacts">0</strong> artifacts removed</span>
-              <span><strong id="stat-replacements">0</strong> replacements</span>
-              <span><strong id="stat-invisible">0</strong> invisible chars removed</span>
-              <span class="typograph-script">язык: <strong id="stat-script">язык не определён</strong></span>
-            </div>
-
-            <a class="typograph-back" href="../../tools.html">← все tools</a>
           </div>
-        </section>
+
+          <div class="tp-action-bar" role="toolbar" aria-label="Действия">
+            <button type="button" class="tp-action tp-action--active" id="typograph-auto-clean">auto clean</button>
+            <button type="button" class="tp-action" id="typograph-line-merge" aria-pressed="false">line merge</button>
+            <button type="button" class="tp-action" id="typograph-aggressive" aria-pressed="false">aggressive cleanup</button>
+          </div>
+
+          <div class="tp-stats" aria-live="polite">
+            <span><strong id="stat-characters">0</strong> characters fixed</span>
+            <span><strong id="stat-artifacts">0</strong> artifacts removed</span>
+            <span><strong id="stat-replacements">0</strong> replacements</span>
+            <span><strong id="stat-invisible">0</strong> invisible chars removed</span>
+            <span class="tp-stats-script">язык: <strong id="stat-script">язык не определён</strong></span>
+          </div>
+        </div>
+
+        <div class="tp-panel tp-panel--hidden" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
+          <div class="tp-about">
+            <p>
+              Типограф — утилита для очистки и нормализации текста после копирования из PDF, Figma, Word,
+              Telegram, OCR, сайтов и AI-генерации. Это не редактор: инструмент убирает типографический мусор
+              и приводит текст к аккуратному виду.
+            </p>
+            <p>Что исправляется:</p>
+            <ul>
+              <li>кавычки → «ёлочки»</li>
+              <li>дефисы между словами → длинное тире</li>
+              <li>троеточие …</li>
+              <li>латиница, похожая на кириллицу (c → с, e → е и др.)</li>
+              <li>двойные пробелы и невидимые Unicode-символы</li>
+              <li>OCR-артефакты (в режиме aggressive cleanup)</li>
+              <li>склейка переносов строк (line merge)</li>
+            </ul>
+            <p>
+              <a href="../../tools.html">← все tools</a>
+              ·
+              <a href="../../index.html">cinazes</a>
+            </p>
+          </div>
+        </div>
+
+        <a class="tp-back" href="../../tools.html">← все tools</a>
       </div>
     </main>
 
-    <footer id="contacts" class="foot">
-      <div class="wrap-wide foot-center">©cinazes. все права защищены</div>
+    <footer class="foot foot--compact">
+      <div class="tp-wrap tp-foot">©cinazes. все права защищены</div>
     </footer>
 
     <script type="module" src="./main.js"></script>
