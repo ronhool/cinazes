@@ -10,7 +10,7 @@ if (host) {
 
 async function mountSbs(hostEl, templateEl) {
   const shadow = hostEl.attachShadow({ mode: "open" });
-  const stylesheetHref = new URL("./styles.css?v=3", import.meta.url).href;
+  const stylesheetHref = new URL("./styles.css?v=4", import.meta.url).href;
 
   const linkEl = document.createElement("link");
   linkEl.rel = "stylesheet";
