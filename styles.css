@@ -605,6 +605,14 @@ a:hover{
 }
 
 @media (min-width: 1025px){
+  :root{
+    --content-offset:clamp(284px, 29.5vw, 500px);
+  }
+
+  .wrap-wide{
+    width:min(1680px, calc(100% - 16px));
+  }
+
   .head-nav{
     column-gap:clamp(88px, 7.6vw, 164px);
   }
