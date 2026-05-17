@@ -11,7 +11,7 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260517a" />
+    <link rel="stylesheet" href="../styles.css?v=20260517b" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
   </head>
@@ -120,11 +120,11 @@
       const cases = [
         {
           year: "2026",
-          title: "CINAZES Lab",
-          category: ["Lab", "Инструменты", "Исследование"],
-          categoryLabel: "Инструменты / Исследование",
-          status: "",
-          href: "../lab/",
+          title: "Sans Bullshit Sans CYR",
+          category: ["Lab", "Инструменты", "Типографика"],
+          categoryLabel: "Шрифт / Спецпроект",
+          status: "Сайт →",
+          href: "../lab/sans-bullshit-sans-cyrillic/",
         },
         {
           year: "2025",
@@ -284,7 +284,7 @@
           category: ["Айдентика"],
           categoryLabel: "Айдентика",
           status: "Архив",
-          href: "",
+          href: "./buro-teti-moti/",
         },
         {
           year: "2019",
@@ -456,21 +456,26 @@
         row.className = "cases-row";
         row.dataset.category = item.category.join(",");
         row.dataset.status = item.status;
-        const status = item.href
+        const hasRealHref = item.href && item.href !== "#";
+        const project = hasRealHref
+          ? `<a class="cases-row__project-link" href="${item.href}">${item.title}</a>`
+          : item.title;
+        const status = hasRealHref
           ? `<a class="cases-row__status-link" href="${item.href}">${item.status}</a>`
           : item.status;
 
         row.innerHTML = `
           <span class="cases-row__year">${item.year}</span>
-          <span class="cases-row__project">${item.title}</span>
+          <span class="cases-row__project">${project}</span>
           <span class="cases-row__category">${item.categoryLabel}</span>
           <span class="cases-row__status">${status}</span>
         `;
 
-        const statusLink = row.querySelector(".cases-row__status-link");
-        if (statusLink && item.href.startsWith("http")) {
-          statusLink.target = "_blank";
-          statusLink.rel = "noopener noreferrer";
+        for (const link of row.querySelectorAll("a")) {
+          if (item.href.startsWith("http")) {
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+          }
         }
 
         return row;
