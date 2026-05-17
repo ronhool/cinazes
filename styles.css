@@ -606,11 +606,11 @@ a:hover{
 
 @media (min-width: 1025px){
   :root{
-    --content-offset:clamp(258px, 27.4vw, 466px);
+    --content-offset:clamp(272px, 28.2vw, 482px);
   }
 
   .wrap-wide{
-    width:min(1760px, calc(100% - 8px));
+    width:min(1760px, calc(100% - 44px));
   }
 
   .head-nav{

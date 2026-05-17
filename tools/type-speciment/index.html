@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Типограф — очистка и нормализация текста</title>
+    <title>Sans Bullshit Sans Cyrillic — спецпроект</title>
     <meta
       name="description"
-      content="Инструмент для очистки текста: кавычки, тире, латиница, OCR-мусор, невидимые символы и типографические артефакты."
+      content="Внутренняя страница проекта Sans Bullshit Sans Cyrillic внутри cinazes.ru."
     />
     <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
     <link rel="preload" href="../../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="./assets/SansBullshitSansCYR.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../styles.css?v=20260516b" />
-    <link rel="stylesheet" href="./typograph.css" />
+    <link rel="stylesheet" href="./sans-bullshit.css?v=1" />
     <script defer src="../../site-header.js"></script>
     <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
     <!-- Yandex.Metrika counter -->
@@ -47,13 +48,12 @@
         trackLinks: true,
       });
     </script>
-    <!-- /Yandex.Metrika counter -->
   </head>
-  <body class="page-sticky-foot typograph-page">
+  <body class="page-sticky-foot sbs-page">
     <noscript
       ><div><img src="https://mc.yandex.ru/watch/108416465" style="position: absolute; left: -9999px" alt="" /></div
     ></noscript>
-    <a class="skip" href="#typograph-app">Перейти к содержанию</a>
+    <a class="skip" href="#sans-project-app">Перейти к содержанию</a>
 
     <header class="head head--compact">
       <div class="wrap-wide master-grid head-shell" data-mobile-menu>
@@ -131,100 +131,100 @@
       </div>
     </header>
 
-    <main class="tp-main" id="typograph-app">
-      <div class="tp-wrap">
-        <h1 class="tp-title">Типограф</h1>
+    <main class="sbs-main" id="sans-project-app">
+      <div class="sbs-shell">
+        <section class="sbs-hero" aria-labelledby="sbs-title">
+          <p class="sbs-kicker">Спецпроект / внутренний specimen</p>
+          <h1 class="sbs-title" id="sbs-title">Sans Bullshit Sans Cyrillic</h1>
+          <p class="sbs-intro">
+            Встроенная страница шрифтового проекта внутри cinazes.ru. Исходники шрифта подключены
+            из отдельного репозитория, а сама страница собрана как изолированный лабораторный
+            модуль с общей навигацией сайта.
+          </p>
+        </section>
 
-        <div class="tp-tabs" role="tablist" aria-label="Разделы">
-          <button type="button" class="tp-tab tp-tab--active" role="tab" id="tab-tool" aria-selected="true" aria-controls="panel-tool">
-            Типограф
-          </button>
-          <button type="button" class="tp-tab" role="tab" id="tab-about" aria-selected="false" aria-controls="panel-about" tabindex="-1">
-            О программе
-          </button>
-        </div>
-
-        <div class="tp-panel" id="panel-tool" role="tabpanel" aria-labelledby="tab-tool">
-          <p class="tp-lead">Нормализует текст и удаляет артефакты набора.</p>
-
-          <div class="tp-boxes">
-            <div class="tp-box">
-              <button type="button" class="tp-box-action" id="typograph-clear-input" aria-label="Очистить поле ввода">
-                <span aria-hidden="true">×</span>
-              </button>
-              <textarea
-                id="typograph-input"
-                class="tp-textarea"
-                spellcheck="false"
-                placeholder="Вставьте текст из PDF, Figma, Word, Telegram, OCR…"
-              ></textarea>
-            </div>
-
-            <div class="tp-box">
-              <button type="button" class="tp-box-action" id="typograph-copy" aria-label="Скопировать результат">
-                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                  <rect x="5" y="5" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
-                  <rect x="3" y="3" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2" />
-                </svg>
-              </button>
-              <textarea
-                id="typograph-output"
-                class="tp-textarea tp-textarea--output"
-                readonly
-                spellcheck="false"
-                placeholder="Результат появится здесь"
-              ></textarea>
+        <section class="sbs-stage" aria-label="Живой просмотр шрифта">
+          <div class="sbs-stage__head">
+            <p class="sbs-stage__label">Live preview</p>
+            <div class="sbs-presets" role="toolbar" aria-label="Готовые примеры">
+              <button type="button" class="sbs-preset is-active" data-sbs-preset="manifesto">Манифест</button>
+              <button type="button" class="sbs-preset" data-sbs-preset="interface">Интерфейс</button>
+              <button type="button" class="sbs-preset" data-sbs-preset="caps">Caps</button>
             </div>
           </div>
 
-          <div class="tp-action-bar" role="toolbar" aria-label="Действия">
-            <button type="button" class="tp-action tp-action--active" id="typograph-auto-clean">auto clean</button>
-            <button type="button" class="tp-action" id="typograph-line-merge" aria-pressed="false">line merge</button>
-            <button type="button" class="tp-action" id="typograph-aggressive" aria-pressed="false">aggressive cleanup</button>
+          <div class="sbs-preview" data-sbs-preview>
+            Слишком много серьёзных шрифтов и слишком мало ясности.
           </div>
 
-          <div class="tp-stats" aria-live="polite">
-            <span><strong id="stat-characters">0</strong> characters fixed</span>
-            <span><strong id="stat-artifacts">0</strong> artifacts removed</span>
-            <span><strong id="stat-replacements">0</strong> replacements</span>
-            <span><strong id="stat-invisible">0</strong> invisible chars removed</span>
-            <span class="tp-stats-script">язык: <strong id="stat-script">язык не определён</strong></span>
+          <div class="sbs-control">
+            <label class="sbs-control__field">
+              <span class="sbs-control__label">Текст</span>
+              <textarea class="sbs-input" data-sbs-input spellcheck="false">Слишком много серьёзных шрифтов и слишком мало ясности.</textarea>
+            </label>
+            <div class="sbs-control__meta">
+              <label class="sbs-range-field">
+                <span class="sbs-control__label">Размер</span>
+                <input type="range" min="48" max="164" value="108" step="2" data-sbs-size />
+              </label>
+              <div class="sbs-stat">
+                <span class="sbs-stat__label">Форматы</span>
+                <span class="sbs-stat__value">WOFF2 / WOFF / TTF</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div class="tp-panel tp-panel--hidden" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
-          <div class="tp-about">
-            <p>
-              Типограф — утилита для очистки и нормализации текста после копирования из PDF, Figma, Word,
-              Telegram, OCR, сайтов и AI-генерации. Это не редактор: инструмент убирает типографический мусор
-              и приводит текст к аккуратному виду.
+        <section class="sbs-grid" aria-label="Сведения о проекте">
+          <article class="sbs-card">
+            <p class="sbs-card__eyebrow">О проекте</p>
+            <p class="sbs-card__body">
+              Исходный репозиторий живёт отдельно и подключён в cinazes как submodule. Это
+              позволяет держать шрифтовой проект автономным, не смешивая его исходники с
+              инфраструктурой основного сайта.
             </p>
-            <p>Что исправляется:</p>
-            <ul>
-              <li>кавычки → «ёлочки»</li>
-              <li>дефисы между словами → длинное тире</li>
-              <li>троеточие …</li>
-              <li>латиница, похожая на кириллицу (c → с, e → е и др.)</li>
-              <li>двойные пробелы и невидимые Unicode-символы</li>
-              <li>OCR-артефакты (в режиме aggressive cleanup)</li>
-              <li>склейка переносов строк (line merge)</li>
-            </ul>
-            <p>
-              <a href="../../tools.html">← Лаборатория</a>
-            </p>
-          </div>
-        </div>
+          </article>
 
-        <a class="tp-back" href="../../tools.html">← Лаборатория</a>
+          <article class="sbs-card">
+            <p class="sbs-card__eyebrow">Подключение</p>
+            <p class="sbs-card__body">
+              Шрифт грузится напрямую из <code>vendor/projects/SansBullshitSans-CYR</code>, а UI
+              страницы изолирован собственными стилями и скриптом, чтобы не конфликтовать с
+              глобальными слоями cinazes.
+            </p>
+          </article>
+
+          <article class="sbs-card sbs-card--wide">
+            <p class="sbs-card__eyebrow">Глифы</p>
+            <div class="sbs-glyphs">
+              <p>АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</p>
+              <p>абвгдеёжзийклмнопрстуфхцчшщъыьэюя</p>
+              <p>0123456789 ?!.,:;()[]&amp;+-/=</p>
+            </div>
+          </article>
+
+          <article class="sbs-card sbs-card--wide">
+            <p class="sbs-card__eyebrow">Репозиторий</p>
+            <div class="sbs-links">
+              <a href="https://github.com/ronhool/SansBullshitSans-CYR" target="_blank" rel="noopener noreferrer">
+                GitHub → SansBullshitSans-CYR
+              </a>
+              <a href="https://github.com/ronhool/SansBullshitSans-CYR/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a>
+              <a href="./assets/LICENSE">LICENSE</a>
+            </div>
+          </article>
+        </section>
+
+        <a class="sbs-back" href="../../tools.html">← Лаборатория</a>
       </div>
     </main>
 
-    <footer class="foot foot--compact">
+    <footer class="foot">
       <div class="wrap-wide master-grid content-grid">
         <p class="site-copy">©чиназес. все права защищены · <a href="../../privacy/">политика</a></p>
       </div>
     </footer>
 
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./sans-bullshit.js"></script>
   </body>
 </html>
