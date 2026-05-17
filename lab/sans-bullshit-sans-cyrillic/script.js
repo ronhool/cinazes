@@ -10,7 +10,7 @@ if (host) {
 
 async function mountSbs(hostEl, templateEl) {
   const shadow = hostEl.attachShadow({ mode: "open" });
-  const stylesheetHref = new URL("./styles.css", import.meta.url).href;
+  const stylesheetHref = new URL("./styles.css?v=2", import.meta.url).href;
 
   try {
     const cssText = await loadScopedStylesheet(stylesheetHref);
