@@ -7,6 +7,10 @@
   --lab-accent:#ff4fa3;
   --content-offset:clamp(300px, 31vw, 520px);
   --zone-gap: clamp(44px, 5vw, 88px);
+  --case-space-s:clamp(22px, 1.8vw, 32px);
+  --case-space-m:clamp(34px, 3vw, 52px);
+  --case-space-l:clamp(52px, 4.6vw, 76px);
+  --case-space-xl:clamp(64px, 5.8vw, 96px);
 }
 
 @font-face{
@@ -630,7 +634,7 @@ a:hover{
 }
 .case-back{
   display:inline-block;
-  margin:2px 0 62px;
+  margin:2px 0 var(--case-space-l);
   font-size:16px;
   line-height:1;
   color:var(--muted);
@@ -640,15 +644,15 @@ a:hover{
 }
 .case-hero{
   display:grid;
-  gap:20px;
-  padding-bottom:38px;
+  gap:var(--case-space-s);
+  padding-bottom:var(--case-space-m);
   border-bottom:.5px solid rgba(11,11,12,.16);
 }
 .case-hero h1{
   margin:0;
   max-width:1120px;
-  font-size:clamp(56px, 7.4vw, 126px);
-  line-height:.96;
+  font-size:clamp(48px, 6.15vw, 104px);
+  line-height:1;
   font-weight:500;
 }
 .case-meta-line{
@@ -660,26 +664,26 @@ a:hover{
 }
 .case-intro{
   display:grid;
-  grid-template-columns:minmax(0, .72fr) minmax(240px, .28fr);
-  gap:clamp(28px, 5vw, 84px);
-  padding:44px 0 72px;
+  grid-template-columns:minmax(0, 1fr) minmax(420px, 500px);
+  gap:var(--case-space-xl);
+  padding:var(--case-space-m) 0 var(--case-space-l);
 }
 .case-intro p{
   margin:0;
-  font-size:clamp(28px, 3.15vw, 48px);
-  line-height:1.06;
+  font-size:clamp(25px, 2.75vw, 42px);
+  line-height:1.12;
   color:var(--fg);
 }
 .case-intro p + p{
   align-self:end;
-  max-width:360px;
+  max-width:500px;
   font-size:18px;
   line-height:1.32;
   color:rgba(11,11,12,.62);
 }
 .case-gallery{
   display:grid;
-  gap:clamp(38px, 5.4vw, 94px);
+  gap:var(--case-space-l);
 }
 .case-media,
 .case-media-pair{
@@ -696,7 +700,7 @@ a:hover{
 .case-media-pair{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:clamp(18px, 2.6vw, 42px);
+  gap:var(--case-space-s);
   align-items:start;
 }
 .case-media-pair--tall{
@@ -880,6 +884,13 @@ a:hover{
 }
 
 @media (max-width: 1024px){
+  :root{
+    --case-space-s:20px;
+    --case-space-m:32px;
+    --case-space-l:40px;
+    --case-space-xl:48px;
+  }
+
   .head-shell{
     position:static;
     grid-template-columns:1fr auto;
@@ -986,14 +997,14 @@ a:hover{
     padding-bottom:62px;
   }
   .case-back{
-    margin-bottom:44px;
+    margin-bottom:var(--case-space-m);
   }
   .case-hero{
-    gap:16px;
-    padding-bottom:28px;
+    gap:18px;
+    padding-bottom:var(--case-space-s);
   }
   .case-hero h1{
-    font-size:clamp(44px, 11vw, 72px);
+    font-size:clamp(38px, 10vw, 62px);
   }
   .case-meta-line{
     font-size:16px;
@@ -1001,11 +1012,12 @@ a:hover{
   }
   .case-intro{
     grid-template-columns:1fr;
-    gap:24px;
-    padding:36px 0 54px;
+    gap:var(--case-space-s);
+    padding:var(--case-space-s) 0 var(--case-space-m);
   }
   .case-intro p{
-    font-size:clamp(28px, 7vw, 42px);
+    font-size:clamp(24px, 6.2vw, 36px);
+    line-height:1.14;
   }
   .case-intro p + p{
     max-width:none;
