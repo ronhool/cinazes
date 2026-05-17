@@ -6,22 +6,22 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cinazes.ru/tools.html</loc>
+    <loc>https://cinazes.ru/lab/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cinazes.ru/tools/typograph/</loc>
+    <loc>https://cinazes.ru/lab/typograph/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cinazes.ru/tools/layout-fix/</loc>
+    <loc>https://cinazes.ru/lab/layout-fixer/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cinazes.ru/tools/type-speciment/</loc>
+    <loc>https://cinazes.ru/lab/sans-bullshit-sans-cyrillic/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
