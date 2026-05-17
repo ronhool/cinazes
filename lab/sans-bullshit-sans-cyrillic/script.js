@@ -10,29 +10,33 @@ if (host) {
 
 async function mountSbs(hostEl, templateEl) {
   const shadow = hostEl.attachShadow({ mode: "open" });
-  const stylesheetHref = new URL("./styles.css?v=2", import.meta.url).href;
+  const stylesheetHref = new URL("./styles.css?v=3", import.meta.url).href;
 
-  try {
-    const cssText = await loadScopedStylesheet(stylesheetHref);
-    const styleEl = document.createElement("style");
-    styleEl.textContent = cssText;
-    shadow.appendChild(styleEl);
-  } catch (error) {
-    const linkEl = document.createElement("link");
-    linkEl.rel = "stylesheet";
-    linkEl.href = stylesheetHref;
-    shadow.appendChild(linkEl);
-    console.warn("SBS stylesheet inline load failed, falling back to link tag.", error);
-  }
+  const linkEl = document.createElement("link");
+  linkEl.rel = "stylesheet";
+  linkEl.href = stylesheetHref;
+  shadow.appendChild(linkEl);
 
   shadow.appendChild(templateEl.content.cloneNode(true));
-
   hostEl.dataset.state = "ready";
   initSbs(shadow);
+
+  loadScopedStylesheet(stylesheetHref)
+    .then((cssText) => {
+      const styleEl = document.createElement("style");
+      styleEl.textContent = cssText;
+      shadow.prepend(styleEl);
+    })
+    .catch((error) => {
+      console.warn("SBS inline stylesheet load failed; linked stylesheet remains active.", error);
+    });
 }
 
 async function loadScopedStylesheet(stylesheetHref) {
-  const response = await fetch(stylesheetHref);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 2500);
+  const response = await fetch(stylesheetHref, { signal: controller.signal });
+  clearTimeout(timeout);
   if (!response.ok) {
     throw new Error(`Unable to load stylesheet: ${response.status}`);
   }

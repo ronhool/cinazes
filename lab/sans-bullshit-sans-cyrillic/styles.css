@@ -30,7 +30,7 @@
   font-display: swap;
 }
 
-:root {
+:host {
   --black: #000000;
   --white: #ffffff;
   --red: #ff0fbf;
