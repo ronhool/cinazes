@@ -8,18 +8,40 @@ if (host) {
   }
 }
 
-function mountSbs(hostEl, templateEl) {
+async function mountSbs(hostEl, templateEl) {
   const shadow = hostEl.attachShadow({ mode: "open" });
   const stylesheetHref = new URL("./styles.css", import.meta.url).href;
 
-  const linkEl = document.createElement("link");
-  linkEl.rel = "stylesheet";
-  linkEl.href = stylesheetHref;
-  shadow.appendChild(linkEl);
+  try {
+    const cssText = await loadScopedStylesheet(stylesheetHref);
+    const styleEl = document.createElement("style");
+    styleEl.textContent = cssText;
+    shadow.appendChild(styleEl);
+  } catch (error) {
+    const linkEl = document.createElement("link");
+    linkEl.rel = "stylesheet";
+    linkEl.href = stylesheetHref;
+    shadow.appendChild(linkEl);
+    console.warn("SBS stylesheet inline load failed, falling back to link tag.", error);
+  }
+
   shadow.appendChild(templateEl.content.cloneNode(true));
 
   hostEl.dataset.state = "ready";
   initSbs(shadow);
+}
+
+async function loadScopedStylesheet(stylesheetHref) {
+  const response = await fetch(stylesheetHref);
+  if (!response.ok) {
+    throw new Error(`Unable to load stylesheet: ${response.status}`);
+  }
+
+  const cssText = await response.text();
+  return cssText.replace(/url\((['"]?)(?!data:|https?:|file:|\/)(.*?)\1\)/g, (_match, quote, assetPath) => {
+    const normalized = new URL(assetPath, stylesheetHref).href;
+    return `url("${normalized}")`;
+  });
 }
 
 function initSbs(root) {
