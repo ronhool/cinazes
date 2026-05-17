@@ -21,6 +21,51 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://cinazes.ru/cases/be-happy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/iccentr/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/fsk/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/okonika/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/trc-volgodonsk/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/polimer/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/avtowestway/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/filler-lab/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/cases/sv-mebel/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cinazes.ru/lab/typograph/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
