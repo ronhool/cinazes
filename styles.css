@@ -196,18 +196,9 @@ a:hover{
   color:var(--fg);
   text-decoration:none;
 }
-.nav-dropdown .nav-dropdown-note{
-  color:var(--muted);
-  opacity:.62;
-  cursor:default;
-  pointer-events:none;
-}
 .nav-dropdown a:hover{
   color:var(--accent);
   text-decoration:none;
-}
-.nav-dropdown .nav-dropdown-note:hover{
-  color:var(--muted);
 }
 .nav-item-lab:hover .nav-dropdown,
 .nav-item-lab:focus-within .nav-dropdown,
@@ -322,17 +313,9 @@ a:hover{
   line-height:1.2;
   color:var(--muted);
 }
-.mobile-lab-links .nav-dropdown-note{
-  opacity:.62;
-  cursor:default;
-  pointer-events:none;
-}
 .mobile-lab-links a:hover{
   color:var(--accent);
   text-decoration:none;
-}
-.mobile-lab-links .nav-dropdown-note:hover{
-  color:var(--muted);
 }
 .lab-main{
   padding:48px 0 64px;
