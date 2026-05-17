@@ -1,0 +1,3 @@
+[submodule "vendor/projects/SansBullshitSans-CYR"]
+	path = vendor/projects/SansBullshitSans-CYR
+	url = https://github.com/ronhool/SansBullshitSans-CYR.git

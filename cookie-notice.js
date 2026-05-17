@@ -2,6 +2,11 @@ const COOKIE_NOTICE_KEY = "cinazes-cookie-consent";
 const COOKIE_NOTICE_VALUE = "accepted";
 const COOKIE_HIDE_DELAY = 180;
 
+function isPrivacyPage() {
+  const { pathname } = window.location;
+  return pathname.endsWith("/privacy") || pathname.endsWith("/privacy/");
+}
+
 function storageAvailable() {
   try {
     window.localStorage.setItem("__cinazes_test__", "1");
@@ -61,15 +66,26 @@ function hideCookieNotice(notice) {
 }
 
 function showCookieNotice() {
-  if (hasCookieConsent()) return;
+  if (hasCookieConsent() || isPrivacyPage()) return;
 
   const notice = buildCookieNotice();
   document.body.append(notice);
 
   const acceptButton = notice.querySelector("[data-cookie-accept]");
+  const policyLink = notice.querySelector(".cookie-notice__link");
+
   acceptButton?.addEventListener("click", () => {
     setCookieConsent();
     hideCookieNotice(notice);
+  });
+
+  policyLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    setCookieConsent();
+    hideCookieNotice(notice);
+    window.setTimeout(() => {
+      window.location.href = policyLink.href;
+    }, COOKIE_HIDE_DELAY);
   });
 
   notice.hidden = false;
