@@ -11,6 +11,7 @@
   --case-space-m:clamp(34px, 3vw, 52px);
   --case-space-l:clamp(52px, 4.6vw, 76px);
   --case-space-xl:clamp(64px, 5.8vw, 96px);
+  --case-gallery-gap:clamp(28px, 2.35vw, 38px);
 }
 
 @font-face{
@@ -664,7 +665,7 @@ a:hover{
 }
 .case-intro{
   display:grid;
-  grid-template-columns:minmax(0, 1fr) minmax(420px, 500px);
+  grid-template-columns:minmax(0, 4fr) minmax(0, 6fr);
   gap:var(--case-space-xl);
   padding:var(--case-space-m) 0 var(--case-space-l);
 }
@@ -676,14 +677,14 @@ a:hover{
 }
 .case-intro p + p{
   align-self:end;
-  max-width:500px;
+  max-width:720px;
   font-size:18px;
   line-height:1.32;
   color:rgba(11,11,12,.62);
 }
 .case-gallery{
   display:grid;
-  gap:var(--case-space-l);
+  gap:var(--case-gallery-gap);
 }
 .case-media,
 .case-media-pair{
@@ -889,6 +890,7 @@ a:hover{
     --case-space-m:32px;
     --case-space-l:40px;
     --case-space-xl:48px;
+    --case-gallery-gap:24px;
   }
 
   .head-shell{
@@ -1025,6 +1027,7 @@ a:hover{
   }
   .case-media-pair{
     grid-template-columns:1fr;
+    gap:var(--case-gallery-gap);
   }
   .below{
     margin-top:34px;
@@ -1040,6 +1043,13 @@ a:hover{
 @media (max-width: 1024px){
   .wrap-wide{
     width:min(1600px, calc(100% - 32px));
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1024px){
+  .case-intro{
+    grid-template-columns:minmax(0, 42fr) minmax(0, 58fr);
+    gap:var(--case-space-l);
   }
 }
 
