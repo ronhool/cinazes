@@ -1,0 +1,290 @@
+@font-face{
+  font-family:"Sans Bullshit Sans CYR";
+  src:url("./assets/SansBullshitSansCYR.woff2") format("woff2"),
+      url("./assets/SansBullshitSansCYR.woff") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+.sbs-page{
+  background:#fff;
+}
+
+.sbs-page .main,
+.sbs-main{
+  flex:1;
+}
+
+.sbs-main{
+  padding:34px 0 56px;
+}
+
+.sbs-shell{
+  width:min(1760px, calc(100% - 44px));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:var(--content-offset) minmax(0, 1fr);
+  gap:22px 0;
+}
+
+.sbs-hero,
+.sbs-stage,
+.sbs-grid,
+.sbs-back{
+  grid-column:2;
+  margin-left:0;
+  width:100%;
+  min-width:0;
+}
+
+.sbs-kicker,
+.sbs-stage__label,
+.sbs-card__eyebrow,
+.sbs-control__label,
+.sbs-stat__label{
+  margin:0;
+  font-size:13px;
+  line-height:1.2;
+  color:rgba(11,11,12,.52);
+}
+
+.sbs-title{
+  margin:10px 0 0;
+  font-family:"Sans Bullshit Sans CYR","DK Form",sans-serif;
+  font-size:clamp(58px, 7vw, 116px);
+  line-height:.94;
+  letter-spacing:0;
+}
+
+.sbs-intro{
+  max-width:780px;
+  margin:16px 0 0;
+  font-size:28px;
+  line-height:1.1;
+}
+
+.sbs-stage{
+  display:grid;
+  gap:16px;
+  padding:18px 0 0;
+}
+
+.sbs-stage__head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px 18px;
+}
+
+.sbs-presets{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.sbs-preset{
+  appearance:none;
+  border:1px solid rgba(11,11,12,.12);
+  background:#fff;
+  color:#0b0b0c;
+  padding:9px 12px 10px;
+  font:inherit;
+  font-size:14px;
+  line-height:1;
+  cursor:pointer;
+  transition:color .14s ease,border-color .14s ease,background-color .14s ease;
+}
+
+.sbs-preset:hover,
+.sbs-preset.is-active{
+  color:var(--accent);
+  border-color:rgba(255,42,166,.28);
+}
+
+.sbs-preview{
+  min-height:220px;
+  padding:18px 0 26px;
+  border-top:1px solid rgba(11,11,12,.12);
+  border-bottom:1px solid rgba(11,11,12,.12);
+  font-family:"Sans Bullshit Sans CYR","DK Form",sans-serif;
+  font-size:clamp(52px, 7.2vw, 108px);
+  line-height:.96;
+  letter-spacing:0;
+  overflow-wrap:anywhere;
+}
+
+.sbs-control{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 250px;
+  gap:18px;
+  align-items:start;
+}
+
+.sbs-control__field,
+.sbs-range-field{
+  display:grid;
+  gap:10px;
+}
+
+.sbs-input{
+  min-height:110px;
+  width:100%;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#0b0b0c;
+  resize:vertical;
+  font:inherit;
+  font-size:18px;
+  line-height:1.22;
+  outline:none;
+}
+
+.sbs-control__meta{
+  display:grid;
+  gap:20px;
+}
+
+.sbs-range-field input{
+  width:100%;
+}
+
+.sbs-stat{
+  display:grid;
+  gap:6px;
+}
+
+.sbs-stat__value{
+  font-size:18px;
+  line-height:1.14;
+}
+
+.sbs-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px;
+}
+
+.sbs-card{
+  display:grid;
+  gap:12px;
+  padding:16px 0 18px;
+  border-top:1px solid rgba(11,11,12,.12);
+}
+
+.sbs-card--wide{
+  grid-column:1 / -1;
+}
+
+.sbs-card__body{
+  margin:0;
+  font-size:20px;
+  line-height:1.16;
+}
+
+.sbs-card__body code{
+  font-size:.9em;
+}
+
+.sbs-glyphs{
+  display:grid;
+  gap:10px;
+  font-family:"Sans Bullshit Sans CYR","DK Form",sans-serif;
+  font-size:clamp(24px, 3vw, 42px);
+  line-height:1;
+}
+
+.sbs-glyphs p{
+  margin:0;
+}
+
+.sbs-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 22px;
+  font-size:18px;
+  line-height:1.16;
+}
+
+.sbs-links a,
+.sbs-back{
+  color:#0b0b0c;
+  text-decoration:none;
+}
+
+.sbs-links a:hover,
+.sbs-back:hover{
+  color:var(--accent);
+}
+
+.sbs-back{
+  display:inline-block;
+  margin-top:8px;
+  font-size:16px;
+}
+
+@media (max-width: 1024px){
+  .sbs-shell{
+    width:min(1720px, calc(100% - 32px));
+    grid-template-columns:1fr;
+  }
+
+  .sbs-hero,
+  .sbs-stage,
+  .sbs-grid,
+  .sbs-back{
+    grid-column:auto;
+    margin-left:0;
+    width:100%;
+  }
+
+  .sbs-title{
+    font-size:clamp(42px, 13vw, 76px);
+  }
+
+  .sbs-intro{
+    font-size:22px;
+    max-width:none;
+  }
+
+  .sbs-preview{
+    min-height:160px;
+    font-size:clamp(36px, 9vw, 72px);
+  }
+
+  .sbs-control{
+    grid-template-columns:1fr;
+  }
+
+  .sbs-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 760px){
+  .sbs-shell{
+    width:calc(100% - 20px);
+  }
+
+  .sbs-main{
+    padding:24px 0 44px;
+  }
+
+  .sbs-intro{
+    font-size:18px;
+    line-height:1.15;
+  }
+
+  .sbs-input,
+  .sbs-stat__value,
+  .sbs-links{
+    font-size:16px;
+  }
+
+  .sbs-card__body{
+    font-size:17px;
+    line-height:1.2;
+  }
+}
