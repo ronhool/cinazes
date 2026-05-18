@@ -11,7 +11,7 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260517f" />
+    <link rel="stylesheet" href="../styles.css?v=20260518c" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
   </head>
@@ -457,9 +457,16 @@
         row.dataset.category = item.category.join(",");
         row.dataset.status = item.status;
         const hasRealHref = item.href && item.href !== "#";
+        if (hasRealHref) {
+          row.classList.add("is-link");
+          row.dataset.href = item.href;
+          row.setAttribute("role", "link");
+          row.tabIndex = 0;
+        }
         const project = hasRealHref
           ? `<a class="cases-row__project-link" href="${item.href}">${item.title}</a>`
           : item.title;
+        const statusIsMarker = /^(Архив|NDA|Готовится|Case in progress|Publishing soon)$/i.test(item.status);
         const status = hasRealHref
           ? `<a class="cases-row__status-link" href="${item.href}">${item.status}</a>`
           : item.status;
@@ -468,7 +475,7 @@
           <span class="cases-row__year">${item.year}</span>
           <span class="cases-row__project">${project}</span>
           <span class="cases-row__category">${item.categoryLabel}</span>
-          <span class="cases-row__status">${status}</span>
+          <span class="cases-row__status${statusIsMarker ? " cases-row__status--marker" : ""}">${status}</span>
         `;
 
         for (const link of row.querySelectorAll("a")) {
@@ -476,6 +483,25 @@
             link.target = "_blank";
             link.rel = "noopener noreferrer";
           }
+        }
+        if (hasRealHref) {
+          row.addEventListener("click", (event) => {
+            if (event.target.closest("a")) return;
+            if (item.href.startsWith("http")) {
+              window.open(item.href, "_blank", "noopener,noreferrer");
+            } else {
+              window.location.href = item.href;
+            }
+          });
+          row.addEventListener("keydown", (event) => {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            if (item.href.startsWith("http")) {
+              window.open(item.href, "_blank", "noopener,noreferrer");
+            } else {
+              window.location.href = item.href;
+            }
+          });
         }
 
         return row;
