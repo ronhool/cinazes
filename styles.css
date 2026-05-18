@@ -573,6 +573,12 @@ a:hover{
   transform:translateY(0);
   transition:opacity .16s ease, transform .16s ease, color .14s ease, background-color .14s ease;
 }
+.cases-row.is-year-start{
+  border-top:.5px solid rgba(11,11,12,.2);
+}
+.cases-row.is-year-start:first-child{
+  border-top:0;
+}
 .cases-row.is-link{
   cursor:pointer;
 }
@@ -587,6 +593,7 @@ a:hover{
 .cases-row:hover,
 .cases-row:focus-within{
   color:var(--lab-accent);
+  transform:translateX(4px);
 }
 .cases-row__year,
 .cases-row__category,
@@ -625,6 +632,33 @@ a:hover{
   color:rgba(11,11,12,.86);
   transition:color .16s ease;
 }
+.cases-row.is-published .cases-row__project{
+  color:var(--fg);
+}
+.cases-row.is-external .cases-row__project{
+  color:rgba(11,11,12,.78);
+}
+.cases-row.is-archive .cases-row__project{
+  color:rgba(11,11,12,.58);
+}
+.cases-row.is-lab .cases-row__category{
+  color:rgba(255,79,163,.72);
+}
+.cases-row--related .cases-row__project{
+  font-size:30px;
+}
+.cases-row--related .cases-row__category{
+  color:rgba(11,11,12,.62);
+}
+.cases-row--related:not(.cases-row--group-start) .cases-row__year{
+  color:transparent;
+}
+.cases-row--related:not(.cases-row--group-start) .cases-row__project{
+  color:rgba(11,11,12,.38);
+}
+.cases-row--group-start{
+  border-top:.5px solid rgba(11,11,12,.22);
+}
 .cases-row:hover .cases-row__year,
 .cases-row:hover .cases-row__project,
 .cases-row:hover .cases-row__category,
@@ -640,6 +674,31 @@ a:hover{
 }
 .cases-row__project-link:hover{
   color:inherit;
+}
+.cases-preview{
+  position:fixed;
+  right:clamp(22px, 4vw, 72px);
+  top:32vh;
+  z-index:8;
+  width:min(360px, 25vw);
+  aspect-ratio:16/10;
+  margin:0;
+  border:.5px solid rgba(11,11,12,.12);
+  background:#fff;
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+}
+.cases-preview.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.cases-preview img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .case-main{
@@ -675,9 +734,9 @@ a:hover{
 .case-meta-line{
   margin:0;
   max-width:760px;
-  font-size:17px;
+  font-size:16px;
   line-height:1.18;
-  color:rgba(11,11,12,.48);
+  color:rgba(11,11,12,.46);
 }
 .case-intro{
   display:grid;
@@ -1008,6 +1067,10 @@ a:hover{
     min-height:0;
     padding:14px 0 16px;
   }
+  .cases-row:hover,
+  .cases-row:focus-within{
+    transform:none;
+  }
   .cases-row__year{
     grid-area:year;
   }
@@ -1038,6 +1101,9 @@ a:hover{
     color:rgba(11,11,12,.5);
   }
   .cases-row__status:empty{
+    display:none;
+  }
+  .cases-preview{
     display:none;
   }
   .case-main{

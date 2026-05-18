@@ -11,7 +11,7 @@
     <link rel="icon" href="../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260518c" />
+    <link rel="stylesheet" href="../styles.css?v=20260518e" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
   </head>
@@ -105,6 +105,9 @@
               <span>STATUS</span>
             </div>
             <div class="cases-table__body" data-cases-list></div>
+            <figure class="cases-preview" data-cases-preview aria-hidden="true">
+              <img alt="" data-cases-preview-image />
+            </figure>
           </div>
         </section>
       </div>
@@ -123,7 +126,7 @@
           title: "Sans Bullshit Sans CYR",
           category: ["Lab", "Инструменты", "Типографика"],
           categoryLabel: "Шрифт / Спецпроект",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "../lab/sans-bullshit-sans-cyrillic/",
         },
         {
@@ -139,7 +142,7 @@
           title: "STARPOWERLAB",
           category: ["Digital"],
           categoryLabel: "Digital",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "#",
         },
         {
@@ -149,6 +152,7 @@
           categoryLabel: "Айдентика",
           status: "Смотреть →",
           href: "./booost/",
+          preview: "../public/cases/booost/02-stationery.png",
         },
         {
           year: "2023",
@@ -267,7 +271,7 @@
           title: "Prime",
           category: ["Дизайн велосипедов", "Лого"],
           categoryLabel: "Дизайн велосипедов / Лого",
-          status: "Instagram →",
+          status: "Instagram ↗",
           href: "#",
         },
         {
@@ -285,6 +289,7 @@
           categoryLabel: "Айдентика",
           status: "Архив",
           href: "./buro-teti-moti/",
+          preview: "../public/cases/buro-teti-moti/01-system.png",
         },
         {
           year: "2019",
@@ -293,14 +298,16 @@
           categoryLabel: "Айдентика / Digital",
           status: "Архив",
           href: "./filler-lab/",
+          preview: "../public/cases/filler-lab/00.png",
         },
         {
           year: "2019",
           title: "Полимер",
           category: ["Айдентика", "Digital"],
           categoryLabel: "Айдентика / Digital",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "./polimer/",
+          preview: "../public/cases/polimer/01.png",
         },
         {
           year: "2019",
@@ -309,14 +316,16 @@
           categoryLabel: "Digital",
           status: "Архив",
           href: "./sv-mebel/",
+          preview: "../public/cases/sv-mebel/00.png",
         },
         {
           year: "2019",
           title: "iccentr",
           category: ["Айдентика", "Digital"],
           categoryLabel: "Айдентика / Digital",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "./iccentr/",
+          preview: "../public/cases/iccentr/01.jpg",
         },
         {
           year: "2019",
@@ -325,13 +334,14 @@
           categoryLabel: "Айдентика / Digital",
           status: "Архив",
           href: "./okonika/",
+          preview: "../public/cases/okonika/01.png",
         },
         {
           year: "2018",
           title: "seostimul",
           category: ["Айдентика", "Digital"],
           categoryLabel: "Айдентика / Digital",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "#",
         },
         {
@@ -341,14 +351,16 @@
           categoryLabel: "Айдентика / Digital",
           status: "Смотреть →",
           href: "./fsk/",
+          preview: "../public/cases/fsk/01.gif",
         },
         {
           year: "2018",
           title: "ТРЦ Волгодонск",
           category: ["Digital"],
           categoryLabel: "Digital",
-          status: "Сайт →",
+          status: "Сайт ↗",
           href: "./trc-volgodonsk/",
+          preview: "../public/cases/trc-volgodonsk/00.png",
         },
         {
           year: "2018",
@@ -357,6 +369,7 @@
           categoryLabel: "Айдентика / Digital",
           status: "Архив",
           href: "./avtowestway/",
+          preview: "../public/cases/avtowestway/01.png",
         },
         {
           year: "2017",
@@ -397,6 +410,7 @@
           categoryLabel: "Айдентика",
           status: "Архив",
           href: "./be-happy/",
+          preview: "../public/cases/be-happy/01-intro.gif",
         },
         {
           year: "2016",
@@ -450,13 +464,30 @@
 
       const list = document.querySelector("[data-cases-list]");
       const filter = document.querySelector("[data-cases-filter]");
+      const preview = document.querySelector("[data-cases-preview]");
+      const previewImage = document.querySelector("[data-cases-preview-image]");
 
-      function makeCaseRow(item) {
+      function makeCaseRow(item, index) {
         const row = document.createElement("div");
         row.className = "cases-row";
         row.dataset.category = item.category.join(",");
         row.dataset.status = item.status;
+        row.dataset.year = item.year;
+        if (item.preview) row.dataset.preview = item.preview;
+        const previous = cases[index - 1];
+        const next = cases[index + 1];
+        const isRelated = (previous && previous.title === item.title) || (next && next.title === item.title);
+        if (!previous || previous.year !== item.year) row.classList.add("is-year-start");
+        if (isRelated) row.classList.add("cases-row--related");
+        if (next && next.title === item.title && (!previous || previous.title !== item.title)) row.classList.add("cases-row--group-start");
         const hasRealHref = item.href && item.href !== "#";
+        const statusIsMarker = /^(Архив|NDA|Готовится|Case in progress|Publishing soon)$/i.test(item.status);
+        const isExternal = /↗/.test(item.status);
+        const isLab = item.category.includes("Lab");
+        if (statusIsMarker) row.classList.add("is-archive");
+        if (isExternal) row.classList.add("is-external");
+        if (isLab) row.classList.add("is-lab");
+        if (hasRealHref && !isExternal && !statusIsMarker) row.classList.add("is-published");
         if (hasRealHref) {
           row.classList.add("is-link");
           row.dataset.href = item.href;
@@ -466,7 +497,6 @@
         const project = hasRealHref
           ? `<a class="cases-row__project-link" href="${item.href}">${item.title}</a>`
           : item.title;
-        const statusIsMarker = /^(Архив|NDA|Готовится|Case in progress|Publishing soon)$/i.test(item.status);
         const status = hasRealHref
           ? `<a class="cases-row__status-link" href="${item.href}">${item.status}</a>`
           : item.status;
@@ -503,8 +533,23 @@
             }
           });
         }
+        row.addEventListener("mouseenter", () => showPreview(item.preview));
+        row.addEventListener("focusin", () => showPreview(item.preview));
+        row.addEventListener("mouseleave", hidePreview);
+        row.addEventListener("focusout", hidePreview);
 
         return row;
+      }
+
+      function showPreview(src) {
+        if (!preview || !previewImage || !src) return;
+        previewImage.src = src;
+        preview.classList.add("is-visible");
+      }
+
+      function hidePreview() {
+        if (!preview) return;
+        preview.classList.remove("is-visible");
       }
 
       function setFilter(category) {
@@ -529,8 +574,8 @@
         }
       }
 
-      for (const item of cases) {
-        list.append(makeCaseRow(item));
+      for (const [index, item] of cases.entries()) {
+        list.append(makeCaseRow(item, index));
       }
 
       filter.addEventListener("click", (event) => {

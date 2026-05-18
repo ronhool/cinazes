@@ -3,6 +3,7 @@
   --tp-surface: #ffffff;
   --tp-control: #f5f5f5;
   --tp-border: rgba(11, 11, 12, 0.08);
+  --tp-line: rgba(11, 11, 12, 0.14);
   --tp-detail: 15px;
   min-height: 100vh;
   min-height: 100dvh;
@@ -21,34 +22,56 @@
 
 .tp-main {
   flex: 1;
-  padding: 48px 0 64px;
+  padding: 58px 0 76px;
 }
 
 .tp-wrap {
-  width: min(920px, calc(100% - 40px));
+  width: min(1760px, calc(100% - 44px));
   margin-inline: auto;
+  display: grid;
+  grid-template-columns: var(--content-offset) minmax(0, 1fr);
+  align-content: start;
+}
+
+.tp-wrap > * {
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+  max-width: 1280px;
 }
 
 .tp-title {
   margin: 0;
-  text-align: center;
-  font-size: clamp(36px, 5vw, 52px);
+  max-width: 980px;
+  font-size: clamp(48px, 6.15vw, 104px);
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.tp-lead {
+  margin: 22px 0 0;
+  max-width: 760px;
+  font-size: clamp(22px, 2.2vw, 34px);
+  line-height: 1.14;
+  color: rgba(11, 11, 12, 0.68);
 }
 
 .tp-tabs {
   display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 28px;
-  padding: 4px;
-  border-radius: 10px;
-  background: var(--tp-control);
-  width: fit-content;
-  margin-inline: auto;
-  max-width: 100%;
+  justify-content: flex-start;
+  gap: 28px;
+  margin-top: 54px;
+  padding: 0 0 13px;
+  border-bottom: 0.5px solid var(--tp-line);
+  background: transparent;
+  max-width: 1280px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tp-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tp-tab {
@@ -58,52 +81,43 @@
   color: var(--fg);
   font-family: inherit;
   font-size: var(--tp-detail);
-  line-height: 1;
-  padding: 12px 22px;
+  line-height: 1.1;
+  padding: 0;
   cursor: pointer;
-  border-radius: 7px;
-  transition: color .14s ease, background-color .14s ease;
+  border-radius: 0;
+  white-space: nowrap;
+  transition: color .14s ease, opacity .14s ease;
 }
 
 .tp-tab--active {
-  background: var(--fg);
-  color: var(--bg);
+  color: var(--fg);
 }
 
 .tp-tab:not(.tp-tab--active):hover {
   color: var(--accent);
-  background: rgba(255, 255, 255, 0.65);
 }
 
 .tp-panel {
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .tp-panel--hidden {
   display: none;
 }
 
-.tp-lead {
-  margin: 0 0 24px;
-  text-align: center;
-  font-size: var(--tp-detail);
-  line-height: 1.34;
-  color: var(--muted);
-}
-
 .tp-boxes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
 .tp-box {
   position: relative;
   background: var(--tp-surface);
-  border: 1px solid var(--tp-border);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(11, 11, 12, 0.045);
-  min-height: 280px;
+  border: 0.5px solid var(--tp-line);
+  border-radius: 6px;
+  box-shadow: none;
+  min-height: 360px;
 }
 
 .tp-box-action {
@@ -114,7 +128,7 @@
   width: 32px;
   height: 32px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 4px;
   background: transparent;
   color: var(--muted);
   font-family: inherit;
@@ -137,35 +151,33 @@
 .tp-textarea {
   width: 100%;
   height: 100%;
-  min-height: 280px;
+  min-height: 360px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 6px;
   background: transparent;
   color: var(--fg);
   font-family: inherit;
-  font-size: var(--tp-detail);
-  line-height: 1.5;
-  padding: 20px 44px 20px 20px;
+  font-size: 18px;
+  line-height: 1.42;
+  padding: 24px 52px 24px 24px;
   resize: vertical;
   outline: none;
 }
 
 .tp-textarea--output {
-  background: var(--tp-control);
+  background: rgba(11, 11, 12, 0.025);
 }
 
 .tp-action-bar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 28px;
-  background: var(--tp-control);
-  border-radius: 10px;
-  padding: 4px;
-  width: fit-content;
-  margin-inline: auto;
-  max-width: 100%;
+  justify-content: flex-start;
+  gap: 22px;
+  margin-top: 22px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  max-width: 1280px;
 }
 
 .tp-action {
@@ -176,33 +188,32 @@
   font-family: inherit;
   font-size: 13px;
   line-height: 1.2;
-  padding: 12px 16px;
+  padding: 0 0 7px;
   cursor: pointer;
-  border-radius: 7px;
+  border-radius: 0;
+  border-bottom: 0.5px solid transparent;
   white-space: nowrap;
-  transition: color .14s ease, background-color .14s ease;
+  transition: color .14s ease, border-color .14s ease;
 }
 
 .tp-action:hover {
   color: var(--accent);
-  background: rgba(255, 255, 255, 0.65);
 }
 
 .tp-action--active {
-  background: var(--fg);
-  color: var(--bg);
+  color: var(--fg);
+  border-color: var(--fg);
 }
 
 .tp-action--active:hover {
-  background: var(--fg);
-  color: var(--bg);
+  color: var(--fg);
 }
 
 .tp-stats {
-  margin-top: 20px;
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px 20px;
   font-size: 13px;
   line-height: 1.34;
@@ -220,10 +231,12 @@
 
 .tp-about {
   background: var(--tp-surface);
-  border: 1px solid var(--tp-border);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(11, 11, 12, 0.045);
-  padding: 32px 36px;
+  border-top: 0.5px solid var(--tp-line);
+  border-bottom: 0.5px solid var(--tp-line);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 28px 0 30px;
+  max-width: 760px;
   font-size: var(--tp-detail);
   line-height: 1.46;
   color: rgba(11, 11, 12, 0.82);
@@ -248,7 +261,7 @@
 
 .tp-back {
   display: inline-block;
-  margin-top: 28px;
+  margin-top: 34px;
   font-size: var(--tp-detail);
   color: var(--muted);
 }
@@ -263,22 +276,57 @@
   background: var(--tp-bg);
 }
 
-@media (max-width: 720px) {
-  .tp-main {
-    padding-top: 32px;
+@media (max-width: 1024px) {
+  .tp-wrap {
+    width: min(100% - 32px, 1760px);
+    display: block;
   }
 
   .tp-boxes {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 720px) {
+  .tp-main {
+    padding: 36px 0 58px;
+  }
+
+  .tp-title {
+    font-size: clamp(38px, 10vw, 62px);
+  }
+
+  .tp-lead {
+    margin-top: 18px;
+    font-size: clamp(22px, 6vw, 30px);
+    line-height: 1.16;
+  }
+
+  .tp-tabs {
+    gap: 24px;
+    margin-top: 38px;
+  }
+
+  .tp-boxes {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .tp-box,
+  .tp-textarea {
+    min-height: 280px;
+  }
+
+  .tp-textarea {
+    font-size: 17px;
+    padding: 20px 48px 20px 20px;
+  }
 
   .tp-action-bar {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+    gap: 18px;
   }
 
   .tp-action {
-    text-align: center;
+    text-align: left;
   }
 }
