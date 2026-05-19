@@ -518,7 +518,8 @@ a:hover{
   padding:0 0 36px;
   border-bottom:.5px solid rgba(11,11,12,.16);
 }
-.cases-filter__item{
+.cases-filter__item,
+.cases-filter__archive{
   appearance:none;
   border:0;
   border-bottom:1px solid transparent;
@@ -532,12 +533,17 @@ a:hover{
   cursor:pointer;
   transition:color .14s ease, opacity .14s ease, border-color .14s ease;
 }
-.cases-filter__item:hover{
+.cases-filter__archive{
+  margin-left:auto;
+}
+.cases-filter__item:hover,
+.cases-filter__archive:hover{
   color:var(--lab-accent);
   border-color:currentColor;
   animation:navTypeFlash .18s steps(2, end) 1;
 }
-.cases-filter__item.is-active{
+.cases-filter__item.is-active,
+.cases-filter__archive.is-active{
   color:var(--fg);
   border-color:var(--fg);
 }
@@ -579,7 +585,7 @@ a:hover{
 .cases-row.is-year-start:first-child{
   border-top:0;
 }
-.cases-row.is-link{
+.cases-row.is-viewable{
   cursor:pointer;
 }
 .cases-row[hidden]{
@@ -590,8 +596,8 @@ a:hover{
   transform:translateY(4px);
   pointer-events:none;
 }
-.cases-row:hover,
-.cases-row:focus-within{
+.cases-row.is-viewable:hover,
+.cases-row.is-viewable:focus-within{
   color:var(--lab-accent);
   transform:translateX(4px);
 }
@@ -632,17 +638,14 @@ a:hover{
   color:rgba(11,11,12,.86);
   transition:color .16s ease;
 }
-.cases-row.is-published .cases-row__project{
+.cases-row.is-viewable .cases-row__project{
   color:var(--fg);
-}
-.cases-row.is-external .cases-row__project{
-  color:rgba(11,11,12,.78);
 }
 .cases-row.is-archive .cases-row__project{
   color:rgba(11,11,12,.58);
 }
-.cases-row.is-lab .cases-row__category{
-  color:rgba(255,79,163,.72);
+.cases-row.is-soon .cases-row__project{
+  color:rgba(11,11,12,.7);
 }
 .cases-row--related .cases-row__project{
   font-size:30px;
@@ -659,14 +662,14 @@ a:hover{
 .cases-row--group-start{
   border-top:.5px solid rgba(11,11,12,.22);
 }
-.cases-row:hover .cases-row__year,
-.cases-row:hover .cases-row__project,
-.cases-row:hover .cases-row__category,
-.cases-row:hover .cases-row__status,
-.cases-row:focus-within .cases-row__year,
-.cases-row:focus-within .cases-row__project,
-.cases-row:focus-within .cases-row__category,
-.cases-row:focus-within .cases-row__status{
+.cases-row.is-viewable:hover .cases-row__year,
+.cases-row.is-viewable:hover .cases-row__project,
+.cases-row.is-viewable:hover .cases-row__category,
+.cases-row.is-viewable:hover .cases-row__status,
+.cases-row.is-viewable:focus-within .cases-row__year,
+.cases-row.is-viewable:focus-within .cases-row__project,
+.cases-row.is-viewable:focus-within .cases-row__category,
+.cases-row.is-viewable:focus-within .cases-row__status{
   color:var(--lab-accent);
 }
 .cases-row__status-link:hover{
@@ -1041,6 +1044,12 @@ a:hover{
     margin-right:26px;
     font-size:17px;
   }
+  .cases-filter__archive{
+    flex:0 0 auto;
+    margin-left:4px;
+    font-size:17px;
+    white-space:nowrap;
+  }
   .cases-table__head{
     display:grid;
     grid-template-columns:54px minmax(0, 1fr) minmax(74px, .38fr);
@@ -1067,8 +1076,8 @@ a:hover{
     min-height:0;
     padding:14px 0 16px;
   }
-  .cases-row:hover,
-  .cases-row:focus-within{
+  .cases-row.is-viewable:hover,
+  .cases-row.is-viewable:focus-within{
     transform:none;
   }
   .cases-row__year{
@@ -1219,5 +1228,49 @@ a:hover{
   }
   .cookie-notice__actions{
     justify-content:flex-start;
+  }
+}
+
+/* Tuned homepage v2 */
+.index-v2-tuned .title{
+  margin-top:clamp(34px, 4.8vw, 78px);
+}
+.index-v2-tuned .info{
+  padding-top:clamp(12px, 1.6vw, 24px);
+}
+.index-v2-tuned .hero-photo{
+  object-fit:cover;
+  object-position:50% 42%;
+}
+.index-v2-tuned .hero-text{
+  max-width:980px;
+}
+.index-v2-tuned .bio{
+  max-width:980px;
+}
+.index-v2-tuned .smallp{
+  max-width:680px;
+  line-height:1.18;
+}
+.index-v2-tuned .list-title{
+  color:var(--muted);
+}
+.index-v2-tuned .ul li{
+  line-height:1.08;
+}
+.index-v2-tuned .cases-link{
+  color:var(--fg);
+}
+.index-v2-tuned .cases-link:hover{
+  color:var(--accent);
+}
+
+@media (max-width: 760px){
+  .index-v2-tuned .title{
+    margin-top:42px;
+  }
+  .index-v2-tuned .smallp{
+    max-width:none;
+    line-height:1.22;
   }
 }

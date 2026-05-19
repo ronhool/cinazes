@@ -3,27 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Кейсы — CINAZES</title>
+    <title>Работы — CINAZES</title>
     <meta
       name="description"
-      content="Архив визуальной и типографической практики CINAZES: айдентика, навигация, типографика, системы и лабораторные проекты."
+      content="Работы CINAZES: айдентика, типографика, навигация и визуальные системы для цифровых продуктов, пространств и культурных институций."
     />
     <link rel="icon" href="../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260518e" />
+    <link rel="stylesheet" href="../styles.css?v=20260519a" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
   </head>
   <body class="page-sticky-foot lab-page cases-page">
-    <a class="skip" href="#visual-practice-archive">Перейти к содержанию</a>
+    <a class="skip" href="#works">Перейти к содержанию</a>
 
     <header class="head head--compact">
       <div class="wrap-wide master-grid head-shell" data-mobile-menu>
         <a class="brand" href="../index.html">чиназес</a>
         <div class="head-nav">
           <div class="nav-group nav-group--center" aria-label="Основная навигация">
-            <a class="nav-active" href="./">кейсы</a>
+            <a class="nav-active" href="./">работы</a>
             <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
             <div class="nav-item-lab" data-lab-menu>
               <button type="button" class="nav-trigger" data-lab-trigger aria-expanded="false" aria-haspopup="true">
@@ -53,7 +53,7 @@
           <div class="head-mobile-inner">
             <div class="head-mobile-row">
               <div class="head-mobile-nav">
-                <a class="nav-active" href="./">кейсы</a>
+                <a class="nav-active" href="./">работы</a>
                 <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
                 <div class="mobile-lab" data-mobile-lab>
                   <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
@@ -78,31 +78,32 @@
 
     <main class="main lab-main cases-main">
       <div class="wrap-wide master-grid content-grid">
-        <section id="visual-practice-archive" class="cases-archive" aria-labelledby="cases-title">
+        <section id="works" class="cases-archive" aria-labelledby="cases-title">
           <div class="cases-intro">
-            <p class="cases-kicker">visual practice archive</p>
-            <h1 id="cases-title">Кейсы.</h1>
+            <h1 id="cases-title">Работы.</h1>
             <p>
-              Архив визуальных систем, айдентики и цифровых сред.
-              Индекс практики: годы, проекты, категории, статусы.
+              Айдентика, типографика, навигация и визуальные системы для цифровых продуктов,
+              пространств и культурных институций.
             </p>
           </div>
 
-          <nav class="cases-filter" aria-label="Фильтр кейсов" data-cases-filter>
+          <nav class="cases-filter" aria-label="Фильтр работ" data-cases-filter>
             <button class="cases-filter__item is-active" type="button" data-filter="Все" aria-pressed="true">Все</button>
-            <button class="cases-filter__item" type="button" data-filter="Айдентика" aria-pressed="false">Айдентика</button>
-            <button class="cases-filter__item" type="button" data-filter="Digital" aria-pressed="false">Digital</button>
-            <button class="cases-filter__item" type="button" data-filter="Инструменты" aria-pressed="false">Инструменты</button>
+            <button class="cases-filter__item" type="button" data-filter="Брендинг" aria-pressed="false">Брендинг</button>
+            <button class="cases-filter__item" type="button" data-filter="Веб" aria-pressed="false">Веб</button>
+            <button class="cases-filter__item" type="button" data-filter="Навигация" aria-pressed="false">Навигация</button>
+            <button class="cases-filter__item" type="button" data-filter="Шрифты" aria-pressed="false">Шрифты</button>
             <button class="cases-filter__item" type="button" data-filter="Упаковка" aria-pressed="false">Упаковка</button>
-            <button class="cases-filter__item" type="button" data-filter="Архив" aria-pressed="false">Архив</button>
+            <button class="cases-filter__item" type="button" data-filter="Прочее" aria-pressed="false">Прочее</button>
+            <button class="cases-filter__archive" type="button" data-archive-toggle aria-pressed="false">Архив работ</button>
           </nav>
 
           <div class="cases-table" aria-live="polite">
             <div class="cases-table__head" aria-hidden="true">
-              <span>YEAR</span>
-              <span>PROJECT</span>
-              <span>CATEGORY</span>
-              <span>STATUS</span>
+              <span>Год</span>
+              <span>Название</span>
+              <span>Направление</span>
+              <span>Статус</span>
             </div>
             <div class="cases-table__body" data-cases-list></div>
             <figure class="cases-preview" data-cases-preview aria-hidden="true">
@@ -122,382 +123,485 @@
     <script>
       const cases = [
         {
-          year: "2026",
-          title: "Sans Bullshit Sans CYR",
-          category: ["Lab", "Инструменты", "Типографика"],
-          categoryLabel: "Шрифт / Спецпроект",
-          status: "Сайт ↗",
-          href: "../lab/sans-bullshit-sans-cyrillic/",
+                "year": "2026",
+                "title": "Sans Bullshit Sans CYR",
+                "category": [
+                        "Шрифты",
+                        "Прочее"
+                ],
+                "categoryLabel": "Шрифты / Спецпроект",
+                "status": "Смотреть ↗",
+                "href": "../lab/sans-bullshit-sans-cyrillic/"
         },
         {
-          year: "2025",
-          title: "ТРЦ Город Лефортово",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2025",
+                "title": "ТРЦ Город Лефортово",
+                "category": [
+                        "Брендинг",
+                        "Навигация"
+                ],
+                "categoryLabel": "Брендинг / Навигация",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2024",
-          title: "STARPOWERLAB",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Сайт ↗",
-          href: "#",
+                "year": "2024",
+                "title": "STARPOWERLAB",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2023",
-          title: "Booost",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "./booost/",
-          preview: "../public/cases/booost/02-stationery.png",
+                "year": "2023",
+                "title": "Booost",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Смотреть ↗",
+                "href": "./booost/",
+                "preview": "../public/cases/booost/02-stationery.png"
         },
         {
-          year: "2023",
-          title: "STARPOWERLAB",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2023",
+                "title": "STARPOWERLAB",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2023",
-          title: "Joyos",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2023",
+                "title": "Joyos",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2023",
-          title: "El Rey",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2023",
+                "title": "El Rey",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2022",
-          title: "ATLET CITY",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2022",
+                "title": "ATLET CITY",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "extravirgin",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2021",
+                "title": "extravirgin",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "ZAKERMOM",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2021",
+                "title": "ZAKERMOM",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "Атол",
-          category: ["Логотип"],
-          categoryLabel: "Логотип",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2021",
+                "title": "Атол",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Логотип",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "Атол",
-          category: ["Брендбук"],
-          categoryLabel: "Брендбук",
-          status: "Архив",
-          href: "",
+                "year": "2021",
+                "title": "Атол",
+                "category": [
+                        "Брендинг",
+                        "Прочее"
+                ],
+                "categoryLabel": "Брендбук",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "Атол",
-          category: ["Айдентика мероприятия"],
-          categoryLabel: "Айдентика мероприятия",
-          status: "Архив",
-          href: "",
+                "year": "2021",
+                "title": "Атол",
+                "category": [
+                        "Брендинг",
+                        "Прочее"
+                ],
+                "categoryLabel": "Айдентика мероприятия",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2021",
-          title: "Terror",
-          category: ["Дизайн сапбордов"],
-          categoryLabel: "Дизайн сапбордов",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2021",
+                "title": "Terror",
+                "category": [
+                        "Прочее"
+                ],
+                "categoryLabel": "Графический дизайн",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "FUMMO",
-          category: ["Айдентика", "Упаковка"],
-          categoryLabel: "Айдентика / Упаковка",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2020",
+                "title": "FUMMO",
+                "category": [
+                        "Брендинг",
+                        "Упаковка"
+                ],
+                "categoryLabel": "Брендинг / Упаковка",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Рубикон",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "",
+                "year": "2020",
+                "title": "Рубикон",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Terror",
-          category: ["Дизайн сноубордов"],
-          categoryLabel: "Дизайн сноубордов",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2020",
+                "title": "Terror",
+                "category": [
+                        "Прочее"
+                ],
+                "categoryLabel": "Графический дизайн",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Prime",
-          category: ["Дизайн сноубордов"],
-          categoryLabel: "Дизайн сноубордов",
-          status: "Смотреть →",
-          href: "#",
+                "year": "2020",
+                "title": "Prime",
+                "category": [
+                        "Прочее"
+                ],
+                "categoryLabel": "Графический дизайн",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Prime",
-          category: ["Дизайн велосипедов", "Лого"],
-          categoryLabel: "Дизайн велосипедов / Лого",
-          status: "Instagram ↗",
-          href: "#",
+                "year": "2020",
+                "title": "Prime",
+                "category": [
+                        "Брендинг",
+                        "Прочее"
+                ],
+                "categoryLabel": "Графический дизайн / Лого",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Ареон",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2020",
+                "title": "Ареон",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2020",
-          title: "Бюро тёти Моти",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "./buro-teti-moti/",
-          preview: "../public/cases/buro-teti-moti/01-system.png",
+                "year": "2020",
+                "title": "Бюро тёти Моти",
+                "category": [
+                        "Брендинг",
+                        "Упаковка"
+                ],
+                "categoryLabel": "Брендинг / Упаковка",
+                "status": "Архив",
+                "href": "./buro-teti-moti/",
+                "preview": "../public/cases/buro-teti-moti/01-system.png"
         },
         {
-          year: "2019",
-          title: "fillerlab",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "./filler-lab/",
-          preview: "../public/cases/filler-lab/00.png",
+                "year": "2019",
+                "title": "fillerlab",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": "./filler-lab/",
+                "preview": "../public/cases/filler-lab/00.png"
         },
         {
-          year: "2019",
-          title: "Полимер",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Сайт ↗",
-          href: "./polimer/",
-          preview: "../public/cases/polimer/01.png",
+                "year": "2019",
+                "title": "Полимер",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Смотреть ↗",
+                "href": "./polimer/",
+                "preview": "../public/cases/polimer/01.png"
         },
         {
-          year: "2019",
-          title: "sv-мебель",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Архив",
-          href: "./sv-mebel/",
-          preview: "../public/cases/sv-mebel/00.png",
+                "year": "2019",
+                "title": "sv-мебель",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Архив",
+                "href": "./sv-mebel/",
+                "preview": "../public/cases/sv-mebel/00.png"
         },
         {
-          year: "2019",
-          title: "iccentr",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Сайт ↗",
-          href: "./iccentr/",
-          preview: "../public/cases/iccentr/01.jpg",
+                "year": "2019",
+                "title": "iccentr",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Смотреть ↗",
+                "href": "./iccentr/",
+                "preview": "../public/cases/iccentr/01.jpg"
         },
         {
-          year: "2019",
-          title: "Оконика",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "./okonika/",
-          preview: "../public/cases/okonika/01.png",
+                "year": "2019",
+                "title": "Оконика",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": "./okonika/",
+                "preview": "../public/cases/okonika/01.png"
         },
         {
-          year: "2018",
-          title: "seostimul",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Сайт ↗",
-          href: "#",
+                "year": "2018",
+                "title": "seostimul",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Скоро",
+                "href": ""
         },
         {
-          year: "2018",
-          title: "Федерация спортивного кикера",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Смотреть →",
-          href: "./fsk/",
-          preview: "../public/cases/fsk/01.gif",
+                "year": "2018",
+                "title": "Федерация спортивного кикера",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Смотреть ↗",
+                "href": "./fsk/",
+                "preview": "../public/cases/fsk/01.gif"
         },
         {
-          year: "2018",
-          title: "ТРЦ Волгодонск",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Сайт ↗",
-          href: "./trc-volgodonsk/",
-          preview: "../public/cases/trc-volgodonsk/00.png",
+                "year": "2018",
+                "title": "ТРЦ Волгодонск",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Смотреть ↗",
+                "href": "./trc-volgodonsk/",
+                "preview": "../public/cases/trc-volgodonsk/00.png"
         },
         {
-          year: "2018",
-          title: "avtowestway",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "./avtowestway/",
-          preview: "../public/cases/avtowestway/01.png",
+                "year": "2018",
+                "title": "avtowestway",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": "./avtowestway/",
+                "preview": "../public/cases/avtowestway/01.png"
         },
         {
-          year: "2017",
-          title: "Stellar",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2017",
+                "title": "Stellar",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2017",
-          title: "HIFIWIRE.NET",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2017",
+                "title": "HIFIWIRE.NET",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2016",
-          title: "CUT&GO",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "",
+                "year": "2016",
+                "title": "CUT&GO",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2016",
-          title: "Евродон",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Архив",
-          href: "",
+                "year": "2016",
+                "title": "Евродон",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2016",
-          title: "be happy",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "./be-happy/",
-          preview: "../public/cases/be-happy/01-intro.gif",
+                "year": "2016",
+                "title": "be happy",
+                "category": [
+                        "Брендинг",
+                        "Упаковка"
+                ],
+                "categoryLabel": "Брендинг / Упаковка",
+                "status": "Архив",
+                "href": "./be-happy/",
+                "preview": "../public/cases/be-happy/01-intro.gif"
         },
         {
-          year: "2016",
-          title: "Первое транспортное телевидение",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Архив",
-          href: "",
+                "year": "2016",
+                "title": "Первое транспортное телевидение",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2016",
-          title: "RS Мебель",
-          category: ["Digital"],
-          categoryLabel: "Digital",
-          status: "Архив",
-          href: "",
+                "year": "2016",
+                "title": "RS Мебель",
+                "category": [
+                        "Веб"
+                ],
+                "categoryLabel": "Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2015",
-          title: "Окошкино",
-          category: ["Айдентика", "Digital"],
-          categoryLabel: "Айдентика / Digital",
-          status: "Архив",
-          href: "",
+                "year": "2015",
+                "title": "Окошкино",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2015",
-          title: "Rabbithead",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2015",
+                "title": "Rabbithead",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2015",
-          title: "Vinil",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
+                "year": "2015",
+                "title": "Vinil",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
         },
         {
-          year: "2015",
-          title: "Агродизель",
-          category: ["Айдентика"],
-          categoryLabel: "Айдентика",
-          status: "Архив",
-          href: "",
-        },
-      ];
+                "year": "2015",
+                "title": "Агродизель",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "status": "Архив",
+                "href": ""
+        }
+];
 
       const list = document.querySelector("[data-cases-list]");
       const filter = document.querySelector("[data-cases-filter]");
+      const archiveToggle = document.querySelector("[data-archive-toggle]");
       const preview = document.querySelector("[data-cases-preview]");
       const previewImage = document.querySelector("[data-cases-preview-image]");
+      const state = { filter: "Все", archiveMode: false };
 
       function makeCaseRow(item, index) {
         const row = document.createElement("div");
+        const hasRealHref = item.href && item.href !== "#";
+        const isArchive = item.status === "Архив";
+        const isViewable = item.status === "Смотреть ↗" && hasRealHref;
+        const previous = cases[index - 1];
+        const next = cases[index + 1];
+        const isRelated = (previous && previous.title === item.title) || (next && next.title === item.title);
+
         row.className = "cases-row";
         row.dataset.category = item.category.join(",");
         row.dataset.status = item.status;
         row.dataset.year = item.year;
+        row.dataset.archive = String(isArchive);
         if (item.preview) row.dataset.preview = item.preview;
-        const previous = cases[index - 1];
-        const next = cases[index + 1];
-        const isRelated = (previous && previous.title === item.title) || (next && next.title === item.title);
         if (!previous || previous.year !== item.year) row.classList.add("is-year-start");
         if (isRelated) row.classList.add("cases-row--related");
         if (next && next.title === item.title && (!previous || previous.title !== item.title)) row.classList.add("cases-row--group-start");
-        const hasRealHref = item.href && item.href !== "#";
-        const statusIsMarker = /^(Архив|NDA|Готовится|Case in progress|Publishing soon)$/i.test(item.status);
-        const isExternal = /↗/.test(item.status);
-        const isLab = item.category.includes("Lab");
-        if (statusIsMarker) row.classList.add("is-archive");
-        if (isExternal) row.classList.add("is-external");
-        if (isLab) row.classList.add("is-lab");
-        if (hasRealHref && !isExternal && !statusIsMarker) row.classList.add("is-published");
-        if (hasRealHref) {
-          row.classList.add("is-link");
+        if (isArchive) row.classList.add("is-archive");
+        if (item.status === "Скоро") row.classList.add("is-soon");
+        if (isViewable) {
+          row.classList.add("is-viewable", "is-link");
           row.dataset.href = item.href;
           row.setAttribute("role", "link");
           row.tabIndex = 0;
         }
-        const project = hasRealHref
+
+        const project = isViewable
           ? `<a class="cases-row__project-link" href="${item.href}">${item.title}</a>`
           : item.title;
-        const status = hasRealHref
+        const status = isViewable
           ? `<a class="cases-row__status-link" href="${item.href}">${item.status}</a>`
           : item.status;
 
@@ -505,16 +609,16 @@
           <span class="cases-row__year">${item.year}</span>
           <span class="cases-row__project">${project}</span>
           <span class="cases-row__category">${item.categoryLabel}</span>
-          <span class="cases-row__status${statusIsMarker ? " cases-row__status--marker" : ""}">${status}</span>
+          <span class="cases-row__status">${status}</span>
         `;
 
-        for (const link of row.querySelectorAll("a")) {
-          if (item.href.startsWith("http")) {
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+        if (isViewable) {
+          for (const link of row.querySelectorAll("a")) {
+            if (item.href.startsWith("http")) {
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+            }
           }
-        }
-        if (hasRealHref) {
           row.addEventListener("click", (event) => {
             if (event.target.closest("a")) return;
             if (item.href.startsWith("http")) {
@@ -532,11 +636,11 @@
               window.location.href = item.href;
             }
           });
+          row.addEventListener("mouseenter", () => showPreview(item.preview));
+          row.addEventListener("focusin", () => showPreview(item.preview));
+          row.addEventListener("mouseleave", hidePreview);
+          row.addEventListener("focusout", hidePreview);
         }
-        row.addEventListener("mouseenter", () => showPreview(item.preview));
-        row.addEventListener("focusin", () => showPreview(item.preview));
-        row.addEventListener("mouseleave", hidePreview);
-        row.addEventListener("focusout", hidePreview);
 
         return row;
       }
@@ -552,17 +656,23 @@
         preview.classList.remove("is-visible");
       }
 
-      function setFilter(category) {
+      function updateRows() {
         const rows = [...list.querySelectorAll(".cases-row")];
         for (const button of filter.querySelectorAll(".cases-filter__item")) {
-          const isActive = button.dataset.filter === category;
+          const isActive = !state.archiveMode && button.dataset.filter === state.filter;
           button.classList.toggle("is-active", isActive);
           button.setAttribute("aria-pressed", String(isActive));
         }
+        archiveToggle.classList.toggle("is-active", state.archiveMode);
+        archiveToggle.setAttribute("aria-pressed", String(state.archiveMode));
+        filter.classList.toggle("is-archive-mode", state.archiveMode);
 
         for (const row of rows) {
           const categories = row.dataset.category.split(",");
-          const shouldShow = category === "Все" || categories.includes(category) || row.dataset.status === category;
+          const inArchiveMode = row.dataset.archive === "true";
+          const modeMatch = state.archiveMode ? inArchiveMode : !inArchiveMode;
+          const filterMatch = state.filter === "Все" || categories.includes(state.filter);
+          const shouldShow = modeMatch && filterMatch;
           window.clearTimeout(row.filterTimer);
           if (shouldShow) row.hidden = false;
           row.classList.toggle("is-filtered-out", !shouldShow);
@@ -579,10 +689,21 @@
       }
 
       filter.addEventListener("click", (event) => {
+        const archiveButton = event.target.closest("[data-archive-toggle]");
+        if (archiveButton) {
+          state.archiveMode = !state.archiveMode;
+          if (state.archiveMode) state.filter = "Все";
+          updateRows();
+          return;
+        }
         const button = event.target.closest("[data-filter]");
         if (!button) return;
-        setFilter(button.dataset.filter);
+        state.filter = button.dataset.filter;
+        if (state.archiveMode) state.archiveMode = false;
+        updateRows();
       });
+
+      updateRows();
     </script>
   </body>
 </html>
