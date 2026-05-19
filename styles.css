@@ -1173,6 +1173,13 @@ a:hover{
   }
 }
 
+@media (min-width: 761px) and (max-width: 1024px){
+  .case-media-pair--tablet{
+    grid-template-columns:1fr 1fr;
+    gap:var(--case-space-s);
+  }
+}
+
 @media (max-width: 760px){
   .wrap{
     width:min(1120px, calc(100% - 40px));
