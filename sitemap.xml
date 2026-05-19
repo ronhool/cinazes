@@ -36,6 +36,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://cinazes.ru/cases/iccentr-site/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cinazes.ru/cases/fsk/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
