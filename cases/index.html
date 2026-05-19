@@ -94,6 +94,10 @@
             <button class="cases-filter__item" type="button" data-filter="Навигация" aria-pressed="false">Навигация</button>
             <button class="cases-filter__item" type="button" data-filter="Шрифты" aria-pressed="false">Шрифты</button>
             <button class="cases-filter__item" type="button" data-filter="Упаковка" aria-pressed="false">Упаковка</button>
+            <button class="cases-filter__item" type="button" data-filter="Среда" aria-pressed="false">Среда</button>
+            <button class="cases-filter__item" type="button" data-filter="Мерч" aria-pressed="false">Мерч</button>
+            <button class="cases-filter__item" type="button" data-filter="Ивент" aria-pressed="false">Ивент</button>
+            <button class="cases-filter__item" type="button" data-filter="Брендбук" aria-pressed="false">Брендбук</button>
             <button class="cases-filter__item" type="button" data-filter="Прочее" aria-pressed="false">Прочее</button>
             <button class="cases-filter__archive" type="button" data-archive-toggle aria-pressed="false">Архив работ</button>
           </nav>
@@ -124,6 +128,18 @@
       const cases = [
         {
                 "year": "2026",
+                "title": "УГМК",
+                "category": [
+                        "Брендинг",
+                        "Прочее"
+                ],
+                "categoryLabel": "Брендинг / Прочее",
+                "description": "Бренд-концепция и визуальная система промышленной компании.",
+                "status": "Скоро",
+                "href": ""
+        },
+        {
+                "year": "2026",
                 "title": "Sans Bullshit Sans CYR",
                 "category": [
                         "Шрифты",
@@ -131,17 +147,89 @@
                 ],
                 "categoryLabel": "Шрифты / Спецпроект",
                 "status": "Смотреть ↗",
-                "href": "../lab/sans-bullshit-sans-cyrillic/"
+                "href": "../lab/sans-bullshit-sans-cyrillic/",
+                "preview": "../public/cases/archive-preview/bullshit-sans.jpg"
         },
         {
                 "year": "2025",
-                "title": "ТРЦ Город Лефортово",
+                "title": "Энергия Руки Вверх!",
                 "category": [
                         "Брендинг",
-                        "Навигация"
+                        "Упаковка"
                 ],
-                "categoryLabel": "Брендинг / Навигация",
-                "status": "Скоро",
+                "categoryLabel": "Брендинг / Упаковка",
+                "description": "Брендинг и упаковка энергетического напитка.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2025",
+                "title": "VK Простор",
+                "category": [
+                        "Брендинг",
+                        "Ивент",
+                        "Прочее"
+                ],
+                "categoryLabel": "Брендинг / Ивент / Прочее",
+                "description": "Event branding и арт-дирекшн проекта.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2025",
+                "title": "ТРЦ «Город» Лефортово",
+                "category": [
+                        "Брендинг",
+                        "Брендбук",
+                        "Среда"
+                ],
+                "categoryLabel": "Брендинг / Брендбук / Среда",
+                "description": "Брендинг и гайдбук торгового центра.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2025",
+                "title": "Salam",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "description": "Айдентика и визуальная система бренда.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2025",
+                "title": "Flash Energy Kazakhstan",
+                "category": [
+                        "Упаковка"
+                ],
+                "categoryLabel": "Упаковка",
+                "description": "Дизайн упаковки энергетического напитка.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2024",
+                "title": "СберЗвук / Лауд",
+                "category": [
+                        "Шрифты"
+                ],
+                "categoryLabel": "Шрифты",
+                "description": "Кастомный шрифт для Лауд / СберЗвук.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2024",
+                "title": "GG Agency",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "description": "Разработка айдентики для агентства.",
+                "status": "NDA",
                 "href": ""
         },
         {
@@ -152,6 +240,20 @@
                 ],
                 "categoryLabel": "Веб",
                 "status": "Скоро",
+                "href": ""
+        },
+        {
+                "year": "2023–2024",
+                "title": "АО «Плутон»",
+                "category": [
+                        "Брендинг",
+                        "Навигация",
+                        "Брендбук",
+                        "Среда"
+                ],
+                "categoryLabel": "Брендинг / Навигация / Брендбук / Среда",
+                "description": "Брендинг, брендбук и навигационная система предприятия.",
+                "status": "Смотреть ↗",
                 "href": ""
         },
         {
@@ -197,12 +299,72 @@
         },
         {
                 "year": "2022",
+                "title": "TechRace",
+                "category": [
+                        "Веб",
+                        "Мерч",
+                        "Ивент"
+                ],
+                "categoryLabel": "Веб / Мерч / Ивент",
+                "description": "Лендинг мероприятия и мерч.",
+                "status": "Архив",
+                "href": ""
+        },
+        {
+                "year": "2022",
                 "title": "ATLET CITY",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Скоро",
+                "href": ""
+        },
+        {
+                "year": "2021",
+                "title": "Год науки и технологий",
+                "category": [
+                        "Брендинг",
+                        "Брендбук"
+                ],
+                "categoryLabel": "Брендинг / Брендбук",
+                "description": "Айдентика и брендбук проекта.",
+                "status": "Смотреть ↗",
+                "href": ""
+        },
+        {
+                "year": "2021",
+                "title": "Xiaomi Campaigns",
+                "category": [
+                        "Веб",
+                        "Прочее"
+                ],
+                "categoryLabel": "Веб / Прочее",
+                "description": "Два промо-лендинга Xiaomi к 23 февраля и 8 марта.",
+                "status": "Архив",
+                "href": ""
+        },
+        {
+                "year": "2021",
+                "title": "СК ФСК",
+                "category": [
+                        "Брендинг"
+                ],
+                "categoryLabel": "Брендинг",
+                "description": "Айдентика для девелопера.",
+                "status": "Архив",
+                "href": ""
+        },
+        {
+                "year": "2021",
+                "title": "Академия долголетия",
+                "category": [
+                        "Навигация",
+                        "Среда"
+                ],
+                "categoryLabel": "Навигация / Среда",
+                "description": "Навигационная система для пансионата для пожилых людей.",
+                "status": "Смотреть ↗",
                 "href": ""
         },
         {
@@ -240,8 +402,7 @@
                 "year": "2021",
                 "title": "Атол",
                 "category": [
-                        "Брендинг",
-                        "Прочее"
+                        "Брендбук"
                 ],
                 "categoryLabel": "Брендбук",
                 "status": "Архив",
@@ -252,9 +413,9 @@
                 "title": "Атол",
                 "category": [
                         "Брендинг",
-                        "Прочее"
+                        "Ивент"
                 ],
-                "categoryLabel": "Айдентика мероприятия",
+                "categoryLabel": "Брендинг / Ивент",
                 "status": "Архив",
                 "href": ""
         },
@@ -329,7 +490,8 @@
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/areon.jpg"
         },
         {
                 "year": "2020",
@@ -342,6 +504,30 @@
                 "status": "Архив",
                 "href": "./buro-teti-moti/",
                 "preview": "../public/cases/buro-teti-moti/01-system.png"
+        },
+        {
+                "year": "2019",
+                "title": "Dozzer",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "description": "Логотип, фирменный стиль и сайт бренда.",
+                "status": "Архив",
+                "href": ""
+        },
+        {
+                "year": "2019",
+                "title": "Исток",
+                "category": [
+                        "Брендинг",
+                        "Веб"
+                ],
+                "categoryLabel": "Брендинг / Веб",
+                "description": "Логотип и сайт-визитка.",
+                "status": "Архив",
+                "href": ""
         },
         {
                 "year": "2019",
@@ -460,23 +646,25 @@
         },
         {
                 "year": "2017",
-                "title": "Stellar",
+                "title": "Stellarr",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/stellarr.jpg"
         },
         {
                 "year": "2017",
-                "title": "HIFIWIRE.NET",
+                "title": "hifiwire.net",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/hifiwire.jpg"
         },
         {
                 "year": "2016",
@@ -487,7 +675,8 @@
                 ],
                 "categoryLabel": "Брендинг / Веб",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/cutgo.jpg"
         },
         {
                 "year": "2016",
@@ -519,7 +708,8 @@
                 ],
                 "categoryLabel": "Веб",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/ptt.jpg"
         },
         {
                 "year": "2016",
@@ -544,33 +734,36 @@
         },
         {
                 "year": "2015",
-                "title": "Rabbithead",
+                "title": "RabbitHead",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/rabbithead.jpg"
         },
         {
                 "year": "2015",
-                "title": "Vinil",
+                "title": "Vинил Project",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/vinil.jpg"
         },
         {
                 "year": "2015",
-                "title": "Агродизель",
+                "title": "Агро-Дизель",
                 "category": [
                         "Брендинг"
                 ],
                 "categoryLabel": "Брендинг",
                 "status": "Архив",
-                "href": ""
+                "href": "",
+                "preview": "../public/cases/archive-preview/agrodiesel.jpg"
         }
 ];
 
@@ -586,6 +779,7 @@
         const hasRealHref = item.href && item.href !== "#";
         const isArchive = item.status === "Архив";
         const isViewable = item.status === "Смотреть ↗" && hasRealHref;
+        const isPreviewable = !isViewable && Boolean(item.preview);
         const previous = cases[index - 1];
         const next = cases[index + 1];
         const isRelated = (previous && previous.title === item.title) || (next && next.title === item.title);
@@ -595,12 +789,13 @@
         row.dataset.status = item.status;
         row.dataset.year = item.year;
         row.dataset.archive = String(isArchive);
-        if (item.preview) row.dataset.preview = item.preview;
+        if (isPreviewable) row.dataset.preview = item.preview;
         if (!previous || previous.year !== item.year) row.classList.add("is-year-start");
         if (isRelated) row.classList.add("cases-row--related");
         if (next && next.title === item.title && (!previous || previous.title !== item.title)) row.classList.add("cases-row--group-start");
         if (isArchive) row.classList.add("is-archive");
         if (item.status === "Скоро") row.classList.add("is-soon");
+        if (isPreviewable) row.classList.add("is-previewable");
         if (isViewable) {
           row.classList.add("is-viewable", "is-link");
           row.dataset.href = item.href;
@@ -614,11 +809,14 @@
         const status = isViewable
           ? `<a class="cases-row__status-link" href="${item.href}">${item.status}</a>`
           : item.status;
+        const category = item.description
+          ? `${item.categoryLabel}<span class="cases-row__description">${item.description}</span>`
+          : item.categoryLabel;
 
         row.innerHTML = `
           <span class="cases-row__year">${item.year}</span>
           <span class="cases-row__project">${project}</span>
-          <span class="cases-row__category">${item.categoryLabel}</span>
+          <span class="cases-row__category">${category}</span>
           <span class="cases-row__status">${status}</span>
         `;
 
@@ -646,10 +844,15 @@
               window.location.href = item.href;
             }
           });
-          row.addEventListener("mouseenter", () => showPreview(item.preview));
-          row.addEventListener("focusin", () => showPreview(item.preview));
+        }
+
+        if (isPreviewable) {
+          row.addEventListener("mouseenter", (event) => {
+            showPreview(item.preview);
+            movePreview(event);
+          });
+          row.addEventListener("mousemove", movePreview);
           row.addEventListener("mouseleave", hidePreview);
-          row.addEventListener("focusout", hidePreview);
         }
 
         return row;
@@ -657,8 +860,23 @@
 
       function showPreview(src) {
         if (!preview || !previewImage || !src) return;
+        previewImage.onerror = () => {
+          previewImage.onerror = null;
+          previewImage.src = "../public/cases/archive-preview/fallback.svg";
+        };
         previewImage.src = src;
         preview.classList.add("is-visible");
+      }
+
+      function movePreview(event) {
+        if (!preview) return;
+        const gap = 24;
+        const width = preview.offsetWidth || 360;
+        const height = preview.offsetHeight || 225;
+        const x = Math.min(event.clientX + gap, window.innerWidth - width - gap);
+        const y = Math.min(event.clientY + gap, window.innerHeight - height - gap);
+        preview.style.setProperty("--preview-x", `${Math.max(gap, x)}px`);
+        preview.style.setProperty("--preview-y", `${Math.max(gap, y)}px`);
       }
 
       function hidePreview() {

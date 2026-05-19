@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" role="img" aria-labelledby="title desc">
+  <title id="title">Archive preview fallback</title>
+  <desc id="desc">Static editorial fallback preview.</desc>
+  <rect width="1280" height="900" fill="#f7f7f7"/>
+  <path d="M80 120h1120M80 780h1120M80 120v660M1200 120v660" fill="none" stroke="#0b0b0c" stroke-opacity=".14" stroke-width="1"/>
+  <text x="104" y="188" fill="#0b0b0c" fill-opacity=".48" font-family="Arial, Helvetica, sans-serif" font-size="30">archive preview</text>
+  <text x="104" y="514" fill="#0b0b0c" font-family="Arial, Helvetica, sans-serif" font-size="92">CINAZES</text>
+  <text x="104" y="604" fill="#0b0b0c" fill-opacity=".52" font-family="Arial, Helvetica, sans-serif" font-size="30">visual practice index</text>
+</svg>
