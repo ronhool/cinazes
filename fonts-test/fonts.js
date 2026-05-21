@@ -30,7 +30,7 @@ const fontConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
-    size: [48, 420],
+    size: [10, 420],
   },
 };
 
@@ -38,15 +38,10 @@ function clamp(value, [min, max]) {
   return Math.min(Math.max(Number(value), min), max);
 }
 
-function setPressed(buttons, activeButton) {
-  for (const button of buttons) {
-    button.setAttribute("aria-pressed", String(button === activeButton));
-  }
-}
-
 function setupFontBlock(block) {
   const specimen = block.querySelector("[data-specimen]");
   const styleSelect = block.querySelector("[data-style-select]");
+  const staticStyle = block.querySelector("[data-style-value]");
   const sizeOutput = block.querySelector("[data-size-output]");
   const controls = {
     tracking: block.querySelector('[data-control="tracking"]'),
@@ -64,6 +59,10 @@ function setupFontBlock(block) {
     const tracking = clamp(controls.tracking.value, fontConfig.limits.tracking);
     const leading = clamp(controls.leading.value, fontConfig.limits.leading);
     const size = clamp(controls.size.value, fontConfig.limits.size);
+
+    controls.tracking.value = String(tracking);
+    controls.leading.value = String(leading);
+    controls.size.value = String(size);
 
     specimen.style.setProperty("--specimen-tracking", `${tracking}em`);
     specimen.style.setProperty("--specimen-leading", leading);
@@ -87,24 +86,32 @@ function setupFontBlock(block) {
     renderControls();
   }
 
+  function applyTheme(themeName) {
+    block.dataset.fontTheme = themeName;
+    block.dataset.fontAccent = themeName;
+
+    for (const button of block.querySelectorAll("[data-theme-control]")) {
+      button.setAttribute("aria-pressed", String(button.dataset.themeControl === themeName));
+    }
+  }
+
   for (const control of Object.values(controls)) {
     control.addEventListener("input", renderControls);
   }
 
-  styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
-
-  for (const button of block.querySelectorAll("[data-theme]")) {
-    button.addEventListener("click", () => {
-      block.dataset.fontTheme = button.dataset.theme;
-      setPressed(block.querySelectorAll("[data-theme]"), button);
-    });
+  if (styleSelect) {
+    const options = Array.from(styleSelect.options).filter((option) => fontConfig.styles[option.value]);
+    if (options.length <= 1) {
+      styleSelect.replaceWith(Object.assign(document.createElement("span"), {
+        textContent: options[0]?.textContent || fontConfig.styles[fontConfig.defaultStyle].label,
+      }));
+    } else {
+      styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
+    }
   }
 
-  for (const button of block.querySelectorAll("[data-accent]")) {
-    button.addEventListener("click", () => {
-      block.dataset.fontAccent = button.dataset.accent;
-      setPressed(block.querySelectorAll("[data-accent]"), button);
-    });
+  for (const button of block.querySelectorAll("[data-theme-control]")) {
+    button.addEventListener("click", () => applyTheme(button.dataset.themeControl));
   }
 
   specimen.addEventListener("paste", (event) => {
@@ -119,7 +126,8 @@ function setupFontBlock(block) {
     }
   });
 
-  applyStyle(styleSelect.value || fontConfig.defaultStyle, false);
+  applyStyle(styleSelect?.value || staticStyle?.dataset.styleValue || fontConfig.defaultStyle, false);
+  applyTheme(block.dataset.fontTheme || "white");
 }
 
 for (const block of document.querySelectorAll("[data-font-block]")) {
