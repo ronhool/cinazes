@@ -34,48 +34,8 @@ const fontConfig = {
   },
 };
 
-const body = document.body;
-const specimen = document.querySelector("[data-specimen]");
-const styleSelect = document.querySelector("[data-style-select]");
-const sizeOutput = document.querySelector("[data-size-output]");
-const controls = {
-  tracking: document.querySelector('[data-control="tracking"]'),
-  leading: document.querySelector('[data-control="leading"]'),
-  size: document.querySelector('[data-control="size"]'),
-};
-
 function clamp(value, [min, max]) {
   return Math.min(Math.max(Number(value), min), max);
-}
-
-function setControlValue(name, value) {
-  const nextValue = clamp(value, fontConfig.limits[name]);
-  controls[name].value = String(nextValue);
-  return nextValue;
-}
-
-function renderControls() {
-  const tracking = clamp(controls.tracking.value, fontConfig.limits.tracking);
-  const leading = clamp(controls.leading.value, fontConfig.limits.leading);
-  const size = clamp(controls.size.value, fontConfig.limits.size);
-
-  specimen.style.setProperty("--specimen-tracking", `${tracking}em`);
-  specimen.style.setProperty("--specimen-leading", leading);
-  specimen.style.setProperty("--specimen-size", `${size}px`);
-  sizeOutput.textContent = `${Math.round(size)}px`;
-}
-
-function applyStyle(styleName) {
-  const style = fontConfig.styles[styleName] || fontConfig.styles[fontConfig.defaultStyle];
-  const styleClasses = Object.values(fontConfig.styles).map((item) => item.className);
-
-  specimen.classList.remove(...styleClasses);
-  specimen.classList.add(style.className);
-
-  setControlValue("tracking", style.tracking);
-  setControlValue("leading", style.leading);
-  setControlValue("size", style.size);
-  renderControls();
 }
 
 function setPressed(buttons, activeButton) {
@@ -84,36 +44,84 @@ function setPressed(buttons, activeButton) {
   }
 }
 
-for (const control of Object.values(controls)) {
-  control.addEventListener("input", renderControls);
-}
+function setupFontBlock(block) {
+  const specimen = block.querySelector("[data-specimen]");
+  const styleSelect = block.querySelector("[data-style-select]");
+  const sizeOutput = block.querySelector("[data-size-output]");
+  const controls = {
+    tracking: block.querySelector('[data-control="tracking"]'),
+    leading: block.querySelector('[data-control="leading"]'),
+    size: block.querySelector('[data-control="size"]'),
+  };
 
-styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
-
-for (const button of document.querySelectorAll("[data-theme]")) {
-  button.addEventListener("click", () => {
-    body.dataset.fontTheme = button.dataset.theme;
-    setPressed(document.querySelectorAll("[data-theme]"), button);
-  });
-}
-
-for (const button of document.querySelectorAll("[data-accent]")) {
-  button.addEventListener("click", () => {
-    body.dataset.fontAccent = button.dataset.accent;
-    setPressed(document.querySelectorAll("[data-accent]"), button);
-  });
-}
-
-specimen.addEventListener("paste", (event) => {
-  event.preventDefault();
-  const text = event.clipboardData.getData("text/plain");
-  document.execCommand("insertText", false, text);
-});
-
-specimen.addEventListener("keydown", (event) => {
-  if ((event.metaKey || event.ctrlKey) && ["b", "i", "u"].includes(event.key.toLowerCase())) {
-    event.preventDefault();
+  function setControlValue(name, value) {
+    const nextValue = clamp(value, fontConfig.limits[name]);
+    controls[name].value = String(nextValue);
+    return nextValue;
   }
-});
 
-applyStyle(fontConfig.defaultStyle);
+  function renderControls() {
+    const tracking = clamp(controls.tracking.value, fontConfig.limits.tracking);
+    const leading = clamp(controls.leading.value, fontConfig.limits.leading);
+    const size = clamp(controls.size.value, fontConfig.limits.size);
+
+    specimen.style.setProperty("--specimen-tracking", `${tracking}em`);
+    specimen.style.setProperty("--specimen-leading", leading);
+    specimen.style.setProperty("--specimen-size", `${size}px`);
+    sizeOutput.textContent = `${Math.round(size)}px`;
+  }
+
+  function applyStyle(styleName, shouldResetControls = true) {
+    const style = fontConfig.styles[styleName] || fontConfig.styles[fontConfig.defaultStyle];
+    const styleClasses = Object.values(fontConfig.styles).map((item) => item.className);
+
+    specimen.classList.remove(...styleClasses);
+    specimen.classList.add(style.className);
+
+    if (shouldResetControls) {
+      setControlValue("tracking", style.tracking);
+      setControlValue("leading", style.leading);
+      setControlValue("size", style.size);
+    }
+
+    renderControls();
+  }
+
+  for (const control of Object.values(controls)) {
+    control.addEventListener("input", renderControls);
+  }
+
+  styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
+
+  for (const button of block.querySelectorAll("[data-theme]")) {
+    button.addEventListener("click", () => {
+      block.dataset.fontTheme = button.dataset.theme;
+      setPressed(block.querySelectorAll("[data-theme]"), button);
+    });
+  }
+
+  for (const button of block.querySelectorAll("[data-accent]")) {
+    button.addEventListener("click", () => {
+      block.dataset.fontAccent = button.dataset.accent;
+      setPressed(block.querySelectorAll("[data-accent]"), button);
+    });
+  }
+
+  specimen.addEventListener("paste", (event) => {
+    event.preventDefault();
+    const text = event.clipboardData.getData("text/plain");
+    document.execCommand("insertText", false, text);
+  });
+
+  specimen.addEventListener("keydown", (event) => {
+    if ((event.metaKey || event.ctrlKey) && ["b", "i", "u"].includes(event.key.toLowerCase())) {
+      event.preventDefault();
+    }
+  });
+
+  applyStyle(styleSelect.value || fontConfig.defaultStyle, false);
+}
+
+for (const block of document.querySelectorAll("[data-font-block]")) {
+  setupFontBlock(block);
+}

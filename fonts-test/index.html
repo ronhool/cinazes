@@ -14,12 +14,12 @@
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../public/fonts/etude/Etude-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../styles.css?v=20260519a" />
-    <link rel="stylesheet" href="./fonts.css?v=20260521c" />
+    <link rel="stylesheet" href="./fonts.css?v=20260521d" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
-    <script defer src="./fonts.js?v=20260521b"></script>
+    <script defer src="./fonts.js?v=20260521d"></script>
   </head>
-  <body class="page-sticky-foot fonts-page" data-font-theme="white" data-font-accent="pink">
+  <body class="page-sticky-foot fonts-page">
     <a class="skip" href="#font-lab">Перейти к содержанию</a>
 
     <header class="head head--compact">
@@ -83,97 +83,172 @@
     <main class="fonts-main" id="font-lab">
       <h1 class="fonts-visually-hidden">Типографическая лаборатория CINAZES</h1>
 
-      <section class="font-stage" aria-label="Живой specimen шрифта">
-        <div class="font-toolbar" aria-label="Настройки specimen">
-          <div class="font-toolbar__left">
-            <label class="font-select">
-              <span class="font-label">Etude</span>
-              <select data-style-select aria-label="Начертание">
-                <option value="regular">Regular</option>
-                <option value="line">Line</option>
-                <option value="path">Path</option>
-              </select>
-            </label>
-            <nav class="font-actions" aria-label="Информация о шрифте">
-              <a href="#glyphs">О шрифте</a>
-              <a href="#license">Лицензия</a>
-              <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
-            </nav>
-          </div>
-
-          <div class="font-toolbar__right">
-            <label class="font-range">
-              <span>Tracking</span>
-              <input data-control="tracking" type="range" min="-0.08" max="0.2" value="-0.02" step="0.005" />
-            </label>
-            <label class="font-range">
-              <span>Leading</span>
-              <input data-control="leading" type="range" min="0.75" max="1.4" value="0.88" step="0.01" />
-            </label>
-            <label class="font-range font-range--size">
-              <span>Size</span>
-              <input data-control="size" type="range" min="48" max="420" value="220" step="1" />
-              <output data-size-output>220px</output>
-            </label>
-            <div class="font-theme" aria-label="Тема">
-              <button type="button" data-theme="white" aria-pressed="true">White</button>
-              <button type="button" data-theme="black" aria-pressed="false">Black</button>
-              <button type="button" data-theme="pink" aria-pressed="false">Pink</button>
+      <section class="font-wall" aria-label="Типографическая стена">
+        <article class="font-block" data-font-block data-font-theme="white" data-font-accent="pink" aria-label="Etude Regular specimen">
+          <div class="font-toolbar" aria-label="Настройки Etude Regular">
+            <div class="font-toolbar__left">
+              <label class="font-select">
+                <span class="font-label">Etude</span>
+                <select data-style-select aria-label="Начертание">
+                  <option value="regular" selected>Regular</option>
+                  <option value="line">Line</option>
+                  <option value="path">Path</option>
+                </select>
+              </label>
+              <nav class="font-actions" aria-label="Информация о шрифте">
+                <a href="mailto:hello@cinazes.ru?subject=Etude%20specimen">О шрифте</a>
+                <a href="mailto:hello@cinazes.ru?subject=Лицензия%20Etude">Лицензия</a>
+                <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+              </nav>
             </div>
-            <div class="font-accents" aria-label="Акцент">
-              <button type="button" class="font-swatch font-swatch--black" data-accent="black" aria-label="Чёрный акцент"></button>
-              <button type="button" class="font-swatch font-swatch--pink" data-accent="pink" aria-label="Розовый акцент" aria-pressed="true"></button>
-              <button type="button" class="font-swatch font-swatch--white" data-accent="white" aria-label="Белый акцент"></button>
+            <div class="font-toolbar__right">
+              <label class="font-range">
+                <span>Tracking</span>
+                <input data-control="tracking" type="range" min="-0.08" max="0.2" value="-0.02" step="0.005" />
+              </label>
+              <label class="font-range">
+                <span>Leading</span>
+                <input data-control="leading" type="range" min="0.75" max="1.4" value="0.88" step="0.01" />
+              </label>
+              <label class="font-range font-range--size">
+                <span>Size</span>
+                <input data-control="size" type="range" min="48" max="420" value="220" step="1" />
+                <output data-size-output>220px</output>
+              </label>
+              <div class="font-theme" aria-label="Тема">
+                <button type="button" data-theme="white" aria-pressed="true">White</button>
+                <button type="button" data-theme="black" aria-pressed="false">Black</button>
+                <button type="button" data-theme="pink" aria-pressed="false">Pink</button>
+              </div>
+              <div class="font-accents" aria-label="Акцент">
+                <button type="button" class="font-swatch font-swatch--black" data-accent="black" aria-label="Чёрный акцент"></button>
+                <button type="button" class="font-swatch font-swatch--pink" data-accent="pink" aria-label="Розовый акцент" aria-pressed="true"></button>
+                <button type="button" class="font-swatch font-swatch--white" data-accent="white" aria-label="Белый акцент"></button>
+              </div>
             </div>
           </div>
-        </div>
+          <div
+            class="font-specimen"
+            data-specimen
+            data-placeholder="Etude"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Редактируемый specimen Etude Regular"
+          >Etude</div>
+        </article>
 
-        <div
-          class="font-specimen font-specimen--regular"
-          data-specimen
-          contenteditable="true"
-          spellcheck="false"
-          role="textbox"
-          aria-multiline="true"
-          aria-label="Редактируемый specimen"
-        >ЖИВАЯ ТИПОГРАФИКА</div>
+        <article class="font-block" data-font-block data-font-theme="white" data-font-accent="pink" aria-label="Etude Line specimen">
+          <div class="font-toolbar" aria-label="Настройки Etude Line">
+            <div class="font-toolbar__left">
+              <label class="font-select">
+                <span class="font-label">Etude</span>
+                <select data-style-select aria-label="Начертание">
+                  <option value="regular">Regular</option>
+                  <option value="line" selected>Line</option>
+                  <option value="path">Path</option>
+                </select>
+              </label>
+              <nav class="font-actions" aria-label="Информация о шрифте">
+                <a href="mailto:hello@cinazes.ru?subject=Etude%20Line">О шрифте</a>
+                <a href="mailto:hello@cinazes.ru?subject=Лицензия%20Etude">Лицензия</a>
+                <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+              </nav>
+            </div>
+            <div class="font-toolbar__right">
+              <label class="font-range">
+                <span>Tracking</span>
+                <input data-control="tracking" type="range" min="-0.08" max="0.2" value="0.01" step="0.005" />
+              </label>
+              <label class="font-range">
+                <span>Leading</span>
+                <input data-control="leading" type="range" min="0.75" max="1.4" value="0.92" step="0.01" />
+              </label>
+              <label class="font-range font-range--size">
+                <span>Size</span>
+                <input data-control="size" type="range" min="48" max="420" value="210" step="1" />
+                <output data-size-output>210px</output>
+              </label>
+              <div class="font-theme" aria-label="Тема">
+                <button type="button" data-theme="white" aria-pressed="true">White</button>
+                <button type="button" data-theme="black" aria-pressed="false">Black</button>
+                <button type="button" data-theme="pink" aria-pressed="false">Pink</button>
+              </div>
+              <div class="font-accents" aria-label="Акцент">
+                <button type="button" class="font-swatch font-swatch--black" data-accent="black" aria-label="Чёрный акцент"></button>
+                <button type="button" class="font-swatch font-swatch--pink" data-accent="pink" aria-label="Розовый акцент" aria-pressed="true"></button>
+                <button type="button" class="font-swatch font-swatch--white" data-accent="white" aria-label="Белый акцент"></button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="font-specimen"
+            data-specimen
+            data-placeholder="Line"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Редактируемый specimen Etude Line"
+          >Line</div>
+        </article>
 
-        <div class="font-meta" aria-label="Метаданные шрифта">
-          <span>Etude</span>
-          <span>3 behaviours</span>
-          <span>Latin + Cyrillic</span>
-          <span>Static</span>
-          <span>2026</span>
-          <span>Trial available</span>
-        </div>
-      </section>
-
-      <section class="glyphs" id="glyphs" aria-labelledby="glyphs-title">
-        <div class="glyphs__label" id="glyphs-title">Glyph preview</div>
-        <div class="glyphs__set" data-glyph-preview>
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
-          АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ<br />
-          0123456789 · , . : ; ! ? / \ ( ) [ ] { } № % @ &amp;<br />
-          ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ — – « » “ ” ‘ ’
-        </div>
-      </section>
-
-      <section class="font-foot" id="license" aria-label="Действия и лицензия">
-        <div class="font-foot__meta">
-          Trial предназначен для тестирования формы в макетах. Коммерческое использование требует отдельной лицензии.
-        </div>
-        <nav class="font-foot__links" aria-label="Действия">
-          <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
-          <a href="mailto:hello@cinazes.ru?subject=Лицензия%20Etude">Запросить лицензию</a>
-          <a href="mailto:hello@cinazes.ru">Контакт</a>
-        </nav>
+        <article class="font-block" data-font-block data-font-theme="white" data-font-accent="pink" aria-label="Etude Path specimen">
+          <div class="font-toolbar" aria-label="Настройки Etude Path">
+            <div class="font-toolbar__left">
+              <label class="font-select">
+                <span class="font-label">Etude</span>
+                <select data-style-select aria-label="Начертание">
+                  <option value="regular">Regular</option>
+                  <option value="line">Line</option>
+                  <option value="path" selected>Path</option>
+                </select>
+              </label>
+              <nav class="font-actions" aria-label="Информация о шрифте">
+                <a href="mailto:hello@cinazes.ru?subject=Etude%20Path">О шрифте</a>
+                <a href="mailto:hello@cinazes.ru?subject=Лицензия%20Etude">Лицензия</a>
+                <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+              </nav>
+            </div>
+            <div class="font-toolbar__right">
+              <label class="font-range">
+                <span>Tracking</span>
+                <input data-control="tracking" type="range" min="-0.08" max="0.2" value="0.03" step="0.005" />
+              </label>
+              <label class="font-range">
+                <span>Leading</span>
+                <input data-control="leading" type="range" min="0.75" max="1.4" value="0.95" step="0.01" />
+              </label>
+              <label class="font-range font-range--size">
+                <span>Size</span>
+                <input data-control="size" type="range" min="48" max="420" value="205" step="1" />
+                <output data-size-output>205px</output>
+              </label>
+              <div class="font-theme" aria-label="Тема">
+                <button type="button" data-theme="white" aria-pressed="true">White</button>
+                <button type="button" data-theme="black" aria-pressed="false">Black</button>
+                <button type="button" data-theme="pink" aria-pressed="false">Pink</button>
+              </div>
+              <div class="font-accents" aria-label="Акцент">
+                <button type="button" class="font-swatch font-swatch--black" data-accent="black" aria-label="Чёрный акцент"></button>
+                <button type="button" class="font-swatch font-swatch--pink" data-accent="pink" aria-label="Розовый акцент" aria-pressed="true"></button>
+                <button type="button" class="font-swatch font-swatch--white" data-accent="white" aria-label="Белый акцент"></button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="font-specimen"
+            data-specimen
+            data-placeholder="Path"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Редактируемый specimen Etude Path"
+          >Path</div>
+        </article>
       </section>
     </main>
-
-    <footer id="contacts" class="foot">
-      <div class="wrap-wide master-grid content-grid">
-        <p class="site-copy">©чиназес. все права защищены · <a href="../privacy/">политика</a></p>
-      </div>
-    </footer>
   </body>
 </html>
