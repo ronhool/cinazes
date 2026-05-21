@@ -800,6 +800,16 @@ a:hover{
   width:100%;
   height:auto;
 }
+.case-media--video{
+  width:min(980px, 100%);
+  justify-self:start;
+  background:transparent;
+}
+.case-media--video video{
+  display:block;
+  width:100%;
+  height:auto;
+}
 .case-media-pair{
   display:grid;
   grid-template-columns:1fr 1fr;
