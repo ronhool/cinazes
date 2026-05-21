@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Шрифты — CINAZES</title>
+    <meta
+      name="description"
+      content="Типографическая лаборатория CINAZES: живой specimen, настройка ритма, размера, интерлиньяжа и характера формы."
+    />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <link rel="icon" href="../assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="../assets/favicon.png" />
+    <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../public/fonts/etude/Etude-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20260519a" />
+    <link rel="stylesheet" href="./fonts.css?v=20260521c" />
+    <script defer src="../site-header.js"></script>
+    <script defer src="../cookie-notice.js" data-site-root="../"></script>
+    <script defer src="./fonts.js?v=20260521b"></script>
+  </head>
+  <body class="page-sticky-foot fonts-page" data-font-theme="white" data-font-accent="pink">
+    <a class="skip" href="#font-lab">Перейти к содержанию</a>
+
+    <header class="head head--compact">
+      <div class="wrap-wide master-grid head-shell" data-mobile-menu>
+        <a class="brand" href="../index.html">чиназес</a>
+        <div class="head-nav">
+          <div class="nav-group nav-group--center" aria-label="Основная навигация">
+            <a href="../cases/">работы</a>
+            <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+            <div class="nav-item-lab" data-lab-menu>
+              <button type="button" class="nav-trigger" data-lab-trigger aria-expanded="false" aria-haspopup="true">
+                лаборатория
+                <span class="nav-caret" aria-hidden="true">+</span>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="../lab/typograph/" role="menuitem">Типограф</a>
+                <a href="../lab/layout-fixer/" role="menuitem">Исправление раскладки</a>
+                <a href="../lab/sans-bullshit-sans-cyrillic/" role="menuitem">Sans Bullshit Sans Cyrillic</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-group nav-group--right" aria-label="Вторичная навигация">
+            <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+            <a href="../index.html#bio">обо мне</a>
+          </div>
+          <div class="time-chip" data-moscow-time>москва --:--</div>
+        </div>
+        <div class="head-mobile-toggle">
+          <button type="button" class="mobile-menu-button" data-mobile-toggle aria-expanded="false" aria-controls="mobile-nav">
+            меню
+            <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+        <div class="head-mobile-panel" id="mobile-nav" data-mobile-panel>
+          <div class="head-mobile-inner">
+            <div class="head-mobile-row">
+              <div class="head-mobile-nav">
+                <a href="../cases/">работы</a>
+                <a href="#" class="nav-link-placeholder" data-disabled-link aria-disabled="true">шрифты</a>
+                <div class="mobile-lab" data-mobile-lab>
+                  <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
+                    лаборатория
+                    <span class="nav-caret" aria-hidden="true">+</span>
+                  </button>
+                  <div class="mobile-lab-links">
+                    <a href="../lab/typograph/">Типограф</a>
+                    <a href="../lab/layout-fixer/">Исправление раскладки</a>
+                    <a href="../lab/sans-bullshit-sans-cyrillic/">Sans Bullshit Sans Cyrillic</a>
+                  </div>
+                </div>
+                <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+                <a href="../index.html#bio">обо мне</a>
+              </div>
+              <button type="button" class="mobile-menu-close" data-mobile-close>закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="fonts-main" id="font-lab">
+      <h1 class="fonts-visually-hidden">Типографическая лаборатория CINAZES</h1>
+
+      <section class="font-stage" aria-label="Живой specimen шрифта">
+        <div class="font-toolbar" aria-label="Настройки specimen">
+          <div class="font-toolbar__left">
+            <label class="font-select">
+              <span class="font-label">Etude</span>
+              <select data-style-select aria-label="Начертание">
+                <option value="regular">Regular</option>
+                <option value="line">Line</option>
+                <option value="path">Path</option>
+              </select>
+            </label>
+            <nav class="font-actions" aria-label="Информация о шрифте">
+              <a href="#glyphs">О шрифте</a>
+              <a href="#license">Лицензия</a>
+              <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+            </nav>
+          </div>
+
+          <div class="font-toolbar__right">
+            <label class="font-range">
+              <span>Tracking</span>
+              <input data-control="tracking" type="range" min="-0.08" max="0.2" value="-0.02" step="0.005" />
+            </label>
+            <label class="font-range">
+              <span>Leading</span>
+              <input data-control="leading" type="range" min="0.75" max="1.4" value="0.88" step="0.01" />
+            </label>
+            <label class="font-range font-range--size">
+              <span>Size</span>
+              <input data-control="size" type="range" min="48" max="420" value="220" step="1" />
+              <output data-size-output>220px</output>
+            </label>
+            <div class="font-theme" aria-label="Тема">
+              <button type="button" data-theme="white" aria-pressed="true">White</button>
+              <button type="button" data-theme="black" aria-pressed="false">Black</button>
+              <button type="button" data-theme="pink" aria-pressed="false">Pink</button>
+            </div>
+            <div class="font-accents" aria-label="Акцент">
+              <button type="button" class="font-swatch font-swatch--black" data-accent="black" aria-label="Чёрный акцент"></button>
+              <button type="button" class="font-swatch font-swatch--pink" data-accent="pink" aria-label="Розовый акцент" aria-pressed="true"></button>
+              <button type="button" class="font-swatch font-swatch--white" data-accent="white" aria-label="Белый акцент"></button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="font-specimen font-specimen--regular"
+          data-specimen
+          contenteditable="true"
+          spellcheck="false"
+          role="textbox"
+          aria-multiline="true"
+          aria-label="Редактируемый specimen"
+        >ЖИВАЯ ТИПОГРАФИКА</div>
+
+        <div class="font-meta" aria-label="Метаданные шрифта">
+          <span>Etude</span>
+          <span>3 behaviours</span>
+          <span>Latin + Cyrillic</span>
+          <span>Static</span>
+          <span>2026</span>
+          <span>Trial available</span>
+        </div>
+      </section>
+
+      <section class="glyphs" id="glyphs" aria-labelledby="glyphs-title">
+        <div class="glyphs__label" id="glyphs-title">Glyph preview</div>
+        <div class="glyphs__set" data-glyph-preview>
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+          АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ<br />
+          0123456789 · , . : ; ! ? / \ ( ) [ ] { } № % @ &amp;<br />
+          ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ — – « » “ ” ‘ ’
+        </div>
+      </section>
+
+      <section class="font-foot" id="license" aria-label="Действия и лицензия">
+        <div class="font-foot__meta">
+          Trial предназначен для тестирования формы в макетах. Коммерческое использование требует отдельной лицензии.
+        </div>
+        <nav class="font-foot__links" aria-label="Действия">
+          <a href="../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+          <a href="mailto:hello@cinazes.ru?subject=Лицензия%20Etude">Запросить лицензию</a>
+          <a href="mailto:hello@cinazes.ru">Контакт</a>
+        </nav>
+      </section>
+    </main>
+
+    <footer id="contacts" class="foot">
+      <div class="wrap-wide master-grid content-grid">
+        <p class="site-copy">©чиназес. все права защищены · <a href="../privacy/">политика</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

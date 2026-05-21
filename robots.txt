@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /fonts-test/
 
 Host: cinazes.ru
 Sitemap: https://cinazes.ru/sitemap.xml
