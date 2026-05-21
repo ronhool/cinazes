@@ -33,7 +33,7 @@
 
 .font-wall{
   position:relative;
-  width:min(1600px, calc(100% - 24px));
+  width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
 }
 
@@ -266,7 +266,7 @@
   padding:0;
   color:var(--font-fg);
   font-family:"Etude", "DK Form", ui-sans-serif, system-ui, sans-serif;
-  font-size:min(var(--specimen-size, 220px), 20vw);
+  font-size:var(--specimen-size, 220px);
   line-height:var(--specimen-leading, .88);
   letter-spacing:var(--specimen-tracking, -.02em);
   overflow-wrap:anywhere;
@@ -354,6 +354,12 @@
 
   .font-specimen{
     margin-top:clamp(28px, 9vw, 48px);
-    font-size:min(var(--specimen-size, 148px), 24vw);
+    font-size:var(--specimen-size, 148px);
+  }
+}
+
+@media (min-width: 1025px){
+  .font-wall{
+    width:min(1760px, calc(100% - 44px));
   }
 }

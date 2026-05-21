@@ -30,7 +30,7 @@ const fontConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
-    size: [10, 420],
+    size: [10, 400],
   },
 };
 
