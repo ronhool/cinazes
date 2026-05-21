@@ -1,8 +1,8 @@
 const fontConfig = {
-  family: "Etude",
   files: {
     regular: "../public/fonts/etude/Etude-Regular.woff2",
   },
+  metadataUrl: "../public/fonts/etude/metadata.json",
   defaultStyle: "regular",
   styles: {
     regular: {
@@ -34,6 +34,11 @@ const fontConfig = {
   },
 };
 
+let fontMetadata = {
+  family: "",
+  style: "",
+};
+
 function clamp(value, [min, max]) {
   return Math.min(Math.max(Number(value), min), max);
 }
@@ -42,6 +47,8 @@ function setupFontBlock(block) {
   const specimen = block.querySelector("[data-specimen]");
   const styleSelect = block.querySelector("[data-style-select]");
   const staticStyle = block.querySelector("[data-style-value]");
+  const familyName = block.querySelector("[data-font-family-name]");
+  const styleName = block.querySelector("[data-font-style-name]");
   const sizeOutput = block.querySelector("[data-size-output]");
   const controls = {
     tracking: block.querySelector('[data-control="tracking"]'),
@@ -86,6 +93,16 @@ function setupFontBlock(block) {
     renderControls();
   }
 
+  function renderMetadata() {
+    const style = fontConfig.styles[staticStyle?.dataset.styleValue || styleSelect?.value || fontConfig.defaultStyle];
+    if (familyName) familyName.textContent = fontMetadata.family;
+    if (styleName) styleName.textContent = style?.label || fontMetadata.style;
+    if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
+      specimen.textContent = fontMetadata.family;
+      specimen.dataset.placeholder = fontMetadata.family;
+    }
+  }
+
   function applyTheme(themeName) {
     block.dataset.fontTheme = themeName;
     block.dataset.fontAccent = themeName;
@@ -127,9 +144,32 @@ function setupFontBlock(block) {
   });
 
   applyStyle(styleSelect?.value || staticStyle?.dataset.styleValue || fontConfig.defaultStyle, false);
+  renderMetadata();
   applyTheme(block.dataset.fontTheme || "white");
 }
 
-for (const block of document.querySelectorAll("[data-font-block]")) {
-  setupFontBlock(block);
+async function loadFontMetadata() {
+  try {
+    const response = await fetch(fontConfig.metadataUrl);
+    if (!response.ok) throw new Error(`Metadata request failed: ${response.status}`);
+    const metadata = await response.json();
+    fontMetadata = {
+      family: metadata.family || metadata.fullName || "",
+      style: metadata.style || "",
+    };
+  } catch {
+    fontMetadata = {
+      family: "Unknown",
+      style: fontConfig.styles[fontConfig.defaultStyle].label,
+    };
+  }
 }
+
+async function initFontWall() {
+  await loadFontMetadata();
+  for (const block of document.querySelectorAll("[data-font-block]")) {
+    setupFontBlock(block);
+  }
+}
+
+initFontWall();

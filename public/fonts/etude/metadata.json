@@ -1,0 +1,15 @@
+{
+  "family": "AA_Noon",
+  "style": "Regular",
+  "fullName": "AA_Noon Regular",
+  "postScriptName": "AA_Noon-Regular",
+  "source": {
+    "fontFile": "Etude-Regular.woff2",
+    "nameTable": {
+      "familyNameId": 1,
+      "styleNameId": 2,
+      "preferredFamilyNameId": 16,
+      "preferredStyleNameId": 17
+    }
+  }
+}
