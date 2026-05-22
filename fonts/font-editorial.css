@@ -9,7 +9,7 @@
 }
 
 .font-editorial__section{
-  padding:clamp(34px, 5vw, 72px) 0;
+  padding:clamp(28px, 4.2vw, 60px) 0;
 }
 
 .font-editorial__item-meta{
@@ -17,7 +17,7 @@
   grid-template-columns:1fr auto;
   align-items:center;
   gap:24px;
-  margin-bottom:clamp(36px, 3.2vw, 62px);
+  margin-bottom:clamp(20px, 2.1vw, 34px);
   color:rgba(8,8,8,.72);
   font-size:13px;
   line-height:1;
@@ -32,7 +32,7 @@
   display:grid;
   grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
   align-items:start;
-  gap:clamp(40px, 5.4vw, 88px);
+  gap:clamp(16px, 2.2vw, 36px);
 }
 
 .font-editorial__item{
@@ -54,16 +54,16 @@
   }
 
   .font-editorial__section{
-    padding:clamp(38px, 11vw, 70px) 0;
+    padding:clamp(30px, 9vw, 56px) 0;
   }
 
   .font-editorial__item-meta{
-    margin-bottom:clamp(24px, 7vw, 42px);
+    margin-bottom:clamp(16px, 5vw, 28px);
   }
 
   .font-editorial__columns{
     grid-template-columns:1fr;
-    gap:clamp(24px, 8vw, 42px);
+    gap:clamp(9px, 3vw, 15px);
   }
 
   .font-editorial__text{
