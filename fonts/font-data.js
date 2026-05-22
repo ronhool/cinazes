@@ -19,6 +19,21 @@
           tracking: -0.02,
           leading: 0.88,
           size: 220,
+          specimen: {
+            size: 22,
+            left: {
+              text: "Letters find their rhythm in patient measure. A quiet paragraph reveals how counters, stems, spacing, and punctuation hold together through a long editorial line. The typeface should feel steady, open, and precise while the sentence keeps moving.",
+              features: {},
+            },
+            right: {
+              text: "Буквы держат строку спокойно и точно. В длинном наборе становятся видны ритм, просветы, форма знаков и работа пунктуации. Шрифт должен оставаться собранным, живым и внимательным к чтению даже в плотном абзаце.",
+              features: {
+                liga: true,
+                calt: true,
+                ss01: true,
+              },
+            },
+          },
         },
       ],
     },
@@ -41,6 +56,21 @@
           tracking: -0.01,
           leading: 0.9,
           size: 220,
+          specimen: {
+            size: 22,
+            left: {
+              text: "A display face can still carry a paragraph with discipline. Fill shows the density of the form, the pressure of curves, and the way repeated letters create a deliberate texture across a generous editorial column.",
+              features: {},
+            },
+            right: {
+              text: "Плотная форма раскрывается в длинной строке: контраст, внутренние просветы и повтор букв собирают выразительную фактуру. Кириллица показывает, как декоративный характер сохраняет читательский ритм.",
+              features: {
+                liga: true,
+                calt: true,
+                ss01: true,
+              },
+            },
+          },
         },
         {
           slug: "parth",
@@ -54,6 +84,21 @@
           tracking: -0.01,
           leading: 0.9,
           size: 220,
+          specimen: {
+            size: 22,
+            left: {
+              text: "Parth opens the construction and lets the page breathe. In continuous text the broken contour becomes a rhythm rather than an effect, balancing sharp detail with the calm pace of editorial reading.",
+              features: {},
+            },
+            right: {
+              text: "Открытый контур меняет темп набора: буквы становятся легче, паузы заметнее, а строка сохраняет характер. В кириллице особенно важны баланс штрихов, устойчивость формы и ясная дистанция между знаками.",
+              features: {
+                liga: true,
+                calt: true,
+                ss01: true,
+              },
+            },
+          },
         },
         {
           slug: "stroke",
@@ -67,6 +112,21 @@
           tracking: -0.01,
           leading: 0.9,
           size: 220,
+          specimen: {
+            size: 22,
+            left: {
+              text: "Stroke keeps the skeleton visible and turns spacing into the main texture. The paragraph becomes a field of lines, intervals, and joins, showing how a fragile outline can remain readable at text scale.",
+              features: {},
+            },
+            right: {
+              text: "Контурное начертание строит страницу из линий и интервалов. В длинном русском тексте проявляются соединения, альтернативные формы, плотность пробелов и способность шрифта сохранять голос без лишнего шума.",
+              features: {
+                liga: true,
+                calt: true,
+                ss01: true,
+              },
+            },
+          },
         },
       ],
     },
