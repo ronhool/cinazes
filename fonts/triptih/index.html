@@ -6,7 +6,7 @@
     <title>Triptih — CINAZES</title>
     <meta
       name="description"
-      content="Triptih: интерактивный specimen шрифта с выбором Fill, Parth, Stroke и настройкой трекинга, интерлиньяжа и размера."
+      content="Triptih: интерактивные specimen-блоки Fill, Parth, Stroke с настройкой трекинга, интерлиньяжа и размера."
     />
     <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../../assets/favicon.png" />
@@ -15,10 +15,11 @@
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Parth.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Stroke.otf" as="font" type="font/otf" crossorigin />
     <link rel="stylesheet" href="../../styles.css?v=20260519a" />
-    <link rel="stylesheet" href="./triptih.css?v=20260522a" />
+    <link rel="stylesheet" href="./triptih.css?v=20260522b" />
     <script defer src="../../site-header.js"></script>
     <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
-    <script defer src="./triptih.js?v=20260522a"></script>
+    <script defer src="../font-data.js?v=20260522a"></script>
+    <script defer src="./triptih.js?v=20260522b"></script>
   </head>
   <body class="page-sticky-foot font-detail-page">
     <a class="skip" href="#triptih-specimen">Перейти к specimen</a>
@@ -82,52 +83,9 @@
     </header>
 
     <main class="font-detail-main">
-      <section class="font-detail-hero" aria-label="Triptih specimen">
-        <div class="font-detail-shell">
-          <div class="font-detail-toolbar" data-font-detail-controls aria-label="Настройки Triptih">
-            <div class="font-detail-toolbar__left">
-              <span class="font-detail-name">Triptih</span>
-              <label class="font-detail-select">
-                <span class="font-detail-label">Style</span>
-                <select data-style-select aria-label="Начертание Triptih">
-                  <option value="fill">Fill</option>
-                  <option value="parth">Parth</option>
-                  <option value="stroke">Stroke</option>
-                </select>
-              </label>
-              <a href="../../public/fonts/triptih/Triptih-Fill.otf" data-download-link download>Скачать trial</a>
-            </div>
-            <div class="font-detail-toolbar__right">
-              <label class="font-detail-range">
-                <span>Tracking</span>
-                <input data-control="tracking" type="range" min="-0.08" max="0.2" value="-0.01" step="0.005" />
-              </label>
-              <label class="font-detail-range">
-                <span>Leading</span>
-                <input data-control="leading" type="range" min="0.75" max="1.4" value="0.9" step="0.01" />
-              </label>
-              <label class="font-detail-range font-detail-range--size">
-                <span>Size</span>
-                <input data-control="size" type="range" min="24" max="420" value="220" step="1" />
-                <output data-size-output>220px</output>
-              </label>
-            </div>
-          </div>
+      <h1 class="font-detail-title fonts-visually-hidden">Triptih</h1>
 
-          <h1 class="font-detail-title fonts-visually-hidden">Triptih</h1>
-          <div
-            class="font-detail-specimen font-detail-specimen--fill"
-            id="triptih-specimen"
-            data-specimen
-            data-placeholder="Triptih"
-            contenteditable="true"
-            spellcheck="false"
-            role="textbox"
-            aria-multiline="true"
-            aria-label="Редактируемый specimen Triptih"
-          >Triptih</div>
-        </div>
-      </section>
+      <section class="font-detail-wall" data-font-detail-wall data-font-detail-slug="triptih" aria-label="Triptih specimen"></section>
 
       <section class="font-detail-info" id="license" aria-labelledby="license-title">
         <div class="font-detail-shell">

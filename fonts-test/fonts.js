@@ -1,39 +1,6 @@
-const fontConfig = {
-  files: {
-    regular: "../public/fonts/etude/Etude-Regular.woff2",
-  },
-  metadataUrl: "../public/fonts/etude/metadata.json",
-  defaultStyle: "regular",
-  styles: {
-    regular: {
-      label: "Regular",
-      className: "font-specimen--regular",
-      tracking: -0.02,
-      leading: 0.88,
-      size: 220,
-    },
-    fill: {
-      label: "Fill",
-      className: "font-specimen--triptih-fill",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-    },
-    parth: {
-      label: "Parth",
-      className: "font-specimen--triptih-parth",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-    },
-    stroke: {
-      label: "Stroke",
-      className: "font-specimen--triptih-stroke",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-    },
-  },
+const fontFamilies = window.CINAZES_FONT_FAMILIES || [];
+
+const fontCatalogConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
@@ -41,21 +8,97 @@ const fontConfig = {
   },
 };
 
-let fontMetadata = {
-  family: "",
-  style: "",
-};
-
 function clamp(value, [min, max]) {
   return Math.min(Math.max(Number(value), min), max);
 }
 
+function relativeUrl(url) {
+  if (!url.startsWith("/")) return url;
+  return `..${url}`;
+}
+
+function licenseHref(family) {
+  return `mailto:hello@cinazes.ru?subject=${encodeURIComponent(family.licenseSubject || `Лицензия ${family.name}`)}`;
+}
+
+function catalogBlockTemplate(family) {
+  const firstStyle = family.styles[0];
+  const styleControl = family.styles.length > 1
+    ? `<label class="font-select">
+        <span class="fonts-visually-hidden">Начертание ${family.name}</span>
+        <select data-style-select aria-label="Начертание ${family.name}">
+          ${family.styles.map((style) => `<option value="${style.slug}">${style.name}</option>`).join("")}
+        </select>
+      </label>`
+    : `<span class="font-style-name" data-font-style-name data-style-value="${firstStyle.slug}"></span>`;
+
+  const familyLabel = family.styles.length > 1
+    ? `<span class="font-label" data-font-family-name></span>${styleControl}`
+    : `<span class="font-label" data-font-family-name></span>${styleControl}`;
+
+  return `
+    <article class="font-block" data-font-block data-font-family-slug="${family.slug}" data-font-theme="white" data-font-accent="white" aria-label="${family.name} specimen">
+      <div class="font-toolbar" aria-label="Настройки ${family.name}">
+        <div class="font-toolbar__left">
+          <div class="font-static-style font-static-style--family">
+            ${familyLabel}
+          </div>
+          <nav class="font-actions" aria-label="Информация о шрифте">
+            <a href="..${family.detailUrl}">О шрифте</a>
+            <a href="${licenseHref(family)}">Лицензия</a>
+            <a href="${relativeUrl(firstStyle.trialFile)}" data-trial-link download>Скачать trial</a>
+          </nav>
+        </div>
+        <div class="font-toolbar__right">
+          <label class="font-range">
+            <span>Tracking</span>
+            <input data-control="tracking" type="range" min="-0.08" max="0.2" value="${firstStyle.tracking}" step="0.005" />
+          </label>
+          <label class="font-range">
+            <span>Leading</span>
+            <input data-control="leading" type="range" min="0.75" max="1.4" value="${firstStyle.leading}" step="0.01" />
+          </label>
+          <label class="font-range font-range--size">
+            <span>Size</span>
+            <input data-control="size" type="range" min="10" max="400" value="${firstStyle.size}" step="1" />
+            <output data-size-output>${firstStyle.size}px</output>
+          </label>
+          <div class="font-accents" aria-label="Цветовая тема">
+            <button type="button" class="font-swatch font-swatch--white" data-theme-control="white" aria-label="Белая тема" aria-pressed="true"></button>
+            <button type="button" class="font-swatch font-swatch--black" data-theme-control="black" aria-label="Чёрная тема" aria-pressed="false"></button>
+            <button type="button" class="font-swatch font-swatch--pink" data-theme-control="pink" aria-label="Розовая тема" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="font-specimen"
+        data-specimen
+        data-default-specimen="family"
+        data-placeholder="${firstStyle.previewText}"
+        contenteditable="true"
+        spellcheck="false"
+        role="textbox"
+        aria-multiline="true"
+        aria-label="Редактируемый specimen ${family.name}"
+      ></div>
+    </article>`;
+}
+
+function renderCatalog() {
+  const wall = document.querySelector("[data-font-catalog]");
+  if (!wall) return;
+  wall.innerHTML = fontFamilies.map(catalogBlockTemplate).join("");
+}
+
 function setupFontBlock(block) {
+  const family = fontFamilies.find((item) => item.slug === block.dataset.fontFamilySlug);
+  if (!family || !family.styles.length) return;
+
   const specimen = block.querySelector("[data-specimen]");
   const styleSelect = block.querySelector("[data-style-select]");
-  const staticStyle = block.querySelector("[data-style-value]");
   const familyName = block.querySelector("[data-font-family-name]");
   const styleName = block.querySelector("[data-font-style-name]");
+  const trialLink = block.querySelector("[data-trial-link]");
   const sizeOutput = block.querySelector("[data-size-output]");
   const controls = {
     tracking: block.querySelector('[data-control="tracking"]'),
@@ -63,16 +106,18 @@ function setupFontBlock(block) {
     size: block.querySelector('[data-control="size"]'),
   };
 
+  if (!specimen || !controls.tracking || !controls.leading || !controls.size) return;
+
   function setControlValue(name, value) {
-    const nextValue = clamp(value, fontConfig.limits[name]);
+    const nextValue = clamp(value, fontCatalogConfig.limits[name]);
     controls[name].value = String(nextValue);
     return nextValue;
   }
 
   function renderControls() {
-    const tracking = clamp(controls.tracking.value, fontConfig.limits.tracking);
-    const leading = clamp(controls.leading.value, fontConfig.limits.leading);
-    const size = clamp(controls.size.value, fontConfig.limits.size);
+    const tracking = clamp(controls.tracking.value, fontCatalogConfig.limits.tracking);
+    const leading = clamp(controls.leading.value, fontCatalogConfig.limits.leading);
+    const size = clamp(controls.size.value, fontCatalogConfig.limits.size);
 
     controls.tracking.value = String(tracking);
     controls.leading.value = String(leading);
@@ -84,12 +129,22 @@ function setupFontBlock(block) {
     sizeOutput.textContent = `${Math.round(size)}px`;
   }
 
-  function applyStyle(styleName, shouldResetControls = true) {
-    const style = fontConfig.styles[styleName] || fontConfig.styles[fontConfig.defaultStyle];
-    const styleClasses = Object.values(fontConfig.styles).map((item) => item.className);
+  function applyStyle(styleSlug, shouldResetControls = true) {
+    const style = family.styles.find((item) => item.slug === styleSlug) || family.styles[0];
+    const styleClasses = fontFamilies.flatMap((item) => item.styles.map((fontStyle) => fontStyle.className).filter(Boolean));
 
     specimen.classList.remove(...styleClasses);
-    specimen.classList.add(style.className);
+    if (style.className) specimen.classList.add(style.className);
+    specimen.style.fontFamily = `"${style.fontFamily}", "DK Form", ui-sans-serif, system-ui, sans-serif`;
+    specimen.dataset.placeholder = style.previewText || family.name;
+
+    if (familyName) familyName.textContent = family.name;
+    if (styleName) styleName.textContent = style.name;
+    if (trialLink) trialLink.href = relativeUrl(style.trialFile);
+
+    if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
+      specimen.textContent = style.previewText || family.name;
+    }
 
     if (shouldResetControls) {
       setControlValue("tracking", style.tracking);
@@ -98,17 +153,6 @@ function setupFontBlock(block) {
     }
 
     renderControls();
-  }
-
-  function renderMetadata() {
-    const style = fontConfig.styles[staticStyle?.dataset.styleValue || styleSelect?.value || fontConfig.defaultStyle];
-    const blockFamily = block.dataset.fontFamily || fontMetadata.family;
-    if (familyName) familyName.textContent = blockFamily;
-    if (styleName) styleName.textContent = style?.label || fontMetadata.style;
-    if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
-      specimen.textContent = blockFamily;
-      specimen.dataset.placeholder = blockFamily;
-    }
   }
 
   function applyTheme(themeName) {
@@ -122,17 +166,11 @@ function setupFontBlock(block) {
 
   for (const control of Object.values(controls)) {
     control.addEventListener("input", renderControls);
+    control.addEventListener("change", renderControls);
   }
 
   if (styleSelect) {
-    const options = Array.from(styleSelect.options).filter((option) => fontConfig.styles[option.value]);
-    if (options.length <= 1) {
-      styleSelect.replaceWith(Object.assign(document.createElement("span"), {
-        textContent: options[0]?.textContent || fontConfig.styles[fontConfig.defaultStyle].label,
-      }));
-    } else {
-      styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
-    }
+    styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
   }
 
   for (const button of block.querySelectorAll("[data-theme-control]")) {
@@ -151,33 +189,15 @@ function setupFontBlock(block) {
     }
   });
 
-  applyStyle(styleSelect?.value || staticStyle?.dataset.styleValue || fontConfig.defaultStyle, false);
-  renderMetadata();
+  applyStyle(styleSelect?.value || family.styles[0].slug, false);
   applyTheme(block.dataset.fontTheme || "white");
 }
 
-async function loadFontMetadata() {
-  try {
-    const response = await fetch(fontConfig.metadataUrl);
-    if (!response.ok) throw new Error(`Metadata request failed: ${response.status}`);
-    const metadata = await response.json();
-    fontMetadata = {
-      family: metadata.family || metadata.fullName || "",
-      style: metadata.style || "",
-    };
-  } catch {
-    fontMetadata = {
-      family: "Unknown",
-      style: fontConfig.styles[fontConfig.defaultStyle].label,
-    };
-  }
-}
-
-async function initFontWall() {
-  await loadFontMetadata();
+function initFontCatalog() {
+  renderCatalog();
   for (const block of document.querySelectorAll("[data-font-block]")) {
     setupFontBlock(block);
   }
 }
 
-initFontWall();
+initFontCatalog();

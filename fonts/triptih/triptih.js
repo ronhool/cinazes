@@ -1,28 +1,6 @@
-const triptihConfig = {
-  defaultStyle: "fill",
-  styles: {
-    fill: {
-      className: "font-detail-specimen--fill",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-      download: "../../public/fonts/triptih/Triptih-Fill.otf",
-    },
-    parth: {
-      className: "font-detail-specimen--parth",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-      download: "../../public/fonts/triptih/Triptih-Parth.otf",
-    },
-    stroke: {
-      className: "font-detail-specimen--stroke",
-      tracking: -0.01,
-      leading: 0.9,
-      size: 220,
-      download: "../../public/fonts/triptih/Triptih-Stroke.otf",
-    },
-  },
+const detailFamilies = window.CINAZES_FONT_FAMILIES || [];
+
+const detailConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
@@ -34,29 +12,84 @@ function clamp(value, [min, max]) {
   return Math.min(Math.max(Number(value), min), max);
 }
 
-function setupTriptihDetail() {
-  const specimen = document.querySelector("[data-specimen]");
-  const styleSelect = document.querySelector("[data-style-select]");
-  const downloadLink = document.querySelector("[data-download-link]");
-  const sizeOutput = document.querySelector("[data-size-output]");
+function relativeUrl(url) {
+  if (!url.startsWith("/")) return url;
+  return `../..${url}`;
+}
+
+function detailBlockTemplate(family, style, index) {
+  const specimenId = `${family.slug}-${style.slug}-specimen`;
+
+  return `
+    <article class="font-detail-hero font-detail-block" data-detail-block data-style-slug="${style.slug}" aria-label="${family.name} ${style.name} specimen">
+      <div class="font-detail-shell">
+        <div class="font-detail-toolbar" data-font-detail-controls aria-label="Настройки ${family.name} ${style.name}">
+          <div class="font-detail-toolbar__left">
+            <span class="font-detail-name">${family.name}</span>
+            <span class="font-detail-style">${style.name}</span>
+            <a href="${relativeUrl(style.trialFile)}" download>Скачать trial</a>
+          </div>
+          <div class="font-detail-toolbar__right">
+            <label class="font-detail-range">
+              <span>Tracking</span>
+              <input data-control="tracking" type="range" min="-0.08" max="0.2" value="${style.tracking}" step="0.005" />
+            </label>
+            <label class="font-detail-range">
+              <span>Leading</span>
+              <input data-control="leading" type="range" min="0.75" max="1.4" value="${style.leading}" step="0.01" />
+            </label>
+            <label class="font-detail-range font-detail-range--size">
+              <span>Size</span>
+              <input data-control="size" type="range" min="24" max="420" value="${style.size}" step="1" />
+              <output data-size-output>${style.size}px</output>
+            </label>
+          </div>
+        </div>
+
+        <div
+          class="font-detail-specimen ${style.detailClassName || ""}"
+          id="${specimenId}"
+          data-specimen
+          data-placeholder="${style.previewText || family.name}"
+          contenteditable="true"
+          spellcheck="false"
+          role="textbox"
+          aria-multiline="true"
+          aria-label="Редактируемый specimen ${family.name} ${style.name}"
+        >${style.previewText || family.name}</div>
+      </div>
+    </article>`;
+}
+
+function renderDetailPage() {
+  const wall = document.querySelector("[data-font-detail-wall]");
+  if (!wall) return null;
+
+  const family = detailFamilies.find((item) => item.slug === wall.dataset.fontDetailSlug);
+  if (!family) return null;
+
+  wall.innerHTML = family.styles.map((style, index) => detailBlockTemplate(family, style, index)).join("");
+  return family;
+}
+
+function setupDetailBlock(block, family) {
+  const style = family.styles.find((item) => item.slug === block.dataset.styleSlug);
+  const specimen = block.querySelector("[data-specimen]");
+  const sizeOutput = block.querySelector("[data-size-output]");
   const controls = {
-    tracking: document.querySelector('[data-control="tracking"]'),
-    leading: document.querySelector('[data-control="leading"]'),
-    size: document.querySelector('[data-control="size"]'),
+    tracking: block.querySelector('[data-control="tracking"]'),
+    leading: block.querySelector('[data-control="leading"]'),
+    size: block.querySelector('[data-control="size"]'),
   };
 
-  if (!specimen || !styleSelect || !controls.tracking || !controls.leading || !controls.size) return;
+  if (!style || !specimen || !controls.tracking || !controls.leading || !controls.size) return;
 
-  function setControlValue(name, value) {
-    const nextValue = clamp(value, triptihConfig.limits[name]);
-    controls[name].value = String(nextValue);
-    return nextValue;
-  }
+  specimen.style.fontFamily = `"${style.fontFamily}", "DK Form", ui-sans-serif, system-ui, sans-serif`;
 
   function renderControls() {
-    const tracking = clamp(controls.tracking.value, triptihConfig.limits.tracking);
-    const leading = clamp(controls.leading.value, triptihConfig.limits.leading);
-    const size = clamp(controls.size.value, triptihConfig.limits.size);
+    const tracking = clamp(controls.tracking.value, detailConfig.limits.tracking);
+    const leading = clamp(controls.leading.value, detailConfig.limits.leading);
+    const size = clamp(controls.size.value, detailConfig.limits.size);
 
     controls.tracking.value = String(tracking);
     controls.leading.value = String(leading);
@@ -69,30 +102,10 @@ function setupTriptihDetail() {
     if (sizeOutput) sizeOutput.textContent = `${Math.round(size)}px`;
   }
 
-  function applyStyle(styleName, shouldResetControls = true) {
-    const style = triptihConfig.styles[styleName] || triptihConfig.styles[triptihConfig.defaultStyle];
-    const styleClasses = Object.values(triptihConfig.styles).map((item) => item.className);
-
-    specimen.classList.remove(...styleClasses);
-    specimen.classList.add(style.className);
-
-    if (downloadLink) downloadLink.href = style.download;
-
-    if (shouldResetControls) {
-      setControlValue("tracking", style.tracking);
-      setControlValue("leading", style.leading);
-      setControlValue("size", style.size);
-    }
-
-    renderControls();
-  }
-
   for (const control of Object.values(controls)) {
     control.addEventListener("input", renderControls);
     control.addEventListener("change", renderControls);
   }
-
-  styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
 
   specimen.addEventListener("paste", (event) => {
     event.preventDefault();
@@ -106,7 +119,16 @@ function setupTriptihDetail() {
     }
   });
 
-  applyStyle(styleSelect.value || triptihConfig.defaultStyle, false);
+  renderControls();
 }
 
-setupTriptihDetail();
+function initDetailPage() {
+  const family = renderDetailPage();
+  if (!family) return;
+
+  for (const block of document.querySelectorAll("[data-detail-block]")) {
+    setupDetailBlock(block, family);
+  }
+}
+
+initDetailPage();
