@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AA_Noon — CINAZES</title>
+    <meta
+      name="description"
+      content="AA_Noon: интерактивный specimen шрифта с настройкой начертания, трекинга, интерлиньяжа и размера."
+    />
+    <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="../../assets/favicon.png" />
+    <link rel="preload" href="../../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../../public/fonts/etude/Etude-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260519a" />
+    <link rel="stylesheet" href="./aa-noon.css?v=20260522b" />
+    <script defer src="../../site-header.js"></script>
+    <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
+    <script defer src="./aa-noon.js?v=20260522b"></script>
+  </head>
+  <body class="page-sticky-foot font-detail-page">
+    <a class="skip" href="#aa-noon-specimen">Перейти к specimen</a>
+
+    <header class="head head--compact">
+      <div class="wrap-wide master-grid head-shell" data-mobile-menu>
+        <a class="brand" href="../../index.html">чиназес</a>
+        <div class="head-nav">
+          <div class="nav-group nav-group--center" aria-label="Основная навигация">
+            <a href="../../cases/">работы</a>
+            <a href="../../fonts-test/">шрифты</a>
+            <div class="nav-item-lab" data-lab-menu>
+              <button type="button" class="nav-trigger" data-lab-trigger aria-expanded="false" aria-haspopup="true">
+                лаборатория
+                <span class="nav-caret" aria-hidden="true">+</span>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="../../lab/typograph/" role="menuitem">Типограф</a>
+                <a href="../../lab/layout-fixer/" role="menuitem">Исправление раскладки</a>
+                <a href="../../lab/sans-bullshit-sans-cyrillic/" role="menuitem">Sans Bullshit Sans Cyrillic</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-group nav-group--right" aria-label="Вторичная навигация">
+            <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+            <a href="../../index.html#bio">обо мне</a>
+          </div>
+          <div class="time-chip" data-moscow-time>москва --:--</div>
+        </div>
+        <div class="head-mobile-toggle">
+          <button type="button" class="mobile-menu-button" data-mobile-toggle aria-expanded="false" aria-controls="mobile-nav">
+            меню
+            <span class="mobile-menu-icon" aria-hidden="true"><span></span><span></span></span>
+          </button>
+        </div>
+        <div class="head-mobile-panel" id="mobile-nav" data-mobile-panel>
+          <div class="head-mobile-inner">
+            <div class="head-mobile-row">
+              <div class="head-mobile-nav">
+                <a href="../../cases/">работы</a>
+                <a href="../../fonts-test/">шрифты</a>
+                <div class="mobile-lab" data-mobile-lab>
+                  <button type="button" class="mobile-lab-trigger" data-mobile-lab-trigger aria-expanded="false">
+                    лаборатория
+                    <span class="nav-caret" aria-hidden="true">+</span>
+                  </button>
+                  <div class="mobile-lab-links">
+                    <a href="../../lab/typograph/">Типограф</a>
+                    <a href="../../lab/layout-fixer/">Исправление раскладки</a>
+                    <a href="../../lab/sans-bullshit-sans-cyrillic/">Sans Bullshit Sans Cyrillic</a>
+                  </div>
+                </div>
+                <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
+                <a href="../../index.html#bio">обо мне</a>
+              </div>
+              <button type="button" class="mobile-menu-close" data-mobile-close>закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="font-detail-main">
+      <section class="font-detail-hero" aria-label="AA_Noon specimen">
+        <div class="font-detail-shell">
+          <div class="font-detail-toolbar" data-font-detail-controls aria-label="Настройки AA_Noon">
+            <div class="font-detail-toolbar__left">
+              <span class="font-detail-name">AA_Noon</span>
+              <label class="font-detail-select">
+                <span class="font-detail-label">Style</span>
+                <select data-style-select aria-label="Начертание AA_Noon">
+                  <option value="regular">Regular</option>
+                  <option value="line">Line</option>
+                  <option value="path">Path</option>
+                </select>
+              </label>
+              <a href="../../public/fonts/etude/Etude-Regular.woff2" download>Скачать trial</a>
+            </div>
+            <div class="font-detail-toolbar__right">
+              <label class="font-detail-range">
+                <span>Tracking</span>
+                <input data-control="tracking" type="range" min="-0.08" max="0.2" value="-0.02" step="0.005" />
+              </label>
+              <label class="font-detail-range">
+                <span>Leading</span>
+                <input data-control="leading" type="range" min="0.75" max="1.4" value="0.88" step="0.01" />
+              </label>
+              <label class="font-detail-range font-detail-range--size">
+                <span>Size</span>
+                <input data-control="size" type="range" min="24" max="420" value="220" step="1" />
+                <output data-size-output>220px</output>
+              </label>
+            </div>
+          </div>
+
+          <h1 class="font-detail-title fonts-visually-hidden">AA_Noon</h1>
+          <div
+            class="font-detail-specimen font-detail-specimen--regular"
+            id="aa-noon-specimen"
+            data-specimen
+            data-placeholder="AA_Noon"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Редактируемый specimen AA_Noon"
+          >AA_Noon</div>
+        </div>
+      </section>
+
+      <section class="font-detail-info" id="license" aria-labelledby="license-title">
+        <div class="font-detail-shell">
+          <h2 id="license-title">Лицензия</h2>
+          <p>
+            Trial-файл предназначен для тестирования AA_Noon в макетах и прототипах. Для коммерческого использования
+            напишите на <a href="mailto:hello@cinazes.ru?subject=Лицензия%20AA_Noon">hello@cinazes.ru</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
