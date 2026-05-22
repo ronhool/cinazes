@@ -32,7 +32,7 @@
   display:grid;
   grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
   align-items:start;
-  gap:clamp(10px, 1.25vw, 22px);
+  gap:clamp(28px, 4vw, 72px);
 }
 
 .font-editorial__item{
