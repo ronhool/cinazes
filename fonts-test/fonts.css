@@ -45,28 +45,42 @@
   --font-accent:#ff2aa6;
   min-height:0;
   padding:0 0 clamp(30px, 4vw, 64px);
-  background:var(--font-bg);
   color:var(--font-fg);
   position:relative;
-  transition:background-color .24s ease, color .24s ease;
+  border-bottom:1px solid var(--font-line);
+  transition:color .24s ease;
+  z-index:0;
 }
 
 .font-block::before,
-.font-block:last-child::after{
+.font-block::after{
   content:"";
   position:absolute;
-  left:0;
-  right:0;
-  height:1px;
-  background:var(--font-line);
 }
 
 .font-block::before{
+  left:0;
+  right:0;
   top:0;
+  height:1px;
+  background:var(--font-line);
+  z-index:2;
 }
 
-.font-block:last-child::after{
+.font-block::after{
+  left:50%;
+  top:0;
   bottom:0;
+  width:100vw;
+  transform:translateX(-50%);
+  background-color:var(--font-bg);
+  z-index:0;
+  transition:background-color .24s ease;
+}
+
+.font-block > *{
+  position:relative;
+  z-index:1;
 }
 
 .font-block[data-font-theme="black"]{
