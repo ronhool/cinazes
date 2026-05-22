@@ -262,22 +262,22 @@
   height:15px;
   border:1px solid currentColor;
   border-radius:50%;
+  outline:0;
   padding:0;
-  opacity:.58;
-  transition:opacity .14s ease, outline-color .14s ease, transform .14s ease, border-color .14s ease;
+  opacity:1;
+  transition:transform .14s ease, border-color .14s ease;
 }
 
 .font-swatch:hover{
-  opacity:1;
+  transform:scale(.94);
 }
 
 .font-swatch--black{background:#080808}
 .font-swatch--pink{background:#ff2aa6}
 .font-swatch--white{background:#fff}
 .font-swatch[aria-pressed="true"]{
-  opacity:1;
-  outline:1px solid currentColor;
-  outline-offset:3px;
+  outline:0;
+  transform:scale(.86);
 }
 
 .font-specimen{
