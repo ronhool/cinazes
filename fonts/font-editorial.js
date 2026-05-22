@@ -2,7 +2,7 @@
   const fontFamilies = window.CINAZES_FONT_FAMILIES || [];
 
   const fallbackSpecimen = {
-    size: 22,
+    size: 32,
     left: {
       text: "Type becomes clear through rhythm, proportion, and repeated decisions across a paragraph. The Latin text shows spacing, punctuation, counters, and the quiet texture of reading at an editorial scale.",
       features: {},

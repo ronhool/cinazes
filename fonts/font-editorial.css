@@ -10,7 +10,7 @@
 }
 
 .font-editorial__section{
-  padding:clamp(64px, 7vw, 124px) 0;
+  padding:clamp(104px, 10vw, 176px) 0;
   border-top:1px solid rgba(8,8,8,.14);
 }
 
@@ -23,9 +23,11 @@
   grid-template-columns:1fr auto;
   align-items:center;
   gap:24px;
-  margin-bottom:clamp(28px, 3.4vw, 56px);
+  margin-bottom:clamp(40px, 5vw, 84px);
+  color:rgba(8,8,8,.72);
   font-size:13px;
   line-height:1;
+  letter-spacing:.01em;
 }
 
 .font-editorial__size{
@@ -35,13 +37,13 @@
 .font-editorial__columns{
   display:grid;
   grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
-  gap:clamp(56px, 7vw, 128px);
+  gap:clamp(72px, 8.5vw, 152px);
 }
 
 .font-editorial__text{
   margin:0;
-  font-size:var(--editorial-size, 22px);
-  line-height:1.32;
+  font-size:var(--editorial-size, 32px);
+  line-height:1.38;
   letter-spacing:0;
   font-feature-settings:var(--editorial-features, normal);
   overflow-wrap:break-word;
@@ -53,16 +55,21 @@
   }
 
   .font-editorial__section{
-    padding:clamp(52px, 15vw, 84px) 0;
+    padding:clamp(72px, 18vw, 116px) 0;
   }
 
   .font-editorial__meta{
-    margin-bottom:clamp(28px, 9vw, 44px);
+    margin-bottom:clamp(34px, 11vw, 56px);
   }
 
   .font-editorial__columns{
     grid-template-columns:1fr;
-    gap:clamp(42px, 13vw, 68px);
+    gap:clamp(56px, 16vw, 84px);
+  }
+
+  .font-editorial__text{
+    font-size:min(var(--editorial-size, 32px), 7.8vw);
+    line-height:1.42;
   }
 }
 
