@@ -28,8 +28,11 @@
   font-variant-numeric:tabular-nums;
 }
 
-.font-editorial__flow{
-  max-width:min(1480px, 100%);
+.font-editorial__columns{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+  align-items:start;
+  gap:clamp(40px, 5.4vw, 88px);
 }
 
 .font-editorial__text{
@@ -39,10 +42,6 @@
   letter-spacing:0;
   font-feature-settings:var(--editorial-features, normal);
   overflow-wrap:break-word;
-}
-
-.font-editorial__text + .font-editorial__text{
-  margin-top:clamp(20px, 2.7vw, 44px);
 }
 
 @media (max-width: 760px){
@@ -58,13 +57,14 @@
     margin-bottom:clamp(18px, 6vw, 30px);
   }
 
+  .font-editorial__columns{
+    grid-template-columns:1fr;
+    gap:clamp(24px, 8vw, 42px);
+  }
+
   .font-editorial__text{
     font-size:min(var(--editorial-size, 32px), 7.8vw);
     line-height:1.42;
-  }
-
-  .font-editorial__text + .font-editorial__text{
-    margin-top:clamp(24px, 8vw, 42px);
   }
 }
 

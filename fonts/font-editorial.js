@@ -46,7 +46,7 @@
           <span>${escapeHtml(style.name)}</span>
           <span class="font-editorial__size">${size}px</span>
         </div>
-        <div class="font-editorial__flow">
+        <div class="font-editorial__columns">
           ${renderText(style, left, "en")}
           ${renderText(style, right, "ru")}
         </div>
