@@ -29,9 +29,16 @@
       .replaceAll('"', "&quot;");
   }
 
-  function renderText(style, column, language) {
+  function renderText(style, column, language, size) {
     const features = featureSettings(column.features);
-    return `<p class="font-editorial__text" lang="${language}" style="font-family:&quot;${escapeHtml(style.fontFamily)}&quot;, &quot;DK Form&quot;, ui-sans-serif, system-ui, sans-serif; --editorial-features:${escapeHtml(features)};">${escapeHtml(column.text)}</p>`;
+    return `
+      <div class="font-editorial__item">
+        <div class="font-editorial__item-meta">
+          <span>${escapeHtml(style.name)}</span>
+          <span class="font-editorial__item-size">${size}px</span>
+        </div>
+        <p class="font-editorial__text" lang="${language}" style="font-family:&quot;${escapeHtml(style.fontFamily)}&quot;, &quot;DK Form&quot;, ui-sans-serif, system-ui, sans-serif; --editorial-features:${escapeHtml(features)};">${escapeHtml(column.text)}</p>
+      </div>`;
   }
 
   function renderSection(style) {
@@ -42,13 +49,9 @@
 
     return `
       <article class="font-editorial__section" style="--editorial-size:${size}px;">
-        <div class="font-editorial__meta">
-          <span>${escapeHtml(style.name)}</span>
-          <span class="font-editorial__size">${size}px</span>
-        </div>
         <div class="font-editorial__columns">
-          ${renderText(style, left, "en")}
-          ${renderText(style, right, "ru")}
+          ${renderText(style, left, "en", size)}
+          ${renderText(style, right, "ru", size)}
         </div>
       </article>`;
   }
