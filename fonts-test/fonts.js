@@ -12,19 +12,26 @@ const fontConfig = {
       leading: 0.88,
       size: 220,
     },
-    line: {
-      label: "Line",
-      className: "font-specimen--line",
-      tracking: 0.01,
-      leading: 0.92,
-      size: 210,
+    fill: {
+      label: "Fill",
+      className: "font-specimen--triptih-fill",
+      tracking: -0.01,
+      leading: 0.9,
+      size: 220,
     },
-    path: {
-      label: "Path",
-      className: "font-specimen--path",
-      tracking: 0.03,
-      leading: 0.95,
-      size: 205,
+    parth: {
+      label: "Parth",
+      className: "font-specimen--triptih-parth",
+      tracking: -0.01,
+      leading: 0.9,
+      size: 220,
+    },
+    stroke: {
+      label: "Stroke",
+      className: "font-specimen--triptih-stroke",
+      tracking: -0.01,
+      leading: 0.9,
+      size: 220,
     },
   },
   limits: {
@@ -95,11 +102,12 @@ function setupFontBlock(block) {
 
   function renderMetadata() {
     const style = fontConfig.styles[staticStyle?.dataset.styleValue || styleSelect?.value || fontConfig.defaultStyle];
-    if (familyName) familyName.textContent = fontMetadata.family;
+    const blockFamily = block.dataset.fontFamily || fontMetadata.family;
+    if (familyName) familyName.textContent = blockFamily;
     if (styleName) styleName.textContent = style?.label || fontMetadata.style;
     if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
-      specimen.textContent = fontMetadata.family;
-      specimen.dataset.placeholder = fontMetadata.family;
+      specimen.textContent = blockFamily;
+      specimen.dataset.placeholder = blockFamily;
     }
   }
 

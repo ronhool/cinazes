@@ -1,0 +1,304 @@
+@font-face{
+  font-family:"Triptih Fill";
+  src:url("../../public/fonts/triptih/Triptih-Fill.otf") format("opentype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"Triptih Parth";
+  src:url("../../public/fonts/triptih/Triptih-Parth.otf") format("opentype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"Triptih Stroke";
+  src:url("../../public/fonts/triptih/Triptih-Stroke.otf") format("opentype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+.font-detail-page{
+  --bg:#ffffff;
+  --fg:#080808;
+  --muted:rgba(8,8,8,.5);
+  --line:rgba(8,8,8,.18);
+  background:var(--bg);
+  color:var(--fg);
+}
+
+.font-detail-main{
+  min-height:100vh;
+  min-height:100dvh;
+  padding-top:16px;
+}
+
+.fonts-visually-hidden{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+
+.font-detail-shell{
+  width:min(1760px, calc(100% - 44px));
+  margin-inline:auto;
+}
+
+.font-detail-hero{
+  --font-surface-head:clamp(56px, 5.8vw, 112px);
+  --font-surface-top:calc(var(--font-surface-head) * .5);
+  --font-surface-bottom:calc(var(--font-surface-head) * .75);
+  --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
+  min-height:calc(100vh - 96px);
+  min-height:calc(100dvh - 96px);
+  padding:0 0 var(--font-surface-bottom);
+}
+
+.font-detail-hero .font-detail-shell{
+  position:relative;
+  padding-top:calc(var(--font-surface-top) + var(--font-toolbar-gap));
+}
+
+.font-detail-hero .font-detail-shell::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:var(--font-surface-top);
+  height:1px;
+  background:var(--fg);
+}
+
+.font-detail-toolbar{
+  display:grid;
+  grid-template-columns:minmax(max-content, .7fr) minmax(max-content, 1fr);
+  align-items:center;
+  gap:24px;
+  min-height:48px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:0 0 clamp(8px, 1.1vw, 16px);
+  color:var(--fg);
+  font-size:13px;
+  line-height:1;
+  scrollbar-width:none;
+  white-space:nowrap;
+}
+
+.font-detail-toolbar::-webkit-scrollbar{
+  display:none;
+}
+
+.font-detail-toolbar__left,
+.font-detail-toolbar__right{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  min-width:0;
+}
+
+.font-detail-toolbar__right{
+  justify-content:flex-end;
+  gap:16px;
+}
+
+.font-detail-toolbar a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.font-detail-toolbar a{
+  opacity:.58;
+  transition:opacity .14s ease;
+}
+
+.font-detail-toolbar a:hover{
+  opacity:1;
+}
+
+.font-detail-select,
+.font-detail-range{
+  display:inline-grid;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+}
+
+.font-detail-select{
+  grid-template-columns:0 minmax(92px, max-content);
+}
+
+.font-detail-label{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+}
+
+.font-detail-select select{
+  appearance:none;
+  min-width:92px;
+  border:0;
+  border-bottom:1px solid currentColor;
+  border-radius:0;
+  padding:0 18px 2px 0;
+  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+}
+
+.font-detail-range{
+  grid-template-columns:auto minmax(82px, 8vw);
+}
+
+.font-detail-range--size{
+  grid-template-columns:auto minmax(96px, 9vw) 46px;
+}
+
+.font-detail-range output{
+  color:inherit;
+  font-variant-numeric:tabular-nums;
+}
+
+.font-detail-range input{
+  width:100%;
+  color:inherit;
+  accent-color:currentColor;
+}
+
+.font-detail-range input[type="range"]{
+  appearance:none;
+  height:14px;
+  background:transparent;
+}
+
+.font-detail-range input[type="range"]::-webkit-slider-runnable-track{
+  height:1px;
+  background-color:var(--fg);
+}
+
+.font-detail-range input[type="range"]::-webkit-slider-thumb{
+  appearance:none;
+  width:10px;
+  height:10px;
+  margin-top:-4.5px;
+  border:1px solid var(--fg);
+  border-radius:50%;
+  background-color:var(--bg);
+}
+
+.font-detail-range input[type="range"]::-moz-range-track{
+  height:1px;
+  background-color:var(--fg);
+}
+
+.font-detail-range input[type="range"]::-moz-range-thumb{
+  width:10px;
+  height:10px;
+  border:1px solid var(--fg);
+  border-radius:50%;
+  background-color:var(--bg);
+}
+
+.font-detail-specimen{
+  display:block;
+  width:fit-content;
+  max-width:100%;
+  min-height:1em;
+  margin:clamp(44px, 7vw, 112px) 0 0;
+  padding:0;
+  color:var(--fg);
+  font-family:"Triptih Fill", "DK Form", ui-sans-serif, system-ui, sans-serif;
+  font-size:var(--specimen-size, 220px);
+  line-height:var(--specimen-leading, .9);
+  letter-spacing:var(--specimen-tracking, -.01em);
+  overflow-wrap:anywhere;
+  word-break:normal;
+  text-align:left;
+  outline:0;
+  caret-color:var(--fg);
+  transition:font-size .12s ease, line-height .12s ease, letter-spacing .12s ease;
+}
+
+.font-detail-specimen:empty::before{
+  content:attr(data-placeholder);
+  color:var(--muted);
+}
+
+.font-detail-specimen--fill{
+  font-family:"Triptih Fill", "DK Form", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-detail-specimen--parth{
+  font-family:"Triptih Parth", "DK Form", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-detail-specimen--stroke{
+  font-family:"Triptih Stroke", "DK Form", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-detail-info{
+  border-top:1px solid var(--line);
+  padding:clamp(52px, 6vw, 92px) 0 clamp(80px, 9vw, 132px);
+}
+
+.font-detail-info h2{
+  margin:0 0 18px;
+  font-size:clamp(32px, 4vw, 68px);
+  line-height:.95;
+  font-weight:400;
+}
+
+.font-detail-info p{
+  max-width:720px;
+  margin:0;
+  font-size:clamp(18px, 1.7vw, 26px);
+  line-height:1.18;
+}
+
+.font-detail-info a{
+  color:inherit;
+  text-underline-offset:.12em;
+}
+
+@media (max-width: 760px){
+  .font-detail-shell{
+    width:calc(100% - 32px);
+  }
+
+  .font-detail-hero{
+    --font-surface-head:clamp(42px, 13vw, 64px);
+    --font-surface-top:var(--font-surface-head);
+    --font-surface-bottom:var(--font-surface-top);
+    --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
+    min-height:calc(100vh - 76px);
+    min-height:calc(100dvh - 76px);
+  }
+
+  .font-detail-toolbar{
+    gap:18px;
+    font-size:12px;
+  }
+
+  .font-detail-range{
+    grid-template-columns:auto 104px;
+  }
+
+  .font-detail-range--size{
+    grid-template-columns:auto 116px 44px;
+  }
+
+  .font-detail-specimen{
+    margin-top:clamp(42px, 16vw, 78px);
+    font-size:min(var(--specimen-size, 148px), 38vw);
+  }
+}
