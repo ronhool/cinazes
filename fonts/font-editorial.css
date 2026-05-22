@@ -9,7 +9,7 @@
 }
 
 .font-editorial__section{
-  padding:clamp(22px, 3.4vw, 48px) 0;
+  padding:clamp(16px, 2.6vw, 36px) 0;
 }
 
 .font-editorial__item-meta{
@@ -17,7 +17,7 @@
   grid-template-columns:1fr auto;
   align-items:center;
   gap:24px;
-  margin-bottom:clamp(12px, 1.35vw, 22px);
+  margin-bottom:clamp(6px, .8vw, 12px);
   color:rgba(8,8,8,.72);
   font-size:13px;
   line-height:1;
@@ -54,16 +54,16 @@
   }
 
   .font-editorial__section{
-    padding:clamp(24px, 7vw, 44px) 0;
+    padding:clamp(18px, 5vw, 32px) 0;
   }
 
   .font-editorial__item-meta{
-    margin-bottom:clamp(10px, 3.5vw, 18px);
+    margin-bottom:clamp(6px, 2vw, 10px);
   }
 
   .font-editorial__columns{
     grid-template-columns:1fr;
-    gap:clamp(6px, 2vw, 10px);
+    gap:clamp(4px, 1.2vw, 6px);
   }
 
   .font-editorial__text{
