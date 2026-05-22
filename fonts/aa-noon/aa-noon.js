@@ -1,24 +1,8 @@
 const fontDetailConfig = {
-  defaultStyle: "regular",
-  styles: {
-    regular: {
-      className: "font-detail-specimen--regular",
-      tracking: -0.02,
-      leading: 0.88,
-      size: 220,
-    },
-    line: {
-      className: "font-detail-specimen--line",
-      tracking: 0.01,
-      leading: 0.92,
-      size: 210,
-    },
-    path: {
-      className: "font-detail-specimen--path",
-      tracking: 0.03,
-      leading: 0.95,
-      size: 205,
-    },
+  regular: {
+    tracking: -0.02,
+    leading: 0.88,
+    size: 220,
   },
   limits: {
     tracking: [-0.08, 0.2],
@@ -33,7 +17,6 @@ function clamp(value, [min, max]) {
 
 function setupFontDetail() {
   const specimen = document.querySelector("[data-specimen]");
-  const styleSelect = document.querySelector("[data-style-select]");
   const sizeOutput = document.querySelector("[data-size-output]");
   const controls = {
     tracking: document.querySelector('[data-control="tracking"]'),
@@ -41,7 +24,7 @@ function setupFontDetail() {
     size: document.querySelector('[data-control="size"]'),
   };
 
-  if (!specimen || !styleSelect || !controls.tracking || !controls.leading || !controls.size) return;
+  if (!specimen || !controls.tracking || !controls.leading || !controls.size) return;
 
   function setControlValue(name, value) {
     const nextValue = clamp(value, fontDetailConfig.limits[name]);
@@ -65,28 +48,10 @@ function setupFontDetail() {
     if (sizeOutput) sizeOutput.textContent = `${Math.round(size)}px`;
   }
 
-  function applyStyle(styleName, shouldResetControls = true) {
-    const style = fontDetailConfig.styles[styleName] || fontDetailConfig.styles[fontDetailConfig.defaultStyle];
-    const styleClasses = Object.values(fontDetailConfig.styles).map((item) => item.className);
-
-    specimen.classList.remove(...styleClasses);
-    specimen.classList.add(style.className);
-
-    if (shouldResetControls) {
-      setControlValue("tracking", style.tracking);
-      setControlValue("leading", style.leading);
-      setControlValue("size", style.size);
-    }
-
-    renderControls();
-  }
-
   for (const control of Object.values(controls)) {
     control.addEventListener("input", renderControls);
     control.addEventListener("change", renderControls);
   }
-
-  styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
 
   specimen.addEventListener("paste", (event) => {
     event.preventDefault();
@@ -100,7 +65,10 @@ function setupFontDetail() {
     }
   });
 
-  applyStyle(styleSelect.value || fontDetailConfig.defaultStyle, false);
+  setControlValue("tracking", fontDetailConfig.regular.tracking);
+  setControlValue("leading", fontDetailConfig.regular.leading);
+  setControlValue("size", fontDetailConfig.regular.size);
+  renderControls();
 }
 
 setupFontDetail();

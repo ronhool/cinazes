@@ -107,7 +107,6 @@
   opacity:1;
 }
 
-.font-detail-select,
 .font-detail-range{
   display:inline-grid;
   align-items:center;
@@ -115,29 +114,8 @@
   flex:0 0 auto;
 }
 
-.font-detail-select{
-  grid-template-columns:0 minmax(92px, max-content);
-}
-
-.font-detail-label{
-  position:absolute;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-  clip:rect(0 0 0 0);
-}
-
-.font-detail-select select{
-  appearance:none;
-  min-width:92px;
-  border:0;
-  border-bottom:1px solid currentColor;
-  border-radius:0;
-  padding:0 18px 2px 0;
-  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
-  color:inherit;
-  font:inherit;
-  cursor:pointer;
+.font-detail-style{
+  opacity:.58;
 }
 
 .font-detail-range{
@@ -216,19 +194,6 @@
 .font-detail-specimen:empty::before{
   content:attr(data-placeholder);
   color:var(--muted);
-}
-
-.font-detail-specimen--line{
-  color:transparent;
-  -webkit-text-stroke:.012em var(--fg);
-}
-
-.font-detail-specimen--path{
-  color:var(--fg);
-  text-decoration:underline;
-  text-decoration-color:var(--fg);
-  text-decoration-thickness:.035em;
-  text-underline-offset:.1em;
 }
 
 .font-detail-info{
