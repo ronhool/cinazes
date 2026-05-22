@@ -44,9 +44,10 @@
   --font-line:rgba(8,8,8,.18);
   --font-accent:#ff2aa6;
   --font-surface-head:clamp(56px, 5.8vw, 112px);
+  --font-surface-top:calc(var(--font-surface-head) * .5);
   --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
   min-height:0;
-  padding:calc(var(--font-surface-head) + var(--font-toolbar-gap)) 0 var(--font-surface-head);
+  padding:calc(var(--font-surface-top) + var(--font-toolbar-gap)) 0 var(--font-surface-head);
   color:var(--font-fg);
   position:relative;
   transition:color .24s ease;
@@ -62,7 +63,7 @@
 .font-block::before{
   left:0;
   right:0;
-  top:var(--font-surface-head);
+  top:var(--font-surface-top);
   height:1px;
   background-color:var(--font-line);
   z-index:2;
@@ -336,6 +337,7 @@
 
   .font-block{
     --font-surface-head:clamp(42px, 13vw, 64px);
+    --font-surface-top:var(--font-surface-head);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
   }
 
