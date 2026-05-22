@@ -57,7 +57,7 @@
           leading: 0.9,
           size: 220,
           specimen: {
-            size: 32,
+            size: 48,
             left: {
               text: "A display face can still carry a paragraph with discipline. Fill shows the density of the form, the pressure of curves, and the way repeated letters create a deliberate texture across a generous editorial column.",
               features: {},
@@ -85,7 +85,7 @@
           leading: 0.9,
           size: 220,
           specimen: {
-            size: 32,
+            size: 48,
             left: {
               text: "Parth opens the construction and lets the page breathe. In continuous text the broken contour becomes a rhythm rather than an effect, balancing sharp detail with the calm pace of editorial reading.",
               features: {},
@@ -113,7 +113,7 @@
           leading: 0.9,
           size: 220,
           specimen: {
-            size: 32,
+            size: 48,
             left: {
               text: "Stroke keeps the skeleton visible and turns spacing into the main texture. The paragraph becomes a field of lines, intervals, and joins, showing how a fragile outline can remain readable at text scale.",
               features: {},

@@ -9,19 +9,19 @@
 }
 
 .font-editorial__section{
-  padding:clamp(16px, 2.6vw, 36px) 0;
+  padding:clamp(30px, 3.8vw, 44px) 0;
 }
 
 .font-editorial__item-meta{
   display:grid;
   grid-template-columns:1fr auto;
   align-items:center;
-  gap:24px;
-  margin-bottom:clamp(6px, .8vw, 12px);
-  color:rgba(8,8,8,.72);
-  font-size:13px;
+  gap:16px;
+  margin-bottom:clamp(3px, .45vw, 7px);
+  color:rgba(8,8,8,.34);
+  font-size:11px;
   line-height:1;
-  letter-spacing:.01em;
+  letter-spacing:0;
 }
 
 .font-editorial__item-size{
@@ -32,7 +32,7 @@
   display:grid;
   grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
   align-items:start;
-  gap:clamp(16px, 2.2vw, 36px);
+  gap:clamp(10px, 1.25vw, 22px);
 }
 
 .font-editorial__item{
@@ -41,8 +41,8 @@
 
 .font-editorial__text{
   margin:0;
-  font-size:var(--editorial-size, 32px);
-  line-height:1.38;
+  font-size:var(--editorial-size, 48px);
+  line-height:1.48;
   letter-spacing:0;
   font-feature-settings:var(--editorial-features, normal);
   overflow-wrap:break-word;
@@ -54,21 +54,21 @@
   }
 
   .font-editorial__section{
-    padding:clamp(18px, 5vw, 32px) 0;
+    padding:clamp(28px, 8vw, 42px) 0;
   }
 
   .font-editorial__item-meta{
-    margin-bottom:clamp(6px, 2vw, 10px);
+    margin-bottom:clamp(4px, 1.2vw, 6px);
   }
 
   .font-editorial__columns{
     grid-template-columns:1fr;
-    gap:clamp(4px, 1.2vw, 6px);
+    gap:clamp(18px, 5vw, 28px);
   }
 
   .font-editorial__text{
-    font-size:min(var(--editorial-size, 32px), 7.8vw);
-    line-height:1.42;
+    font-size:min(var(--editorial-size, 48px), 10.8vw);
+    line-height:1.5;
   }
 }
 

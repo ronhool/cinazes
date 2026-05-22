@@ -27,6 +27,8 @@
   --fg:#080808;
   --muted:rgba(8,8,8,.5);
   --line:rgba(8,8,8,.18);
+  min-height:100%;
+  height:auto;
   background:var(--bg);
   color:var(--fg);
 }
@@ -57,7 +59,7 @@
   --font-fg:#080808;
   --font-surface-head:clamp(56px, 5.8vw, 112px);
   --font-surface-top:calc(var(--font-surface-head) * .5);
-  --font-surface-bottom:calc(var(--font-surface-head) * .75);
+  --font-surface-bottom:calc(var(--font-surface-head) * .54);
   --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
   min-height:0;
   padding:calc(var(--font-surface-top) + var(--font-toolbar-gap)) 0 var(--font-surface-bottom);
@@ -239,7 +241,7 @@
   width:fit-content;
   max-width:100%;
   min-height:1em;
-  margin:clamp(20px, 3.6vw, 52px) 0 0;
+  margin:clamp(16px, 2.4vw, 34px) 0 0;
   padding:0;
   color:var(--fg);
   font-family:"Triptih Fill", "DK Form", ui-sans-serif, system-ui, sans-serif;
@@ -303,7 +305,7 @@
   .font-detail-hero{
     --font-surface-head:clamp(42px, 13vw, 64px);
     --font-surface-top:var(--font-surface-head);
-    --font-surface-bottom:var(--font-surface-top);
+    --font-surface-bottom:calc(var(--font-surface-top) * .7);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
   }
 
@@ -321,7 +323,7 @@
   }
 
   .font-detail-specimen{
-    margin-top:clamp(28px, 9vw, 48px);
+    margin-top:clamp(20px, 6.5vw, 34px);
     font-size:min(var(--specimen-size, 148px), 38vw);
   }
 }
