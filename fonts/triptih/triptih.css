@@ -46,34 +46,59 @@
   white-space:nowrap;
 }
 
-.font-detail-shell{
-  width:min(1760px, calc(100% - 44px));
+.font-detail-wall{
+  position:relative;
+  width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
 }
 
 .font-detail-hero{
+  --font-bg:#ffffff;
+  --font-fg:#080808;
   --font-surface-head:clamp(56px, 5.8vw, 112px);
   --font-surface-top:calc(var(--font-surface-head) * .5);
   --font-surface-bottom:calc(var(--font-surface-head) * .75);
   --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
-  min-height:calc(100vh - 96px);
-  min-height:calc(100dvh - 96px);
-  padding:0 0 var(--font-surface-bottom);
-}
-
-.font-detail-hero .font-detail-shell{
+  min-height:0;
+  padding:calc(var(--font-surface-top) + var(--font-toolbar-gap)) 0 var(--font-surface-bottom);
   position:relative;
-  padding-top:calc(var(--font-surface-top) + var(--font-toolbar-gap));
+  color:var(--font-fg);
+  z-index:0;
 }
 
-.font-detail-hero .font-detail-shell::before{
+.font-detail-hero::before,
+.font-detail-hero::after{
   content:"";
   position:absolute;
+}
+
+.font-detail-hero::before{
   left:0;
   right:0;
   top:var(--font-surface-top);
   height:1px;
-  background:var(--fg);
+  background:currentColor;
+  z-index:2;
+}
+
+.font-detail-hero::after{
+  left:50%;
+  top:0;
+  bottom:0;
+  width:100vw;
+  transform:translateX(-50%);
+  background:var(--font-bg);
+  z-index:0;
+}
+
+.font-detail-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+.font-detail-shell{
+  width:100%;
+  margin-inline:auto;
 }
 
 .font-detail-toolbar{
@@ -214,7 +239,7 @@
   width:fit-content;
   max-width:100%;
   min-height:1em;
-  margin:clamp(44px, 7vw, 112px) 0 0;
+  margin:clamp(20px, 3.6vw, 52px) 0 0;
   padding:0;
   color:var(--fg);
   font-family:"Triptih Fill", "DK Form", ui-sans-serif, system-ui, sans-serif;
@@ -271,7 +296,7 @@
 }
 
 @media (max-width: 760px){
-  .font-detail-shell{
+  .font-detail-wall{
     width:calc(100% - 32px);
   }
 
@@ -280,8 +305,6 @@
     --font-surface-top:var(--font-surface-head);
     --font-surface-bottom:var(--font-surface-top);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
-    min-height:calc(100vh - 76px);
-    min-height:calc(100dvh - 76px);
   }
 
   .font-detail-toolbar{
@@ -298,7 +321,13 @@
   }
 
   .font-detail-specimen{
-    margin-top:clamp(42px, 16vw, 78px);
+    margin-top:clamp(28px, 9vw, 48px);
     font-size:min(var(--specimen-size, 148px), 38vw);
+  }
+}
+
+@media (min-width: 1025px){
+  .font-detail-wall{
+    width:min(1760px, calc(100% - 44px));
   }
 }
