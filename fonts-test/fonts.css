@@ -44,7 +44,7 @@
   --font-line:rgba(8,8,8,.18);
   --font-accent:#ff2aa6;
   min-height:0;
-  padding:0 0 clamp(30px, 4vw, 64px);
+  padding:clamp(24px, 3vw, 48px) 0 clamp(30px, 4vw, 64px);
   color:var(--font-fg);
   position:relative;
   border-bottom:1px solid var(--font-line);
@@ -107,7 +107,7 @@
   align-items:center;
   gap:24px;
   min-height:48px;
-  padding:8px 0;
+  padding:0 0 clamp(8px, 1.1vw, 16px);
   color:var(--font-muted);
   font-size:13px;
   line-height:1;
@@ -334,6 +334,7 @@
   }
 
   .font-block{
+    padding-top:clamp(28px, 8vw, 44px);
     padding-bottom:clamp(34px, 10vw, 58px);
   }
 
