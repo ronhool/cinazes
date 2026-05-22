@@ -29,9 +29,9 @@
       .replaceAll('"', "&quot;");
   }
 
-  function renderColumn(style, column) {
+  function renderText(style, column, language) {
     const features = featureSettings(column.features);
-    return `<p class="font-editorial__text" style="font-family:&quot;${escapeHtml(style.fontFamily)}&quot;, &quot;DK Form&quot;, ui-sans-serif, system-ui, sans-serif; --editorial-features:${escapeHtml(features)};">${escapeHtml(column.text)}</p>`;
+    return `<p class="font-editorial__text" lang="${language}" style="font-family:&quot;${escapeHtml(style.fontFamily)}&quot;, &quot;DK Form&quot;, ui-sans-serif, system-ui, sans-serif; --editorial-features:${escapeHtml(features)};">${escapeHtml(column.text)}</p>`;
   }
 
   function renderSection(style) {
@@ -46,9 +46,9 @@
           <span>${escapeHtml(style.name)}</span>
           <span class="font-editorial__size">${size}px</span>
         </div>
-        <div class="font-editorial__columns">
-          ${renderColumn(style, left)}
-          ${renderColumn(style, right)}
+        <div class="font-editorial__flow">
+          ${renderText(style, left, "en")}
+          ${renderText(style, right, "ru")}
         </div>
       </article>`;
   }
