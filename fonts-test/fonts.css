@@ -46,7 +46,7 @@
   --font-surface-head:clamp(56px, 5.8vw, 112px);
   --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
   min-height:0;
-  padding:calc(var(--font-surface-head) + var(--font-toolbar-gap)) 0 clamp(30px, 4vw, 64px);
+  padding:calc(var(--font-surface-head) + var(--font-toolbar-gap)) 0 var(--font-surface-head);
   color:var(--font-fg);
   position:relative;
   transition:color .24s ease;
@@ -337,7 +337,6 @@
   .font-block{
     --font-surface-head:clamp(42px, 13vw, 64px);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
-    padding-bottom:clamp(34px, 10vw, 58px);
   }
 
   .font-toolbar,
