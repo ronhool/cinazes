@@ -47,7 +47,6 @@
   padding:clamp(24px, 3vw, 48px) 0 clamp(30px, 4vw, 64px);
   color:var(--font-fg);
   position:relative;
-  border-bottom:1px solid var(--font-line);
   transition:color .24s ease;
   z-index:0;
 }
@@ -63,7 +62,7 @@
   right:0;
   top:0;
   height:1px;
-  background:var(--font-line);
+  background-color:var(--font-line);
   z-index:2;
 }
 
