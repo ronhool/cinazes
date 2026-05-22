@@ -339,6 +339,7 @@
   .font-block{
     --font-surface-head:clamp(42px, 13vw, 64px);
     --font-surface-top:var(--font-surface-head);
+    --font-surface-bottom:var(--font-surface-top);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
   }
 
