@@ -18,7 +18,6 @@
   --bg:#ffffff;
   --fg:#0B0B0C;
   --muted:rgba(8,8,8,.5);
-  --line:#0B0B0C;
   background:var(--bg);
   color:var(--fg);
 }
@@ -65,7 +64,7 @@
   right:0;
   top:var(--font-surface-top);
   height:1px;
-  background:var(--fg);
+  background:var(--line);
 }
 
 .font-detail-toolbar{
@@ -153,7 +152,7 @@
 
 .font-detail-range input[type="range"]::-webkit-slider-runnable-track{
   height:1px;
-  background-color:#0B0B0C;
+  background-color:var(--line);
 }
 
 .font-detail-range input[type="range"]::-webkit-slider-thumb{
@@ -168,7 +167,7 @@
 
 .font-detail-range input[type="range"]::-moz-range-track{
   height:1px;
-  background-color:#0B0B0C;
+  background-color:var(--line);
 }
 
 .font-detail-range input[type="range"]::-moz-range-thumb{
