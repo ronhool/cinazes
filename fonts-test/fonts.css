@@ -36,6 +36,7 @@
   --muted:rgba(8,8,8,.48);
   --line:rgba(8,8,8,.16);
   --accent:#ff2aa6;
+  --font-dropdown-width:88px;
   background:var(--bg);
   color:var(--fg);
 }
@@ -190,6 +191,7 @@
   position:relative;
   display:inline-block;
   flex:0 0 auto;
+  width:var(--font-dropdown-width);
   min-width:0;
 }
 

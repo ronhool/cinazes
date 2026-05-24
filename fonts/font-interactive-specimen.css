@@ -4,6 +4,7 @@
   --ct-specimen-muted:rgba(11, 11, 12, 0.52);
   --ct-specimen-line:var(--line);
   --ct-specimen-dropdown-line:rgba(11, 11, 12, 0.14);
+  --ct-specimen-dropdown-width:88px;
   --ct-specimen-thumb:#0B0B0C;
   background:var(--ct-specimen-bg);
   color:var(--ct-specimen-fg);
@@ -47,6 +48,7 @@
   position:relative;
   display:inline-block;
   flex:0 0 auto;
+  width:var(--ct-specimen-dropdown-width);
 }
 
 .ct-specimen-label{

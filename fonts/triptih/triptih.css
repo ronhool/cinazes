@@ -159,6 +159,7 @@
 
 .font-detail-select{
   grid-template-columns:0 max-content;
+  width:88px;
 }
 
 .font-detail-label{
