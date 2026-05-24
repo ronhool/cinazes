@@ -90,7 +90,7 @@
   right:0;
   top:var(--font-surface-top);
   height:1px;
-  background-color:currentColor;
+  background-color:rgba(11, 11, 12, 0.14);
   z-index:2;
 }
 
