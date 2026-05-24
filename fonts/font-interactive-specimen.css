@@ -232,7 +232,8 @@
 
 .ct-specimen-text{
   margin:0;
-  max-width:15.5em;
+  width:100%;
+  max-width:100%;
   color:var(--ct-specimen-fg);
   font-family:var(--ct-specimen-family), "DK Form", ui-sans-serif, system-ui, sans-serif;
   font-size:clamp(64px, 7.6vw, 120px);
@@ -240,7 +241,10 @@
   font-weight:var(--ct-specimen-weight, 400);
   line-height:var(--ct-specimen-leading, 1);
   letter-spacing:calc(var(--ct-specimen-tracking, 0) * 1em);
+  hyphens:auto;
   overflow-wrap:break-word;
+  word-break:normal;
+  text-wrap:pretty;
   outline:0;
   transition:
     font-family .18s ease,

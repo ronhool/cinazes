@@ -21,6 +21,10 @@ function licenseHref(family) {
   return `mailto:hello@cinazes.ru?subject=${encodeURIComponent(family.licenseSubject || `Лицензия ${family.name}`)}`;
 }
 
+function textLanguage(value) {
+  return /[А-Яа-яЁё]/.test(value) ? "ru" : "en";
+}
+
 function catalogBlockTemplate(family) {
   const firstStyle = family.styles[0];
   const dropdownId = `font-style-menu-${family.slug}`;
@@ -80,6 +84,7 @@ function catalogBlockTemplate(family) {
         data-specimen
         data-default-specimen="family"
         data-placeholder="${firstStyle.previewText}"
+        lang="${textLanguage(firstStyle.previewText || family.name)}"
         contenteditable="true"
         spellcheck="false"
         role="textbox"
@@ -159,6 +164,7 @@ function setupFontBlock(block) {
     if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
       specimen.textContent = style.previewText || family.name;
     }
+    specimen.lang = textLanguage(specimen.textContent || style.previewText || family.name);
 
     if (shouldResetControls) {
       setControlValue("tracking", style.tracking);
@@ -222,6 +228,10 @@ function setupFontBlock(block) {
     event.preventDefault();
     const text = event.clipboardData.getData("text/plain");
     document.execCommand("insertText", false, text);
+  });
+
+  specimen.addEventListener("input", () => {
+    specimen.lang = textLanguage(specimen.textContent);
   });
 
   specimen.addEventListener("keydown", (event) => {

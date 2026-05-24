@@ -17,6 +17,10 @@ function relativeUrl(url) {
   return `../..${url}`;
 }
 
+function textLanguage(value) {
+  return /[А-Яа-яЁё]/.test(value) ? "ru" : "en";
+}
+
 function detailBlockTemplate(family, style, index) {
   const specimenId = `${family.slug}-${style.slug}-specimen`;
 
@@ -51,6 +55,7 @@ function detailBlockTemplate(family, style, index) {
           id="${specimenId}"
           data-specimen
           data-placeholder="${style.previewText || family.name}"
+          lang="${textLanguage(style.previewText || family.name)}"
           contenteditable="true"
           spellcheck="false"
           role="textbox"
@@ -85,6 +90,7 @@ function setupDetailBlock(block, family) {
   if (!style || !specimen || !controls.tracking || !controls.leading || !controls.size) return;
 
   specimen.style.fontFamily = `"${style.fontFamily}", "DK Form", ui-sans-serif, system-ui, sans-serif`;
+  specimen.lang = textLanguage(specimen.textContent || style.previewText || family.name);
 
   function renderControls() {
     const tracking = clamp(controls.tracking.value, detailConfig.limits.tracking);
@@ -111,6 +117,10 @@ function setupDetailBlock(block, family) {
     event.preventDefault();
     const text = event.clipboardData.getData("text/plain");
     document.execCommand("insertText", false, text);
+  });
+
+  specimen.addEventListener("input", () => {
+    specimen.lang = textLanguage(specimen.textContent);
   });
 
   specimen.addEventListener("keydown", (event) => {

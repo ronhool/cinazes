@@ -24,6 +24,10 @@
     return `../..${url}`;
   }
 
+  function textLanguage(value) {
+    return /[А-Яа-яЁё]/.test(value) ? "ru" : "en";
+  }
+
   function defaultConfigFromFamily(family) {
     const styles = family.styles || [];
     const firstStyle = styles[0] || {};
@@ -103,6 +107,7 @@
             class="ct-specimen-text"
             data-ct-specimen-text
             data-placeholder="${escapeHtml(config.defaultText)}"
+            lang="${textLanguage(config.defaultText)}"
             contenteditable="true"
             spellcheck="false"
             role="textbox"
@@ -149,6 +154,7 @@
       }
       text.style.setProperty("--ct-specimen-family", `"${selected.fontFamily || config.fontFamily}"`);
       text.style.setProperty("--ct-specimen-weight", selected.fontWeight || 400);
+      text.lang = textLanguage(text.textContent || config.defaultText);
       if (download) download.href = relativeUrl(selected.trialFile || config.trialFile || "");
     }
 
@@ -199,6 +205,10 @@
       event.preventDefault();
       const value = event.clipboardData.getData("text/plain");
       document.execCommand("insertText", false, value);
+    });
+
+    text.addEventListener("input", () => {
+      text.lang = textLanguage(text.textContent);
     });
 
     text.addEventListener("keydown", (event) => {

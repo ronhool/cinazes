@@ -406,7 +406,7 @@
 
 .font-specimen{
   display:block;
-  width:fit-content;
+  width:100%;
   max-width:100%;
   min-width:0;
   min-height:1em;
@@ -417,8 +417,10 @@
   font-size:var(--specimen-size, 220px);
   line-height:var(--specimen-leading, .88);
   letter-spacing:var(--specimen-tracking, -.02em);
-  overflow-wrap:anywhere;
+  hyphens:auto;
+  overflow-wrap:break-word;
   word-break:normal;
+  text-wrap:pretty;
   text-align:left;
   outline:0;
   caret-color:var(--font-accent);
