@@ -1,7 +1,7 @@
 (function () {
   const fontFamilies = window.CINAZES_FONT_FAMILIES || [];
   const defaultLimits = {
-    size: [64, 120],
+    size: [64, 500],
     tracking: [-0.08, 0.18],
     leading: [0.78, 1.36],
   };

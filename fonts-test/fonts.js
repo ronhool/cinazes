@@ -4,7 +4,7 @@ const fontCatalogConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
-    size: [10, 400],
+    size: [10, 500],
   },
 };
 
@@ -69,7 +69,7 @@ function catalogBlockTemplate(family) {
           </label>
           <label class="font-range font-range--size">
             <span>Size</span>
-            <input data-control="size" type="range" min="10" max="400" value="${firstStyle.size}" step="1" />
+            <input data-control="size" type="range" min="10" max="500" value="${firstStyle.size}" step="1" />
             <output data-size-output>${firstStyle.size}px</output>
           </label>
           <div class="font-accents" aria-label="Цветовая тема">

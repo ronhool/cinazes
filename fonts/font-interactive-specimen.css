@@ -236,8 +236,8 @@
   max-width:100%;
   color:var(--ct-specimen-fg);
   font-family:var(--ct-specimen-family), "DK Form", ui-sans-serif, system-ui, sans-serif;
-  font-size:clamp(64px, 7.6vw, 120px);
-  font-size:clamp(64px, var(--ct-specimen-size, 96px), 120px);
+  font-size:clamp(64px, 7.6vw, 500px);
+  font-size:clamp(64px, var(--ct-specimen-size, 96px), 500px);
   font-weight:var(--ct-specimen-weight, 400);
   line-height:var(--ct-specimen-leading, 1);
   letter-spacing:calc(var(--ct-specimen-tracking, 0) * 1em);
@@ -313,7 +313,7 @@
 
   .ct-specimen-text{
     max-width:100%;
-    font-size:clamp(42px, var(--ct-specimen-size, 78px), 86px);
+    font-size:clamp(42px, var(--ct-specimen-size, 78px), 500px);
     line-height:max(var(--ct-specimen-leading, 1), .9);
   }
 }

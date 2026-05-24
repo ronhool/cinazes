@@ -4,7 +4,7 @@ const detailConfig = {
   limits: {
     tracking: [-0.08, 0.2],
     leading: [0.75, 1.4],
-    size: [24, 420],
+    size: [24, 500],
   },
 };
 
@@ -44,7 +44,7 @@ function detailBlockTemplate(family, style, index) {
             </label>
             <label class="font-detail-range font-detail-range--size">
               <span>Размер</span>
-              <input data-control="size" type="range" min="24" max="420" value="${style.size}" step="1" />
+              <input data-control="size" type="range" min="24" max="500" value="${style.size}" step="1" />
               <output data-size-output>${style.size}px</output>
             </label>
           </div>

@@ -14,7 +14,7 @@
         tracking: -0.01,
         leading: 1.08,
         limits: {
-          size: [42, 128],
+          size: [42, 500],
           tracking: [-0.08, 0.16],
           leading: [0.82, 1.42],
         },
@@ -72,7 +72,7 @@
         tracking: -0.015,
         leading: 0.96,
         limits: {
-          size: [48, 132],
+          size: [48, 500],
           tracking: [-0.08, 0.18],
           leading: [0.78, 1.28],
         },
