@@ -7,16 +7,17 @@
       const hero = page.querySelector("[data-ct-hero]");
       const word = page.querySelector("[data-ct-hero-word]");
       if (!hero || !word) return;
+      if (window.matchMedia("(pointer: coarse)").matches) return;
 
       hero.addEventListener("pointermove", (event) => {
         const rect = hero.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width - 0.5;
         const y = (event.clientY - rect.top) / rect.height - 0.5;
-        word.style.setProperty("--ct-hero-x", `${x * 10}px`);
-        word.style.setProperty("--ct-hero-y", `${y * 7}px`);
-        word.style.setProperty("--ct-hero-rx", `${y * -2.4}deg`);
-        word.style.setProperty("--ct-hero-ry", `${x * 3.2}deg`);
-        word.style.setProperty("--ct-hero-space", `${-0.075 + x * 0.014}em`);
+        word.style.setProperty("--ct-hero-x", `${x * 7}px`);
+        word.style.setProperty("--ct-hero-y", `${y * 5}px`);
+        word.style.setProperty("--ct-hero-rx", `${y * -1.5}deg`);
+        word.style.setProperty("--ct-hero-ry", `${x * 2}deg`);
+        word.style.setProperty("--ct-hero-space", `${-0.078 + x * 0.009}em`);
       });
 
       hero.addEventListener("pointerleave", () => {
@@ -24,7 +25,7 @@
         word.style.setProperty("--ct-hero-y", "0px");
         word.style.setProperty("--ct-hero-rx", "0deg");
         word.style.setProperty("--ct-hero-ry", "0deg");
-        word.style.setProperty("--ct-hero-space", "-.075em");
+        word.style.setProperty("--ct-hero-space", "-.078em");
       });
     },
 
@@ -74,6 +75,7 @@
         ["Cyrillic", "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ"],
         ["Languages", "ÅÇĞŁÑØŠŽ ЇЄҐЎ"],
       ];
+      let glyphTimer = 0;
 
       function codePointLabel(char) {
         return `U+${char.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`;
@@ -91,8 +93,9 @@
           Punctuation: '"CT Triptih Parth"',
         };
 
+        window.clearTimeout(glyphTimer);
         large.classList.add("is-changing");
-        window.setTimeout(() => {
+        glyphTimer = window.setTimeout(() => {
           large.textContent = glyph;
           large.style.fontFamily = `${families[group] || '"CT Triptih Fill"'}, "Arial Narrow", Arial, sans-serif`;
           code.textContent = codePointLabel(glyph);
@@ -100,7 +103,7 @@
           alt.textContent = group === "Cyrillic" || group === "Uppercase" ? "Alternate 01" : "Alternate ready";
           ss.textContent = group === "Numerals" ? "Tabular / oldstyle" : "Stylistic Set 01";
           large.classList.remove("is-changing");
-        }, 120);
+        }, 150);
       }
 
       groupsRoot.innerHTML = groups
@@ -139,7 +142,7 @@
         demos.forEach((demo, index) => {
           demo.classList.toggle("is-flipped", (tick + index) % 2 === 0);
         });
-      }, 2100);
+      }, 3400);
     },
   };
 
