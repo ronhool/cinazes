@@ -88,9 +88,9 @@
             <a class="ct-specimen-download" data-ct-specimen-download href="${relativeUrl(trialFile)}" download>Download Trial</a>
           </div>
           <div class="ct-specimen-controls__right">
-            ${controlTemplate("tracking", "Tracking", config.tracking, config.limits.tracking, "0.005", false)}
-            ${controlTemplate("leading", "Leading", config.leading, config.limits.leading, "0.01", false)}
-            ${controlTemplate("size", "Size", config.size, config.limits.size, "1", true)}
+            ${controlTemplate("tracking", "Трекинг", config.tracking, config.limits.tracking, "0.005", false)}
+            ${controlTemplate("leading", "Интерлиньяж", config.leading, config.limits.leading, "0.01", false)}
+            ${controlTemplate("size", "Размер", config.size, config.limits.size, "1", true)}
           </div>
         </div>
         <div class="ct-specimen-preview">

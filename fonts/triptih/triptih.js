@@ -31,15 +31,15 @@ function detailBlockTemplate(family, style, index) {
           </div>
           <div class="font-detail-toolbar__right">
             <label class="font-detail-range">
-              <span>Tracking</span>
+              <span>Трекинг</span>
               <input data-control="tracking" type="range" min="-0.08" max="0.2" value="${style.tracking}" step="0.005" />
             </label>
             <label class="font-detail-range">
-              <span>Leading</span>
+              <span>Интерлиньяж</span>
               <input data-control="leading" type="range" min="0.75" max="1.4" value="${style.leading}" step="0.01" />
             </label>
             <label class="font-detail-range font-detail-range--size">
-              <span>Size</span>
+              <span>Размер</span>
               <input data-control="size" type="range" min="24" max="420" value="${style.size}" step="1" />
               <output data-size-output>${style.size}px</output>
             </label>
