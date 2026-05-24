@@ -206,14 +206,13 @@
   display:inline-grid;
   grid-template-columns:auto auto;
   align-items:center;
-  gap:12px;
+  gap:8px;
   width:fit-content;
   min-height:0;
   min-width:0;
   border:0;
-  border-bottom:1px solid #0B0B0C;
   border-radius:0;
-  padding:0 0 2px;
+  padding:0;
   background:#FFFFFF;
   color:var(--font-fg);
   font:inherit;
@@ -253,7 +252,7 @@
   z-index:8;
   display:grid;
   width:max-content;
-  min-width:160px;
+  min-width:100%;
   border:1px solid rgba(11, 11, 12, 0.14);
   border-radius:0;
   padding:4px 0;
