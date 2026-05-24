@@ -2,7 +2,7 @@
   --ct-specimen-bg:#FFFFFF;
   --ct-specimen-fg:#0B0B0C;
   --ct-specimen-muted:rgba(11, 11, 12, 0.52);
-  --ct-specimen-line:rgba(11, 11, 12, 0.14);
+  --ct-specimen-line:#0B0B0C;
   --ct-specimen-thumb:#0B0B0C;
   background:var(--ct-specimen-bg);
   color:var(--ct-specimen-fg);
