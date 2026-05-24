@@ -43,8 +43,10 @@
           values[control.dataset.ctPreviewControl] = Number(control.value);
         });
 
+        const previewSize = window.matchMedia("(max-width: 640px)").matches ? Math.min(values.size, 104) : values.size;
+
         output.textContent = input.value.trim() || "TRIPTIH";
-        output.style.setProperty("--ct-preview-size", `${values.size}px`);
+        output.style.setProperty("--ct-preview-size", `${previewSize}px`);
         output.style.setProperty("--ct-preview-width", values.width);
         output.style.setProperty("--ct-preview-spacing", `${values.spacing}px`);
         output.style.setProperty("--ct-preview-leading", values.leading / 100);
