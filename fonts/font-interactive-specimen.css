@@ -62,7 +62,7 @@
   appearance:none;
   min-width:102px;
   border:0;
-  border-bottom:1px solid currentColor;
+  border-bottom:1px solid var(--ct-specimen-line);
   border-radius:0;
   padding:0 18px 3px 0;
   background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
@@ -123,7 +123,7 @@
   width:9px;
   height:9px;
   margin-top:-4px;
-  border:1px solid var(--ct-specimen-fg);
+  border:1px solid var(--ct-specimen-line);
   border-radius:50%;
   background-color:var(--ct-specimen-bg);
 }
@@ -136,7 +136,7 @@
 .ct-specimen-slider input[type="range"]::-moz-range-thumb{
   width:9px;
   height:9px;
-  border:1px solid var(--ct-specimen-fg);
+  border:1px solid var(--ct-specimen-line);
   border-radius:50%;
   background-color:var(--ct-specimen-bg);
 }
