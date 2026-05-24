@@ -152,7 +152,7 @@
 
 .font-detail-range input[type="range"]::-webkit-slider-runnable-track{
   height:1px;
-  background-color:var(--line);
+  background-color:#0B0B0C;
 }
 
 .font-detail-range input[type="range"]::-webkit-slider-thumb{
@@ -167,7 +167,7 @@
 
 .font-detail-range input[type="range"]::-moz-range-track{
   height:1px;
-  background-color:var(--line);
+  background-color:#0B0B0C;
 }
 
 .font-detail-range input[type="range"]::-moz-range-thumb{

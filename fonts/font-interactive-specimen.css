@@ -116,7 +116,7 @@
 
 .ct-specimen-slider input[type="range"]::-webkit-slider-runnable-track{
   height:1px;
-  background-color:var(--ct-specimen-line);
+  background-color:#0B0B0C;
 }
 
 .ct-specimen-slider input[type="range"]::-webkit-slider-thumb{
@@ -131,7 +131,7 @@
 
 .ct-specimen-slider input[type="range"]::-moz-range-track{
   height:1px;
-  background-color:var(--ct-specimen-line);
+  background-color:#0B0B0C;
 }
 
 .ct-specimen-slider input[type="range"]::-moz-range-thumb{
