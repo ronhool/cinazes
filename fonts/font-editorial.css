@@ -9,7 +9,7 @@
 }
 
 .font-editorial__section{
-  padding:clamp(30px, 3.8vw, 44px) 0;
+  padding:clamp(18px, 2.1vw, 28px) 0 clamp(30px, 3.8vw, 44px);
 }
 
 .font-editorial__item-meta{
@@ -54,7 +54,7 @@
   }
 
   .font-editorial__section{
-    padding:clamp(28px, 8vw, 42px) 0;
+    padding:clamp(18px, 5vw, 28px) 0 clamp(28px, 8vw, 42px);
   }
 
   .font-editorial__item-meta{
