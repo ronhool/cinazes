@@ -1,12 +1,4 @@
 @font-face{
-  font-family:"AA Noon";
-  src:url("../../public/fonts/etude/Etude-Regular.woff2") format("woff2");
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-
-@font-face{
   font-family:"Etude";
   src:url("../../public/fonts/etude/Etude-Regular.woff2") format("woff2");
   font-weight:400;
@@ -18,6 +10,8 @@
   --bg:#ffffff;
   --fg:#0B0B0C;
   --muted:rgba(8,8,8,.5);
+  min-height:100%;
+  height:auto;
   background:var(--bg);
   color:var(--fg);
 }
@@ -37,34 +31,59 @@
   white-space:nowrap;
 }
 
-.font-detail-shell{
-  width:min(1760px, calc(100% - 44px));
+.font-detail-wall{
+  position:relative;
+  width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
 }
 
 .font-detail-hero{
+  --font-bg:#ffffff;
+  --font-fg:#080808;
   --font-surface-head:clamp(56px, 5.8vw, 112px);
   --font-surface-top:calc(var(--font-surface-head) * .5);
-  --font-surface-bottom:calc(var(--font-surface-head) * .75);
+  --font-surface-bottom:calc(var(--font-surface-head) * .54);
   --font-toolbar-gap:clamp(20px, 1.9vw, 34px);
-  min-height:calc(100vh - 96px);
-  min-height:calc(100dvh - 96px);
-  padding:0 0 var(--font-surface-bottom);
-}
-
-.font-detail-hero .font-detail-shell{
+  min-height:0;
+  padding:calc(var(--font-surface-top) + var(--font-toolbar-gap)) 0 var(--font-surface-bottom);
   position:relative;
-  padding-top:calc(var(--font-surface-top) + var(--font-toolbar-gap));
+  color:var(--font-fg);
+  z-index:0;
 }
 
-.font-detail-hero .font-detail-shell::before{
+.font-detail-hero::before,
+.font-detail-hero::after{
   content:"";
   position:absolute;
+}
+
+.font-detail-hero::before{
   left:0;
   right:0;
   top:var(--font-surface-top);
   height:1px;
   background:var(--line);
+  z-index:2;
+}
+
+.font-detail-hero::after{
+  left:50%;
+  top:0;
+  bottom:0;
+  width:100vw;
+  transform:translateX(-50%);
+  background:var(--font-bg);
+  z-index:0;
+}
+
+.font-detail-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+.font-detail-shell{
+  width:100%;
+  margin-inline:auto;
 }
 
 .font-detail-toolbar{
@@ -105,7 +124,7 @@
   text-decoration:none;
 }
 
-.font-detail-toolbar a:not(.font-detail-name){
+.font-detail-toolbar a{
   color:rgba(11, 11, 12, 0.52);
   transition:color .14s ease;
 }
@@ -114,6 +133,7 @@
   color:#0B0B0C;
 }
 
+.font-detail-select,
 .font-detail-range{
   display:inline-grid;
   align-items:center;
@@ -121,8 +141,31 @@
   flex:0 0 auto;
 }
 
-.font-detail-style{
-  opacity:.58;
+.font-detail-select{
+  grid-template-columns:0 max-content;
+  width:88px;
+}
+
+.font-detail-label{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+}
+
+.font-detail-select select{
+  appearance:none;
+  width:auto;
+  min-width:0;
+  border:0;
+  border-bottom:1px solid var(--line);
+  border-radius:0;
+  padding:0 14px 2px 0;
+  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
 }
 
 .font-detail-range{
@@ -183,13 +226,13 @@
   width:100%;
   max-width:100%;
   min-height:1em;
-  margin:clamp(44px, 7vw, 112px) 0 0;
+  margin:clamp(16px, 2.4vw, 34px) 0 0;
   padding:0;
   color:var(--fg);
-  font-family:"AA Noon", "DK Form", ui-sans-serif, system-ui, sans-serif;
+  font-family:"Etude", "DK Form", ui-sans-serif, system-ui, sans-serif;
   font-size:var(--specimen-size, 220px);
-  line-height:var(--specimen-leading, .88);
-  letter-spacing:var(--specimen-tracking, -.02em);
+  line-height:var(--specimen-leading, .9);
+  letter-spacing:var(--specimen-tracking, -.01em);
   hyphens:auto;
   overflow-wrap:break-word;
   word-break:normal;
@@ -203,6 +246,10 @@
 .font-detail-specimen:empty::before{
   content:attr(data-placeholder);
   color:var(--muted);
+}
+
+.font-detail-specimen--regular{
+  font-family:"Etude", "DK Form", ui-sans-serif, system-ui, sans-serif;
 }
 
 .font-detail-info{
@@ -230,17 +277,15 @@
 }
 
 @media (max-width: 760px){
-  .font-detail-shell{
+  .font-detail-wall{
     width:calc(100% - 32px);
   }
 
   .font-detail-hero{
     --font-surface-head:clamp(42px, 13vw, 64px);
     --font-surface-top:var(--font-surface-head);
-    --font-surface-bottom:var(--font-surface-top);
+    --font-surface-bottom:calc(var(--font-surface-top) * .7);
     --font-toolbar-gap:clamp(18px, 5.8vw, 28px);
-    min-height:calc(100vh - 76px);
-    min-height:calc(100dvh - 76px);
   }
 
   .font-detail-toolbar{
@@ -257,7 +302,13 @@
   }
 
   .font-detail-specimen{
-    margin-top:clamp(42px, 16vw, 78px);
+    margin-top:clamp(20px, 6.5vw, 34px);
     font-size:min(var(--specimen-size, 148px), 38vw);
+  }
+}
+
+@media (min-width: 1025px){
+  .font-detail-wall{
+    width:min(1760px, calc(100% - 44px));
   }
 }
