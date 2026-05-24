@@ -67,7 +67,7 @@
       interactiveSpecimen: {
         defaultWeight: "Fill",
         defaultText:
-          "TRIPTIH builds a dense editorial wall: AVATAR, rhythm, контраст, форма, 0123456789, “quotes”, accents: façade naïve, ёж, щука, № & %.",
+          "TRIPTIH builds a dense visual rhythm through compressed proportions, sharp vertical tension and architectural spacing. Designed for editorial systems, posters and cultural identities, the typeface balances brutal structure with expressive movement across Latin and Cyrillic compositions.",
         size: 104,
         tracking: -0.015,
         leading: 0.96,

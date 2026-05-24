@@ -18,7 +18,7 @@
   align-items:center;
   gap:16px;
   margin-bottom:clamp(3px, .45vw, 7px);
-  color:rgba(8,8,8,.34);
+  color:#0B0B0C;
   font-size:11px;
   line-height:1;
   letter-spacing:0;
