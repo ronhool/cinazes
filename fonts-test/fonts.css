@@ -138,6 +138,7 @@
   color:var(--font-fg);
   font-size:13px;
   line-height:1;
+  z-index:3;
 }
 
 .font-toolbar__left,
@@ -178,11 +179,17 @@
   opacity:1;
 }
 
-.font-select,
 .font-static-style{
   display:inline-flex;
   align-items:center;
   gap:8px;
+  min-width:0;
+}
+
+.font-select{
+  position:relative;
+  display:inline-block;
+  flex:0 0 auto;
   min-width:0;
 }
 
@@ -195,19 +202,110 @@
   opacity:.58;
 }
 
-.font-select select{
-  appearance:none;
-  width:auto;
+.font-select__button{
+  display:inline-grid;
+  grid-template-columns:auto auto;
+  align-items:center;
+  gap:12px;
+  width:fit-content;
+  min-height:0;
   min-width:0;
-  max-width:max-content;
   border:0;
-  border-bottom:1px solid rgba(11, 11, 12, 0.14);
+  border-bottom:1px solid #0B0B0C;
   border-radius:0;
-  padding:0 14px 2px 0;
-  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
+  padding:0 0 2px;
+  background:#FFFFFF;
   color:var(--font-fg);
   font:inherit;
+  line-height:1;
+  text-align:left;
   cursor:pointer;
+  outline:none;
+  transition:border-color .14s ease, background-color .14s ease;
+}
+
+.font-select__button:hover,
+.font-select.is-open .font-select__button{
+  background:#FFFFFF;
+}
+
+.font-select__button:focus-visible{
+  outline:1px solid rgba(11, 11, 12, 0.24);
+  outline-offset:2px;
+}
+
+.font-select__arrow{
+  width:6px;
+  height:6px;
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);
+}
+
+.font-select.is-open .font-select__arrow{
+  transform:translateY(1px) rotate(225deg);
+}
+
+.font-select__menu{
+  position:absolute;
+  left:0;
+  top:calc(100% + 6px);
+  z-index:8;
+  display:grid;
+  width:max-content;
+  min-width:160px;
+  border:1px solid rgba(11, 11, 12, 0.14);
+  border-radius:0;
+  padding:4px 0;
+  background:#FFFFFF;
+  box-shadow:none;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-2px);
+  transition:opacity .1s ease, transform .1s ease, visibility 0s linear .1s;
+}
+
+.font-select.is-open .font-select__menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  transition:opacity .1s ease, transform .1s ease, visibility 0s;
+}
+
+.font-select__option{
+  appearance:none;
+  display:grid;
+  grid-template-columns:10px minmax(0, 1fr);
+  align-items:center;
+  gap:6px;
+  width:100%;
+  border:0;
+  padding:7px 12px 7px 10px;
+  background:transparent;
+  color:var(--font-muted);
+  font:inherit;
+  line-height:1;
+  text-align:left;
+  white-space:nowrap;
+  cursor:pointer;
+  outline:none;
+}
+
+.font-select__option::before{
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius:50%;
+}
+
+.font-select__option:hover,
+.font-select__option.is-active,
+.font-select__option:focus-visible{
+  color:var(--font-fg);
+}
+
+.font-select__option.is-active::before{
+  background:currentColor;
 }
 
 .font-range{

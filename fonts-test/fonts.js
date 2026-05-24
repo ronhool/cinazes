@@ -23,13 +23,18 @@ function licenseHref(family) {
 
 function catalogBlockTemplate(family) {
   const firstStyle = family.styles[0];
+  const dropdownId = `font-style-menu-${family.slug}`;
   const styleControl = family.styles.length > 1
-    ? `<label class="font-select">
+    ? `<div class="font-select" data-style-dropdown>
         <span class="fonts-visually-hidden">Начертание ${family.name}</span>
-        <select data-style-select aria-label="Начертание ${family.name}">
-          ${family.styles.map((style) => `<option value="${style.slug}">${style.name}</option>`).join("")}
-        </select>
-      </label>`
+        <button class="font-select__button" type="button" data-style-dropdown-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="${dropdownId}">
+          <span data-style-dropdown-label>${firstStyle.name}</span>
+          <span class="font-select__arrow" aria-hidden="true"></span>
+        </button>
+        <div class="font-select__menu" id="${dropdownId}" role="listbox" data-style-select-menu>
+          ${family.styles.map((style) => `<button class="font-select__option${style.slug === firstStyle.slug ? " is-active" : ""}" type="button" role="option" aria-selected="${style.slug === firstStyle.slug ? "true" : "false"}" data-style-option="${style.slug}">${style.name}</button>`).join("")}
+        </div>
+      </div>`
     : `<span class="font-style-name" data-font-style-name data-style-value="${firstStyle.slug}"></span>`;
 
   const familyLabel = family.styles.length > 1
@@ -95,7 +100,10 @@ function setupFontBlock(block) {
   if (!family || !family.styles.length) return;
 
   const specimen = block.querySelector("[data-specimen]");
-  const styleSelect = block.querySelector("[data-style-select]");
+  const styleDropdown = block.querySelector("[data-style-dropdown]");
+  const styleDropdownTrigger = block.querySelector("[data-style-dropdown-trigger]");
+  const styleDropdownLabel = block.querySelector("[data-style-dropdown-label]");
+  const styleOptions = [...block.querySelectorAll("[data-style-option]")];
   const familyName = block.querySelector("[data-font-family-name]");
   const styleName = block.querySelector("[data-font-style-name]");
   const trialLink = block.querySelector("[data-trial-link]");
@@ -140,6 +148,12 @@ function setupFontBlock(block) {
 
     if (familyName) familyName.textContent = family.name;
     if (styleName) styleName.textContent = style.name;
+    if (styleDropdownLabel) styleDropdownLabel.textContent = style.name;
+    for (const option of styleOptions) {
+      const isActive = option.dataset.styleOption === style.slug;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-selected", String(isActive));
+    }
     if (trialLink) trialLink.href = relativeUrl(style.trialFile);
 
     if (specimen.dataset.defaultSpecimen === "family" && !specimen.textContent.trim()) {
@@ -153,6 +167,12 @@ function setupFontBlock(block) {
     }
 
     renderControls();
+  }
+
+  function setStyleDropdownOpen(isOpen) {
+    if (!styleDropdown || !styleDropdownTrigger) return;
+    styleDropdown.classList.toggle("is-open", isOpen);
+    styleDropdownTrigger.setAttribute("aria-expanded", String(isOpen));
   }
 
   function applyTheme(themeName) {
@@ -169,8 +189,29 @@ function setupFontBlock(block) {
     control.addEventListener("change", renderControls);
   }
 
-  if (styleSelect) {
-    styleSelect.addEventListener("change", () => applyStyle(styleSelect.value));
+  if (styleDropdown && styleDropdownTrigger) {
+    styleDropdownTrigger.addEventListener("click", () => {
+      setStyleDropdownOpen(!styleDropdown.classList.contains("is-open"));
+    });
+
+    for (const option of styleOptions) {
+      option.addEventListener("click", () => {
+        applyStyle(option.dataset.styleOption);
+        setStyleDropdownOpen(false);
+        styleDropdownTrigger.focus();
+      });
+    }
+
+    styleDropdown.addEventListener("focusout", (event) => {
+      if (!styleDropdown.contains(event.relatedTarget)) setStyleDropdownOpen(false);
+    });
+
+    styleDropdown.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setStyleDropdownOpen(false);
+        styleDropdownTrigger.focus();
+      }
+    });
   }
 
   for (const button of block.querySelectorAll("[data-theme-control]")) {
@@ -189,7 +230,7 @@ function setupFontBlock(block) {
     }
   });
 
-  applyStyle(styleSelect?.value || family.styles[0].slug, false);
+  applyStyle(family.styles[0].slug, false);
   applyTheme(block.dataset.fontTheme || "white");
 }
 
