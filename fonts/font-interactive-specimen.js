@@ -74,17 +74,22 @@
   function render(root, config) {
     const selected = config.weights.find((weight) => weight.name === config.defaultWeight) || config.weights[0];
     const trialFile = selected.trialFile || config.trialFile || "";
+    const dropdownId = `ct-specimen-menu-${Math.random().toString(36).slice(2)}`;
     root.classList.add("ct-specimen-module");
     root.innerHTML = `
       <div class="ct-specimen-shell">
         <div class="ct-specimen-controls" aria-label="Interactive specimen controls">
           <div class="ct-specimen-controls__left">
-            <label class="ct-specimen-dropdown">
+            <div class="ct-specimen-dropdown" data-ct-specimen-dropdown>
               <span class="ct-specimen-label">Style</span>
-              <select data-ct-specimen-weight>
-                ${config.weights.map((weight) => `<option value="${escapeHtml(weight.name)}"${weight.name === selected.name ? " selected" : ""}>${escapeHtml(weight.name)}</option>`).join("")}
-              </select>
-            </label>
+              <button class="ct-specimen-dropdown__button" type="button" data-ct-specimen-dropdown-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="${dropdownId}">
+                <span data-ct-specimen-weight-label>${escapeHtml(selected.name)}</span>
+                <span class="ct-specimen-dropdown__arrow" aria-hidden="true"></span>
+              </button>
+              <div class="ct-specimen-dropdown__menu" id="${dropdownId}" role="listbox" data-ct-specimen-weight>
+                ${config.weights.map((weight) => `<button class="ct-specimen-dropdown__option${weight.name === selected.name ? " is-active" : ""}" type="button" role="option" aria-selected="${weight.name === selected.name ? "true" : "false"}" data-ct-specimen-weight-option="${escapeHtml(weight.name)}">${escapeHtml(weight.name)}</button>`).join("")}
+              </div>
+            </div>
             <a class="ct-specimen-download" data-ct-specimen-download href="${relativeUrl(trialFile)}" download>Download Trial</a>
           </div>
           <div class="ct-specimen-controls__right">
@@ -112,7 +117,10 @@
     render(root, config);
 
     const text = root.querySelector("[data-ct-specimen-text]");
-    const weightSelect = root.querySelector("[data-ct-specimen-weight]");
+    const dropdown = root.querySelector("[data-ct-specimen-dropdown]");
+    const weightTrigger = root.querySelector("[data-ct-specimen-dropdown-trigger]");
+    const weightLabel = root.querySelector("[data-ct-specimen-weight-label]");
+    const weightOptions = [...root.querySelectorAll("[data-ct-specimen-weight-option]")];
     const download = root.querySelector("[data-ct-specimen-download]");
     const sizeOutput = root.querySelector('[data-ct-specimen-output="size"]');
     const controls = {
@@ -121,10 +129,24 @@
       size: root.querySelector('[data-ct-specimen-control="size"]'),
     };
 
-    if (!text || !weightSelect || !controls.tracking || !controls.leading || !controls.size) return null;
+    if (!text || !dropdown || !weightTrigger || !weightLabel || !weightOptions.length || !controls.tracking || !controls.leading || !controls.size) return null;
+
+    let selectedWeight = config.defaultWeight;
+
+    function setDropdownOpen(isOpen) {
+      dropdown.classList.toggle("is-open", isOpen);
+      weightTrigger.setAttribute("aria-expanded", String(isOpen));
+    }
 
     function applyWeight() {
-      const selected = config.weights.find((weight) => weight.name === weightSelect.value) || config.weights[0];
+      const selected = config.weights.find((weight) => weight.name === selectedWeight) || config.weights[0];
+      selectedWeight = selected.name;
+      weightLabel.textContent = selected.name;
+      for (const option of weightOptions) {
+        const isActive = option.dataset.ctSpecimenWeightOption === selected.name;
+        option.classList.toggle("is-active", isActive);
+        option.setAttribute("aria-selected", String(isActive));
+      }
       text.style.setProperty("--ct-specimen-family", `"${selected.fontFamily || config.fontFamily}"`);
       text.style.setProperty("--ct-specimen-weight", selected.fontWeight || 400);
       if (download) download.href = relativeUrl(selected.trialFile || config.trialFile || "");
@@ -149,7 +171,29 @@
       control.addEventListener("change", applyControls);
     }
 
-    weightSelect.addEventListener("change", applyWeight);
+    weightTrigger.addEventListener("click", () => {
+      setDropdownOpen(!dropdown.classList.contains("is-open"));
+    });
+
+    for (const option of weightOptions) {
+      option.addEventListener("click", () => {
+        selectedWeight = option.dataset.ctSpecimenWeightOption;
+        applyWeight();
+        setDropdownOpen(false);
+        weightTrigger.focus();
+      });
+    }
+
+    dropdown.addEventListener("focusout", (event) => {
+      if (!dropdown.contains(event.relatedTarget)) setDropdownOpen(false);
+    });
+
+    dropdown.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setDropdownOpen(false);
+        weightTrigger.focus();
+      }
+    });
 
     text.addEventListener("paste", (event) => {
       event.preventDefault();

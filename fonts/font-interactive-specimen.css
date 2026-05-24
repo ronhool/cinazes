@@ -3,6 +3,7 @@
   --ct-specimen-fg:#0B0B0C;
   --ct-specimen-muted:rgba(11, 11, 12, 0.52);
   --ct-specimen-line:var(--line);
+  --ct-specimen-dropdown-line:rgba(11, 11, 12, 0.14);
   --ct-specimen-thumb:#0B0B0C;
   background:var(--ct-specimen-bg);
   color:var(--ct-specimen-fg);
@@ -43,10 +44,8 @@
 }
 
 .ct-specimen-dropdown{
-  display:inline-grid;
-  grid-template-columns:0 minmax(102px, max-content);
-  align-items:center;
-  gap:8px;
+  position:relative;
+  display:inline-block;
   flex:0 0 auto;
 }
 
@@ -59,18 +58,99 @@
   white-space:nowrap;
 }
 
-.ct-specimen-dropdown select{
-  appearance:none;
-  min-width:102px;
-  border:0;
-  border-bottom:1px solid var(--ct-specimen-line);
-  border-radius:0;
-  padding:0 18px 3px 0;
-  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 4px center / 5px 5px no-repeat;
-  background-color:var(--ct-specimen-bg);
+.ct-specimen-dropdown__button{
+  display:inline-grid;
+  grid-template-columns:minmax(72px, max-content) auto;
+  align-items:center;
+  gap:18px;
+  min-height:28px;
+  min-width:116px;
+  border:1px solid var(--ct-specimen-dropdown-line);
+  border-radius:4px;
+  padding:5px 9px 5px 10px;
+  background:#FFFFFF;
   color:var(--ct-specimen-fg);
   font:inherit;
+  line-height:1;
+  text-align:left;
   cursor:pointer;
+  transition:border-color .14s ease, background-color .14s ease;
+}
+
+.ct-specimen-dropdown__button:hover,
+.ct-specimen-dropdown.is-open .ct-specimen-dropdown__button{
+  border-color:rgba(11, 11, 12, 0.24);
+  background:#FFFFFF;
+}
+
+.ct-specimen-dropdown__arrow{
+  width:6px;
+  height:6px;
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);
+}
+
+.ct-specimen-dropdown.is-open .ct-specimen-dropdown__arrow{
+  transform:translateY(1px) rotate(225deg);
+}
+
+.ct-specimen-dropdown__menu{
+  position:absolute;
+  left:0;
+  top:calc(100% + 6px);
+  z-index:8;
+  display:grid;
+  min-width:100%;
+  border:1px solid var(--ct-specimen-dropdown-line);
+  border-radius:4px;
+  padding:4px 0;
+  background:#FFFFFF;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-2px);
+  transition:opacity .1s ease, transform .1s ease, visibility 0s linear .1s;
+}
+
+.ct-specimen-dropdown.is-open .ct-specimen-dropdown__menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  transition:opacity .1s ease, transform .1s ease, visibility 0s;
+}
+
+.ct-specimen-dropdown__option{
+  appearance:none;
+  display:grid;
+  grid-template-columns:10px minmax(0, 1fr);
+  align-items:center;
+  gap:6px;
+  width:100%;
+  border:0;
+  padding:7px 12px 7px 10px;
+  background:transparent;
+  color:var(--ct-specimen-muted);
+  font:inherit;
+  line-height:1;
+  text-align:left;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.ct-specimen-dropdown__option::before{
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius:50%;
+}
+
+.ct-specimen-dropdown__option:hover,
+.ct-specimen-dropdown__option.is-active{
+  color:var(--ct-specimen-fg);
+}
+
+.ct-specimen-dropdown__option.is-active::before{
+  background:currentColor;
 }
 
 .ct-specimen-download{
