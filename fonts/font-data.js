@@ -6,6 +6,27 @@
       description: "AA_Noon Regular specimen",
       detailUrl: "/fonts/aa-noon/",
       licenseSubject: "Лицензия AA_Noon",
+      interactiveSpecimen: {
+        defaultWeight: "Regular",
+        defaultText:
+          "Quiet letters gather rhythm: AA_Noon, Проба шрифта 0123456789 — punctuation, accents, façade, naïve, ёлка, щука, & symbols.",
+        size: 92,
+        tracking: -0.01,
+        leading: 1.08,
+        limits: {
+          size: [42, 128],
+          tracking: [-0.08, 0.16],
+          leading: [0.82, 1.42],
+        },
+        weights: [
+          {
+            name: "Regular",
+            fontFamily: "Etude",
+            fontWeight: 400,
+            trialFile: "/public/fonts/etude/Etude-Regular.woff2",
+          },
+        ],
+      },
       styles: [
         {
           slug: "regular",
@@ -43,6 +64,39 @@
       description: "Triptih specimen",
       detailUrl: "/fonts/triptih/",
       licenseSubject: "Лицензия Triptih",
+      interactiveSpecimen: {
+        defaultWeight: "Fill",
+        defaultText:
+          "TRIPTIH builds a dense editorial wall: AVATAR, rhythm, контраст, форма, 0123456789, “quotes”, accents: façade naïve, ёж, щука, № & %.",
+        size: 104,
+        tracking: -0.015,
+        leading: 0.96,
+        limits: {
+          size: [48, 132],
+          tracking: [-0.08, 0.18],
+          leading: [0.78, 1.28],
+        },
+        weights: [
+          {
+            name: "Fill",
+            fontFamily: "Triptih Fill",
+            fontWeight: 400,
+            trialFile: "/public/fonts/triptih/Triptih-Fill.otf",
+          },
+          {
+            name: "Parth",
+            fontFamily: "Triptih Parth",
+            fontWeight: 400,
+            trialFile: "/public/fonts/triptih/Triptih-Parth.otf",
+          },
+          {
+            name: "Stroke",
+            fontFamily: "Triptih Stroke",
+            fontWeight: 400,
+            trialFile: "/public/fonts/triptih/Triptih-Stroke.otf",
+          },
+        ],
+      },
       styles: [
         {
           slug: "fill",
@@ -63,7 +117,7 @@
               features: {},
             },
             right: {
-              text: "Плотная форма раскрывается в длинной строке: контраст, внутренние просветы и повтор букв собирают выразительную фактуру. Кириллица показывает, как декоративный характер сохраняет читательский ритм.",
+              text: "Плотная форма раскрывается в длинной строке: контраст, внутренние просветы и повтор букв складываются в выразительную фактуру. Кириллица показывает, как декоративное начертание удерживает читательский ритм.",
               features: {
                 liga: true,
                 calt: true,
@@ -91,7 +145,7 @@
               features: {},
             },
             right: {
-              text: "Открытый контур меняет темп набора: буквы становятся легче, паузы заметнее, а строка сохраняет характер. В кириллице особенно важны баланс штрихов, устойчивость формы и ясная дистанция между знаками.",
+              text: "Открытый контур меняет темп чтения: буквы становятся легче, паузы заметнее, а строка не теряет характера. В кириллице особенно важны баланс штрихов, устойчивость формы и чёткая дистанция между знаками.",
               features: {
                 liga: true,
                 calt: true,
@@ -119,7 +173,7 @@
               features: {},
             },
             right: {
-              text: "Контурное начертание строит страницу из линий и интервалов. В длинном русском тексте проявляются соединения, альтернативные формы, плотность пробелов и способность шрифта сохранять голос без лишнего шума.",
+              text: "Контурное начертание строит страницу из линий и интервалов. В длинном русском тексте проявляются соединения, альтернативные глифы, плотность пробелов и способность шрифта сохранять характер без лишнего шума.",
               features: {
                 liga: true,
                 calt: true,
