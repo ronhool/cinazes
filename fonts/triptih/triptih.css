@@ -24,9 +24,9 @@
 
 .font-detail-page{
   --bg:#ffffff;
-  --fg:#080808;
+  --fg:#0B0B0C;
   --muted:rgba(8,8,8,.5);
-  --line:rgba(8,8,8,.18);
+  --line:#0B0B0C;
   min-height:100%;
   height:auto;
   background:var(--bg);
