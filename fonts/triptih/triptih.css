@@ -312,8 +312,8 @@
 
 .ct-glyph-toolbar{
   position:sticky;
-  top:var(--glyph-toolbar-sticky-offset, 0px);
-  z-index:10;
+  top:var(--glyph-toolbar-sticky-offset, var(--glyph-sticky-offset));
+  z-index:20;
   margin-bottom:32px;
   padding:0 0 16px;
   border-bottom:1px solid rgba(11, 11, 12, .12);
@@ -464,13 +464,11 @@
 
 .ct-glyph-set__library{
   min-width:0;
-  height:calc(100vh - var(--glyph-sticky-offset));
-  max-height:calc(100vh - var(--glyph-sticky-offset));
-  overflow-y:auto;
-  overscroll-behavior:contain;
+  height:auto;
+  max-height:none;
+  overflow:visible;
   border-right:1px solid rgba(11, 11, 12, .12);
   padding:0 clamp(28px, 3.8vw, 58px) clamp(20px, 2.8vw, 42px) 0;
-  scrollbar-width:thin;
 }
 
 .ct-glyph-set__groups{
