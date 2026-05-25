@@ -288,8 +288,10 @@
   --ct-glyph-set-fg:#0B0B0C;
   --ct-glyph-set-muted:rgba(11, 11, 12, .52);
   --ct-glyph-set-line:var(--line);
-  --ct-glyph-set-soft:rgba(0, 0, 0, .05);
-  --ct-glyph-set-baseline:rgba(0, 0, 0, .22);
+  --ct-glyph-set-soft:#f5f5f5;
+  --ct-glyph-set-grid-line:rgba(11, 11, 12, .105);
+  --ct-glyph-set-metric:#d9d9d9;
+  --ct-glyph-set-baseline:#c9c9c9;
   --glyph-sticky-offset:96px;
   background:var(--ct-glyph-set-bg);
   color:var(--ct-glyph-set-fg);
@@ -305,15 +307,16 @@
 .ct-glyph-set__shell{
   width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
-  padding:clamp(22px, 3vw, 46px) 0 clamp(64px, 8vw, 126px);
+  padding:clamp(18px, 2.8vw, 40px) 0 clamp(64px, 8vw, 126px);
 }
 
 .ct-glyph-toolbar{
   position:sticky;
-  top:0;
-  z-index:5;
-  margin-bottom:clamp(18px, 2.2vw, 30px);
-  padding-bottom:clamp(18px, 2.2vw, 28px);
+  top:var(--glyph-toolbar-sticky-offset, 0px);
+  z-index:10;
+  margin-bottom:32px;
+  padding:0 0 16px;
+  border-bottom:1px solid rgba(11, 11, 12, .12);
   background:#ffffff;
 }
 
@@ -340,38 +343,67 @@
 
 .ct-glyph-set__controls{
   display:grid;
-  grid-template-columns:minmax(120px, 180px) minmax(180px, 1fr);
-  gap:12px;
-  justify-self:end;
+  grid-template-columns:minmax(160px, 180px) minmax(0, 1fr);
+  align-items:end;
+  gap:24px;
   width:100%;
 }
 
-.ct-glyph-set__field{
-  display:grid;
-  gap:8px;
-  min-width:0;
-  color:var(--ct-glyph-set-muted);
-  font-size:12px;
-  line-height:1;
-}
-
-.ct-glyph-set__field select,
-.ct-glyph-set__field input{
+.ct-glyph-toolbar__select{
+  appearance:none;
   width:100%;
   min-height:32px;
   border:0;
-  border-bottom:1px solid var(--ct-glyph-set-line);
+  border-bottom:1px solid rgba(11, 11, 12, .18);
   border-radius:0;
   padding:0 0 7px;
-  background:#ffffff;
+  background:linear-gradient(45deg, transparent 50%, currentColor 50%) right 5px center / 5px 5px no-repeat;
   color:var(--ct-glyph-set-fg);
   font:inherit;
   font-size:13px;
   outline:0;
 }
 
-.ct-glyph-set__field select:focus,
-.ct-glyph-set__field input:focus{
+.ct-glyph-toolbar__input{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  min-height:32px;
+  border-bottom:1px solid rgba(11, 11, 12, .18);
+  color:var(--ct-glyph-set-muted);
+}
+
+.ct-glyph-toolbar__icon{
+  width:22px;
+  height:22px;
+  flex:0 0 auto;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.75;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.ct-glyph-toolbar__input input{
+  width:100%;
+  min-width:0;
+  border:0;
+  border-radius:0;
+  padding:0 0 7px;
+  background:transparent;
+  color:var(--ct-glyph-set-fg);
+  font:inherit;
+  font-size:13px;
+  outline:0;
+}
+
+.ct-glyph-toolbar__input input::placeholder{
+  color:var(--ct-glyph-set-muted);
+}
+
+.ct-glyph-toolbar__select:focus,
+.ct-glyph-toolbar__input:focus-within{
   border-color:rgba(11, 11, 12, .34);
 }
 
@@ -383,7 +415,7 @@
   position:sticky;
   top:var(--glyph-sticky-offset);
   display:grid;
-  grid-template-rows:auto minmax(380px, 1fr) auto;
+  grid-template-rows:auto minmax(420px, 1fr) auto;
   height:calc(100vh - var(--glyph-sticky-offset));
   min-height:min(520px, calc(100vh - var(--glyph-sticky-offset)));
   padding:0 0 clamp(20px, 2.8vw, 42px) clamp(28px, 3.8vw, 58px);
@@ -400,15 +432,26 @@
   display:block;
   width:100%;
   height:100%;
-  min-height:380px;
+  min-height:420px;
   overflow:visible;
 }
 
-.ct-glyph-preview__baseline{
-  stroke:var(--ct-glyph-set-baseline);
+.ct-glyph-preview__metric line{
+  stroke:var(--ct-glyph-set-metric);
   stroke-width:1;
-  stroke-dasharray:3 4;
   vector-effect:non-scaling-stroke;
+}
+
+.ct-glyph-preview__metric--baseline line{
+  stroke:var(--ct-glyph-set-baseline);
+  stroke-dasharray:4 4;
+}
+
+.ct-glyph-preview__metric text{
+  fill:rgba(11, 11, 12, .38);
+  font-family:ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size:14px;
+  letter-spacing:0;
 }
 
 .ct-glyph-preview__glyph{
@@ -421,6 +464,7 @@
 
 .ct-glyph-set__library{
   min-width:0;
+  height:calc(100vh - var(--glyph-sticky-offset));
   max-height:calc(100vh - var(--glyph-sticky-offset));
   overflow-y:auto;
   overscroll-behavior:contain;
@@ -431,18 +475,23 @@
 
 .ct-glyph-set__groups{
   display:grid;
-  gap:clamp(24px, 3vw, 42px);
+  gap:0;
 }
 
 .ct-glyph-grid__group{
   min-width:0;
 }
 
+.ct-glyph-grid__group + .ct-glyph-grid__group{
+  margin-top:56px;
+}
+
 .ct-glyph-grid__head{
   display:grid;
   grid-template-columns:1fr auto;
   gap:16px;
-  padding:0 0 12px;
+  margin:0 0 16px;
+  padding:0;
   color:var(--ct-glyph-set-muted);
   font-size:12px;
   line-height:1;
@@ -459,10 +508,10 @@
 
 .ct-glyph-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(52px, 1fr));
+  grid-template-columns:repeat(auto-fill, minmax(72px, 72px));
   align-content:start;
-  border-top:1px solid var(--ct-glyph-set-line);
-  border-left:1px solid var(--ct-glyph-set-line);
+  border-top:1px solid var(--ct-glyph-set-grid-line);
+  border-left:1px solid var(--ct-glyph-set-grid-line);
 }
 
 .ct-glyph-cell{
@@ -470,11 +519,11 @@
   display:grid;
   place-items:center;
   min-width:0;
-  aspect-ratio:1;
-  min-height:48px;
+  width:72px;
+  height:72px;
   border:0;
-  border-right:1px solid var(--ct-glyph-set-line);
-  border-bottom:1px solid var(--ct-glyph-set-line);
+  border-right:1px solid var(--ct-glyph-set-grid-line);
+  border-bottom:1px solid var(--ct-glyph-set-grid-line);
   border-radius:0;
   padding:0;
   background:#ffffff;
@@ -483,7 +532,6 @@
   font-size:clamp(24px, 2.1vw, 36px);
   line-height:1;
   cursor:pointer;
-  transition:background-color .14s ease, border-color .14s ease, color .14s ease;
 }
 
 .ct-glyph-cell:hover,
@@ -595,6 +643,7 @@
 
   .ct-glyph-set__library{
     order:2;
+    height:auto;
     max-height:none;
     overflow:visible;
     border-right:0;
@@ -607,6 +656,7 @@
 
   .ct-glyph-set__controls{
     grid-template-columns:1fr;
+    gap:14px;
   }
 
   .ct-glyph-set__groups{
@@ -614,11 +664,12 @@
   }
 
   .ct-glyph-grid{
-    grid-template-columns:repeat(auto-fill, minmax(44px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(48px, 1fr));
   }
 
   .ct-glyph-cell{
-    min-height:48px;
+    width:auto;
+    height:48px;
     font-size:25px;
   }
 
@@ -638,6 +689,10 @@
 
   .ct-glyph-preview{
     min-height:300px;
+  }
+
+  .ct-glyph-preview__metric text{
+    font-size:12px;
   }
 
   .ct-glyph-set__meta{

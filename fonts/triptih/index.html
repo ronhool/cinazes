@@ -102,14 +102,14 @@
             <div class="ct-glyph-set__library">
               <header class="ct-glyph-toolbar">
                 <div class="ct-glyph-set__controls" aria-label="Glyph inspector controls">
-                  <label class="ct-glyph-set__field">
-                    <span>Style</span>
-                    <select data-ct-glyph-set-style></select>
-                  </label>
-                  <label class="ct-glyph-set__field">
-                    <span>Your letter</span>
-                    <input data-ct-glyph-set-input type="text" inputmode="text" maxlength="8" placeholder="Your letter..." />
-                  </label>
+                  <select class="ct-glyph-toolbar__select" data-ct-glyph-set-style aria-label="Style"></select>
+                  <div class="ct-glyph-toolbar__input">
+                    <svg class="ct-glyph-toolbar__icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 20h16" />
+                      <path d="M14.5 4.5l5 5L8 21H3v-5L14.5 4.5z" />
+                    </svg>
+                    <input data-ct-glyph-set-input type="text" inputmode="text" maxlength="8" placeholder="Your letter..." aria-label="Your letter" />
+                  </div>
                 </div>
               </header>
               <div class="ct-glyph-set__groups" data-ct-glyph-set-groups></div>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="ct-glyph-stage" aria-label="Glyph preview baseline">
                   <svg class="ct-glyph-preview" viewBox="0 0 1000 700" role="img" data-ct-glyph-preview-svg>
-                    <line class="ct-glyph-preview__baseline" data-ct-glyph-baseline x1="0" x2="1000" y1="514" y2="514" />
+                    <g class="ct-glyph-preview__metrics" data-ct-glyph-metrics></g>
                     <text class="ct-glyph-preview__glyph" data-ct-glyph-set-preview x="500" y="514">P</text>
                   </svg>
                 </div>
