@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html class="font-detail-root" lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,6 +22,7 @@
     <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
     <script defer src="../font-data.js?v=20260524b"></script>
     <script defer src="./triptih.js?v=20260524c"></script>
+    <script defer src="./triptih-glyph-set.js?v=20260525a"></script>
     <script defer src="../font-editorial.js?v=20260522c"></script>
     <script defer src="../font-interactive-specimen.js?v=20260524e"></script>
   </head>
@@ -94,6 +95,58 @@
       <section class="font-editorial" data-font-editorial="triptih" aria-label="Triptih editorial specimen"></section>
 
       <section data-ct-specimen="triptih" aria-label="Triptih interactive specimen"></section>
+
+      <section class="ct-glyph-set" aria-labelledby="ct-glyph-set-title" data-ct-glyph-set>
+        <div class="ct-glyph-set__shell">
+          <div class="ct-glyph-set__stage">
+            <div class="ct-glyph-set__library">
+              <header class="ct-glyph-set__head">
+                <h2 class="ct-glyph-set__title" id="ct-glyph-set-title">Glyph Set</h2>
+                <div class="ct-glyph-set__controls" aria-label="Glyph inspector controls">
+                  <label class="ct-glyph-set__field">
+                    <span>Style</span>
+                    <select data-ct-glyph-set-style></select>
+                  </label>
+                  <label class="ct-glyph-set__field">
+                    <span>Your letter</span>
+                    <input data-ct-glyph-set-input type="text" inputmode="text" maxlength="8" placeholder="Your letter..." />
+                  </label>
+                </div>
+              </header>
+              <div class="ct-glyph-set__browser">
+                <nav class="ct-glyph-set__nav" aria-label="Glyph groups" data-ct-glyph-set-nav></nav>
+                <div class="ct-glyph-set__panel">
+                  <div class="ct-glyph-set__group-head">
+                    <span data-ct-glyph-set-current-group>Uppercase</span>
+                    <span data-ct-glyph-set-count>0 glyphs</span>
+                  </div>
+                  <div class="ct-glyph-set__grid" data-ct-glyph-set-grid></div>
+                  <div class="ct-glyph-set__languages" aria-label="Supported language groups" data-ct-glyph-set-languages></div>
+                </div>
+              </div>
+            </div>
+            <aside class="ct-glyph-set__preview" aria-live="polite">
+              <div class="ct-glyph-set__preview-pin">
+                <div class="ct-glyph-set__preview-head">
+                  <span data-ct-glyph-set-name>Latin Capital Letter B</span>
+                  <span data-ct-glyph-set-code>U+0042</span>
+                </div>
+                <div class="ct-glyph-set__metrics" aria-label="Glyph metrics">
+                  <span class="ct-glyph-set__metric ct-glyph-set__metric--cap">CAP HEIGHT: 1725</span>
+                  <span class="ct-glyph-set__metric ct-glyph-set__metric--x">X HEIGHT: 1064</span>
+                  <span class="ct-glyph-set__metric ct-glyph-set__metric--base">BASELINE: 0</span>
+                  <span class="ct-glyph-set__metric ct-glyph-set__metric--desc">DESCENDER: -625</span>
+                  <span class="ct-glyph-set__preview-glyph" data-ct-glyph-set-preview>B</span>
+                </div>
+                <div class="ct-glyph-set__meta">
+                  <span data-ct-glyph-set-style-label>Fill</span>
+                  <span data-ct-glyph-set-group>Uppercase</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
 
       <section class="font-detail-info" id="license" aria-labelledby="license-title">
         <div class="font-detail-shell">
