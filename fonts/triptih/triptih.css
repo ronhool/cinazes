@@ -300,11 +300,16 @@
 .ct-glyph-set__shell{
   width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
-  padding:clamp(34px, 4.4vw, 72px) 0 clamp(64px, 8vw, 126px);
+  padding:clamp(30px, 4vw, 64px) 0 clamp(64px, 8vw, 126px);
 }
 
 .ct-glyph-toolbar{
-  margin-bottom:clamp(22px, 2.8vw, 38px);
+  position:sticky;
+  top:0;
+  z-index:5;
+  margin-bottom:clamp(18px, 2.2vw, 30px);
+  padding-bottom:clamp(18px, 2.2vw, 28px);
+  background:#ffffff;
 }
 
 .ct-glyph-toolbar__meta{
@@ -322,7 +327,7 @@
 
 .ct-glyph-set__stage{
   display:grid;
-  grid-template-columns:minmax(0, 3fr) minmax(360px, 2fr);
+  grid-template-columns:minmax(0, 55fr) minmax(380px, 45fr);
   align-items:stretch;
   min-height:calc(100vh - var(--ct-glyph-sticky-top));
 }
@@ -372,10 +377,10 @@
   position:sticky;
   top:var(--ct-glyph-sticky-top);
   display:grid;
-  grid-template-rows:auto minmax(360px, 1fr) auto;
+  grid-template-rows:auto minmax(420px, 1fr) auto;
   height:calc(100vh - var(--ct-glyph-sticky-top));
   min-height:520px;
-  padding:0 0 clamp(20px, 2.8vw, 42px) clamp(22px, 3vw, 44px);
+  padding:0 0 clamp(20px, 2.8vw, 42px) clamp(28px, 3.8vw, 58px);
   overflow:hidden;
 }
 
@@ -389,7 +394,7 @@
   display:block;
   width:100%;
   height:100%;
-  min-height:420px;
+  min-height:460px;
   overflow:visible;
 }
 
@@ -413,26 +418,25 @@
   max-height:calc(100vh - var(--ct-glyph-sticky-top));
   overflow-y:auto;
   overscroll-behavior:contain;
-  border-right:1px solid var(--ct-glyph-set-line);
-  padding:0 clamp(22px, 3vw, 44px) clamp(20px, 2.8vw, 42px) 0;
+  border-right:1px solid rgba(11, 11, 12, .12);
+  padding:0 clamp(28px, 3.8vw, 58px) clamp(20px, 2.8vw, 42px) 0;
   scrollbar-width:thin;
 }
 
 .ct-glyph-set__groups{
   display:grid;
-  gap:clamp(20px, 2.7vw, 34px);
+  gap:clamp(24px, 3vw, 42px);
 }
 
 .ct-glyph-grid__group{
   min-width:0;
-  border-top:1px solid var(--ct-glyph-set-line);
 }
 
 .ct-glyph-grid__head{
   display:grid;
   grid-template-columns:1fr auto;
   gap:16px;
-  padding:14px 0 12px;
+  padding:0 0 12px;
   color:var(--ct-glyph-set-muted);
   font-size:12px;
   line-height:1;
@@ -499,7 +503,7 @@
 
 .ct-glyph-set__meta span{
   min-width:0;
-  border-top:1px solid var(--ct-glyph-set-line);
+  border-top:1px solid rgba(11, 11, 12, .14);
   padding-top:12px;
   overflow-wrap:anywhere;
 }

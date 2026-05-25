@@ -393,14 +393,16 @@
     const styleLabel = root.querySelector("[data-ct-glyph-set-style-label]");
     if (!svg || !glyph || !baseline || !name || !code || !group || !styleLabel) return;
 
-    const top = 64;
-    const bottom = 86;
+    const top = 22;
+    const bottom = 42;
     const viewHeight = 700;
     const ascender = Math.max(metrics.ascender || fallbackMetrics.ascender, metrics.capHeight || 0, metrics.xHeight || 0);
     const descender = Math.min(metrics.descender || fallbackMetrics.descender, 0);
     const scale = (viewHeight - top - bottom) / Math.max(ascender - descender, 1);
     const baselineY = top + ascender * scale;
-    const fontSize = (metrics.unitsPerEm || fallbackMetrics.unitsPerEm) * scale;
+    const length = Array.from(item.value).length;
+    const sequenceScale = length <= 1 ? 1 : Math.max(0.38, Math.min(0.86, 1.7 / Math.pow(length, 0.72)));
+    const fontSize = (metrics.unitsPerEm || fallbackMetrics.unitsPerEm) * scale * sequenceScale;
 
     baseline.setAttribute("y1", baselineY.toFixed(2));
     baseline.setAttribute("y2", baselineY.toFixed(2));
@@ -408,9 +410,9 @@
     glyph.setAttribute("y", baselineY.toFixed(2));
     glyph.setAttribute("font-size", fontSize.toFixed(2));
     glyph.style.fontFamily = `"${style.family}", "DK Form", ui-sans-serif, system-ui, sans-serif`;
-    name.textContent = glyphName(item.value, item.group, item.feature);
+    name.textContent = item.custom ? "Custom input sequence" : glyphName(item.value, item.group, item.feature);
     code.textContent = codePointLabel(item.value);
-    group.textContent = item.group || "Custom input";
+    group.textContent = item.custom ? "Custom input" : item.group || "Custom input";
     styleLabel.textContent = style.label;
   }
 
@@ -423,6 +425,8 @@
     let activeStyle = styles[0];
     let fontData = { metrics: fallbackMetrics, groups: fallbackGroups() };
     let activeItem = { value: "P", group: "Uppercase Latin" };
+    let selectedItem = activeItem;
+    let customItem = null;
 
     function cellFor(item) {
       return Array.from(root.querySelectorAll("[data-ct-glyph-set-cell]")).find(
@@ -430,8 +434,7 @@
       );
     }
 
-    function activate(item) {
-      activeItem = item;
+    function setActiveCell(item) {
       root.querySelectorAll(".ct-glyph-cell.is-active").forEach((cell) => {
         cell.classList.remove("is-active");
         cell.setAttribute("aria-pressed", "false");
@@ -441,22 +444,33 @@
         cell.classList.add("is-active");
         cell.setAttribute("aria-pressed", "true");
       }
+    }
+
+    function activate(item, options = {}) {
+      activeItem = item;
+      if (!options.custom) {
+        selectedItem = item;
+        customItem = null;
+        setActiveCell(item);
+      }
       renderPreview(root, activeItem, activeStyle, fontData.metrics);
     }
 
     async function renderForStyle() {
       fontData = await loadFont(activeStyle);
       groupsRoot.innerHTML = fontData.groups.map((group) => groupTemplate(group, activeStyle.family)).join("");
-      const preferred = cellFor(activeItem) ? activeItem : { value: "P", group: "Uppercase Latin" };
+      const preferred = cellFor(selectedItem) ? selectedItem : { value: "P", group: "Uppercase Latin" };
       const first = cellFor(preferred) || groupsRoot.querySelector("[data-ct-glyph-set-cell]");
       if (first) {
-        activate({
+        selectedItem = {
           value: first.dataset.ctGlyph,
           group: first.dataset.ctGlyphGroup,
           feature: first.dataset.ctGlyphFeature || "",
-        });
+        };
+        setActiveCell(selectedItem);
+        renderPreview(root, customItem || selectedItem, activeStyle, fontData.metrics);
       } else {
-        activate(activeItem);
+        renderPreview(root, customItem || selectedItem, activeStyle, fontData.metrics);
       }
     }
 
@@ -468,15 +482,25 @@
       renderForStyle();
     });
 
-    input.addEventListener("input", () => {
+    function syncCustomInput() {
       const value = Array.from(input.value.trim()).slice(0, 8).join("");
-      if (!value) return;
-      activate({ value, group: "Custom input" });
-    });
+      if (!value) {
+        customItem = null;
+        activate(selectedItem);
+        return;
+      }
+      customItem = { value, group: "Custom input", custom: true };
+      activeItem = customItem;
+      renderPreview(root, customItem, activeStyle, fontData.metrics);
+    }
+
+    input.addEventListener("input", syncCustomInput);
+    input.addEventListener("change", syncCustomInput);
 
     function handleGlyph(event) {
       const cell = event.target.closest("[data-ct-glyph-set-cell]");
       if (!cell || !groupsRoot.contains(cell)) return;
+      if (input.value.trim()) return;
       activate({
         value: cell.dataset.ctGlyph,
         group: cell.dataset.ctGlyphGroup,
