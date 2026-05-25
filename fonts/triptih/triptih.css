@@ -290,17 +290,22 @@
   --ct-glyph-set-line:var(--line);
   --ct-glyph-set-soft:rgba(0, 0, 0, .05);
   --ct-glyph-set-baseline:rgba(0, 0, 0, .22);
-  --ct-glyph-sticky-top:72px;
+  --glyph-sticky-offset:96px;
   background:var(--ct-glyph-set-bg);
   color:var(--ct-glyph-set-fg);
   border-top:1px solid var(--ct-glyph-set-line);
   font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.ct-glyph-inspector{
+  position:relative;
+  isolation:isolate;
+}
+
 .ct-glyph-set__shell{
   width:min(1600px, calc(100% - 32px));
   margin-inline:auto;
-  padding:clamp(30px, 4vw, 64px) 0 clamp(64px, 8vw, 126px);
+  padding:clamp(22px, 3vw, 46px) 0 clamp(64px, 8vw, 126px);
 }
 
 .ct-glyph-toolbar{
@@ -315,7 +320,7 @@
 .ct-glyph-toolbar__meta{
   display:grid;
   gap:8px;
-  margin-bottom:clamp(22px, 2.8vw, 38px);
+  margin-bottom:clamp(12px, 1.8vw, 22px);
   color:var(--ct-glyph-set-muted);
   font-size:13px;
   line-height:1;
@@ -326,10 +331,11 @@
 }
 
 .ct-glyph-set__stage{
+  position:relative;
   display:grid;
   grid-template-columns:minmax(0, 55fr) minmax(380px, 45fr);
   align-items:stretch;
-  min-height:calc(100vh - var(--ct-glyph-sticky-top));
+  min-height:100vh;
 }
 
 .ct-glyph-set__controls{
@@ -375,11 +381,11 @@
 
 .ct-glyph-set__preview-pin{
   position:sticky;
-  top:var(--ct-glyph-sticky-top);
+  top:var(--glyph-sticky-offset);
   display:grid;
-  grid-template-rows:auto minmax(420px, 1fr) auto;
-  height:calc(100vh - var(--ct-glyph-sticky-top));
-  min-height:520px;
+  grid-template-rows:auto minmax(380px, 1fr) auto;
+  height:calc(100vh - var(--glyph-sticky-offset));
+  min-height:min(520px, calc(100vh - var(--glyph-sticky-offset)));
   padding:0 0 clamp(20px, 2.8vw, 42px) clamp(28px, 3.8vw, 58px);
   overflow:hidden;
 }
@@ -394,7 +400,7 @@
   display:block;
   width:100%;
   height:100%;
-  min-height:460px;
+  min-height:380px;
   overflow:visible;
 }
 
@@ -415,7 +421,7 @@
 
 .ct-glyph-set__library{
   min-width:0;
-  max-height:calc(100vh - var(--ct-glyph-sticky-top));
+  max-height:calc(100vh - var(--glyph-sticky-offset));
   overflow-y:auto;
   overscroll-behavior:contain;
   border-right:1px solid rgba(11, 11, 12, .12);
