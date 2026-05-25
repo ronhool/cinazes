@@ -15,14 +15,14 @@
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Parth.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Stroke.otf" as="font" type="font/otf" crossorigin />
     <link rel="stylesheet" href="../../styles.css?v=20260524b" />
-    <link rel="stylesheet" href="./triptih.css?v=20260524h" />
+    <link rel="stylesheet" href="./triptih.css?v=20260525c" />
     <link rel="stylesheet" href="../font-editorial.css?v=20260524b" />
     <link rel="stylesheet" href="../font-interactive-specimen.css?v=20260524m" />
     <script defer src="../../site-header.js"></script>
     <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
     <script defer src="../font-data.js?v=20260524b"></script>
     <script defer src="./triptih.js?v=20260524c"></script>
-    <script defer src="./triptih-glyph-set.js?v=20260525a"></script>
+    <script defer src="./triptih-glyph-set.js?v=20260525c"></script>
     <script defer src="../font-editorial.js?v=20260522c"></script>
     <script defer src="../font-interactive-specimen.js?v=20260524e"></script>
   </head>
@@ -96,12 +96,11 @@
 
       <section data-ct-specimen="triptih" aria-label="Triptih interactive specimen"></section>
 
-      <section class="ct-glyph-set" aria-labelledby="ct-glyph-set-title" data-ct-glyph-set>
+      <section class="ct-glyph-set ct-glyph-inspector" aria-label="Glyph Inspector" data-ct-glyph-set>
         <div class="ct-glyph-set__shell">
           <div class="ct-glyph-set__stage">
             <div class="ct-glyph-set__library">
-              <header class="ct-glyph-set__head">
-                <h2 class="ct-glyph-set__title" id="ct-glyph-set-title">Glyph Set</h2>
+              <header class="ct-glyph-toolbar">
                 <div class="ct-glyph-set__controls" aria-label="Glyph inspector controls">
                   <label class="ct-glyph-set__field">
                     <span>Style</span>
@@ -113,34 +112,23 @@
                   </label>
                 </div>
               </header>
-              <div class="ct-glyph-set__browser">
-                <nav class="ct-glyph-set__nav" aria-label="Glyph groups" data-ct-glyph-set-nav></nav>
-                <div class="ct-glyph-set__panel">
-                  <div class="ct-glyph-set__group-head">
-                    <span data-ct-glyph-set-current-group>Uppercase</span>
-                    <span data-ct-glyph-set-count>0 glyphs</span>
-                  </div>
-                  <div class="ct-glyph-set__grid" data-ct-glyph-set-grid></div>
-                  <div class="ct-glyph-set__languages" aria-label="Supported language groups" data-ct-glyph-set-languages></div>
-                </div>
-              </div>
+              <div class="ct-glyph-set__groups" data-ct-glyph-set-groups></div>
             </div>
             <aside class="ct-glyph-set__preview" aria-live="polite">
               <div class="ct-glyph-set__preview-pin">
-                <div class="ct-glyph-set__preview-head">
-                  <span data-ct-glyph-set-name>Latin Capital Letter B</span>
-                  <span data-ct-glyph-set-code>U+0042</span>
+                <div class="ct-glyph-toolbar__meta">
+                  <span data-ct-glyph-set-name>Latin Capital Letter P</span>
+                  <span data-ct-glyph-set-code>U+0050</span>
                 </div>
-                <div class="ct-glyph-set__metrics" aria-label="Glyph metrics">
-                  <span class="ct-glyph-set__metric ct-glyph-set__metric--cap">CAP HEIGHT: 1725</span>
-                  <span class="ct-glyph-set__metric ct-glyph-set__metric--x">X HEIGHT: 1064</span>
-                  <span class="ct-glyph-set__metric ct-glyph-set__metric--base">BASELINE: 0</span>
-                  <span class="ct-glyph-set__metric ct-glyph-set__metric--desc">DESCENDER: -625</span>
-                  <span class="ct-glyph-set__preview-glyph" data-ct-glyph-set-preview>B</span>
+                <div class="ct-glyph-stage" aria-label="Glyph preview baseline">
+                  <svg class="ct-glyph-preview" viewBox="0 0 1000 700" role="img" data-ct-glyph-preview-svg>
+                    <line class="ct-glyph-preview__baseline" data-ct-glyph-baseline x1="0" x2="1000" y1="514" y2="514" />
+                    <text class="ct-glyph-preview__glyph" data-ct-glyph-set-preview x="500" y="514">P</text>
+                  </svg>
                 </div>
                 <div class="ct-glyph-set__meta">
                   <span data-ct-glyph-set-style-label>Fill</span>
-                  <span data-ct-glyph-set-group>Uppercase</span>
+                  <span data-ct-glyph-set-group>Uppercase Latin</span>
                 </div>
               </div>
             </aside>
