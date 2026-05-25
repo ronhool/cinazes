@@ -524,9 +524,9 @@
 
 .ct-glyph-grid{
   display:grid;
-  grid-template-columns:repeat(6, minmax(0, 1fr));
+  grid-template-columns:repeat(auto-fill, minmax(clamp(44px, calc((100% - 32px) / 9), 60px), 1fr));
   align-content:start;
-  gap:12px;
+  gap:4px;
 }
 
 .ct-glyph-cell{
