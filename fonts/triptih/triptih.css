@@ -525,10 +525,9 @@
 
 .ct-glyph-grid{
   display:grid;
-  grid-template-columns:repeat(9, 60px);
-  justify-content:space-between;
+  grid-template-columns:repeat(9, minmax(0, 1fr));
   align-content:start;
-  gap:4px;
+  gap:8px;
 }
 
 .ct-glyph-cell{
@@ -552,19 +551,19 @@
 
 @container ct-glyph-library (max-width: 572px){
   .ct-glyph-grid{
-    grid-template-columns:repeat(8, 60px);
+    grid-template-columns:repeat(8, minmax(0, 1fr));
   }
 }
 
 @container ct-glyph-library (max-width: 508px){
   .ct-glyph-grid{
-    grid-template-columns:repeat(7, 60px);
+    grid-template-columns:repeat(7, minmax(0, 1fr));
   }
 }
 
 @container ct-glyph-library (max-width: 444px){
   .ct-glyph-grid{
-    grid-template-columns:repeat(6, 60px);
+    grid-template-columns:repeat(6, minmax(0, 1fr));
   }
 }
 
