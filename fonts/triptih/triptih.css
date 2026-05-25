@@ -482,6 +482,7 @@
 
 .ct-glyph-set__library{
   min-width:0;
+  container:ct-glyph-library / inline-size;
   height:auto;
   max-height:none;
   overflow:visible;
@@ -524,7 +525,8 @@
 
 .ct-glyph-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(clamp(44px, calc((100% - 32px) / 9), 60px), 1fr));
+  grid-template-columns:repeat(9, 60px);
+  justify-content:space-between;
   align-content:start;
   gap:4px;
 }
@@ -546,6 +548,24 @@
   font-size:clamp(24px, 2.1vw, 36px);
   line-height:1;
   cursor:pointer;
+}
+
+@container ct-glyph-library (max-width: 572px){
+  .ct-glyph-grid{
+    grid-template-columns:repeat(8, 60px);
+  }
+}
+
+@container ct-glyph-library (max-width: 508px){
+  .ct-glyph-grid{
+    grid-template-columns:repeat(7, 60px);
+  }
+}
+
+@container ct-glyph-library (max-width: 444px){
+  .ct-glyph-grid{
+    grid-template-columns:repeat(6, 60px);
+  }
 }
 
 .ct-glyph-cell:hover,
