@@ -393,8 +393,8 @@
     const styleLabel = root.querySelector("[data-ct-glyph-set-style-label]");
     if (!svg || !glyph || !metricsRoot || !name || !code || !group || !styleLabel) return;
 
-    const top = 32;
-    const bottom = 52;
+    const top = 22;
+    const bottom = 38;
     const viewHeight = 700;
     const ascender = Math.max(metrics.ascender || fallbackMetrics.ascender, metrics.capHeight || 0, metrics.xHeight || 0);
     const descender = Math.min(metrics.descender || fallbackMetrics.descender, 0);
@@ -405,11 +405,11 @@
     const fontSize = (metrics.unitsPerEm || fallbackMetrics.unitsPerEm) * scale * sequenceScale;
 
     const metricLines = [
-      { key: "ascender", label: "ASC", value: ascender },
-      { key: "cap", label: "CAP", value: metrics.capHeight || ascender },
-      { key: "x", label: "X", value: metrics.xHeight || Math.round(ascender * 0.58) },
-      { key: "baseline", label: "BASE", value: 0 },
-      { key: "descender", label: "DESC", value: descender },
+      { key: "ascender", label: "ASCENDER", value: ascender },
+      { key: "cap", label: "CAP HEIGHT", value: metrics.capHeight || ascender },
+      { key: "x", label: "X HEIGHT", value: metrics.xHeight || Math.round(ascender * 0.58) },
+      { key: "baseline", label: "BASELINE", value: 0 },
+      { key: "descender", label: "DESCENDER", value: descender },
     ];
     metricsRoot.innerHTML = metricLines
       .map((line) => {
@@ -417,7 +417,8 @@
         return `
           <g class="ct-glyph-preview__metric ct-glyph-preview__metric--${line.key}">
             <line x1="0" x2="1000" y1="${y.toFixed(2)}" y2="${y.toFixed(2)}"></line>
-            <text x="0" y="${(y - 7).toFixed(2)}">${line.label}</text>
+            <text class="ct-glyph-preview__metric-label" x="0" y="${(y - 9).toFixed(2)}">${line.label}</text>
+            <text class="ct-glyph-preview__metric-value" x="1000" y="${(y - 9).toFixed(2)}">${line.value}</text>
           </g>`;
       })
       .join("");
