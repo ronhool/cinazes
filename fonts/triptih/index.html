@@ -15,14 +15,14 @@
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Parth.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../../public/fonts/triptih/Triptih-Stroke.otf" as="font" type="font/otf" crossorigin />
     <link rel="stylesheet" href="../../styles.css?v=20260524b" />
-    <link rel="stylesheet" href="./triptih.css?v=20260525d" />
+    <link rel="stylesheet" href="./triptih.css?v=20260525f" />
     <link rel="stylesheet" href="../font-editorial.css?v=20260524b" />
     <link rel="stylesheet" href="../font-interactive-specimen.css?v=20260524m" />
     <script defer src="../../site-header.js"></script>
     <script defer src="../../cookie-notice.js" data-site-root="../../"></script>
     <script defer src="../font-data.js?v=20260524b"></script>
     <script defer src="./triptih.js?v=20260524c"></script>
-    <script defer src="./triptih-glyph-set.js?v=20260525d"></script>
+    <script defer src="./triptih-glyph-set.js?v=20260525f"></script>
     <script defer src="../font-editorial.js?v=20260522c"></script>
     <script defer src="../font-interactive-specimen.js?v=20260524e"></script>
   </head>
@@ -102,13 +102,20 @@
             <div class="ct-glyph-set__library">
               <header class="ct-glyph-toolbar">
                 <div class="ct-glyph-set__controls" aria-label="Glyph inspector controls">
-                  <select class="ct-glyph-toolbar__select" data-ct-glyph-set-style aria-label="Style"></select>
+                  <div class="ct-glyph-toolbar__select-wrap ct-glyph-dropdown" data-ct-glyph-style-dropdown>
+                    <button class="ct-glyph-dropdown__button" type="button" data-ct-glyph-style-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="Style">
+                      <span data-ct-glyph-style-label>Fill</span>
+                      <span class="ct-glyph-dropdown__arrow" aria-hidden="true"></span>
+                    </button>
+                    <div class="ct-glyph-dropdown__menu" role="listbox" data-ct-glyph-style-menu></div>
+                  </div>
                   <div class="ct-glyph-toolbar__input">
                     <svg class="ct-glyph-toolbar__icon" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M4 20h16" />
-                      <path d="M14.5 4.5l5 5L8 21H3v-5L14.5 4.5z" />
+                      <path d="M4.5 16.5 15.7 5.3a2.1 2.1 0 0 1 3 0 2.1 2.1 0 0 1 0 3L7.5 19.5H4.5v-3z" />
+                      <path d="M14.5 6.5 17.5 9.5" />
                     </svg>
-                    <input data-ct-glyph-set-input type="text" inputmode="text" maxlength="8" placeholder="Your letter..." aria-label="Your letter" />
+                    <input data-ct-glyph-set-input type="text" inputmode="text" maxlength="32" placeholder="Your letter..." aria-label="Your letter" />
                   </div>
                 </div>
               </header>

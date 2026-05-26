@@ -383,6 +383,23 @@
       </section>`;
   }
 
+  function filteredGroups(groups, query) {
+    const inputChars = Array.from(query.trim());
+    if (!inputChars.length) return groups;
+    const inputSet = new Set(inputChars);
+    const inputText = inputChars.join("");
+    return groups
+      .map((group) => ({
+        ...group,
+        glyphs: group.glyphs.filter((glyph) => {
+          const glyphChars = Array.from(glyph.value);
+          if (glyphChars.length === 1) return inputSet.has(glyph.value);
+          return inputText.includes(glyph.value) || glyphChars.every((char) => inputSet.has(char));
+        }),
+      }))
+      .filter((group) => group.glyphs.length);
+  }
+
   function renderPreview(root, item, style, metrics) {
     const svg = root.querySelector("[data-ct-glyph-preview-svg]");
     const glyph = root.querySelector("[data-ct-glyph-set-preview]");
@@ -433,16 +450,18 @@
   }
 
   function setup(root) {
-    const styleSelect = root.querySelector("[data-ct-glyph-set-style]");
+    const styleDropdown = root.querySelector("[data-ct-glyph-style-dropdown]");
+    const styleTrigger = root.querySelector("[data-ct-glyph-style-trigger]");
+    const styleLabel = root.querySelector("[data-ct-glyph-style-label]");
+    const styleMenu = root.querySelector("[data-ct-glyph-style-menu]");
     const input = root.querySelector("[data-ct-glyph-set-input]");
     const groupsRoot = root.querySelector("[data-ct-glyph-set-groups]");
-    if (!styleSelect || !input || !groupsRoot) return;
+    if (!styleDropdown || !styleTrigger || !styleLabel || !styleMenu || !input || !groupsRoot) return;
 
     let activeStyle = styles[0];
     let fontData = { metrics: fallbackMetrics, groups: fallbackGroups() };
     let activeItem = { value: "P", group: "Uppercase Latin" };
     let selectedItem = activeItem;
-    let customItem = null;
 
     function cellFor(item) {
       return Array.from(root.querySelectorAll("[data-ct-glyph-set-cell]")).find(
@@ -464,17 +483,16 @@
 
     function activate(item, options = {}) {
       activeItem = item;
-      if (!options.custom) {
+      if (!options.previewOnly) {
         selectedItem = item;
-        customItem = null;
         setActiveCell(item);
       }
       renderPreview(root, activeItem, activeStyle, fontData.metrics);
     }
 
-    async function renderForStyle() {
-      fontData = await loadFont(activeStyle);
-      groupsRoot.innerHTML = fontData.groups.map((group) => groupTemplate(group, activeStyle.family)).join("");
+    function renderVisibleGroups() {
+      const groups = filteredGroups(fontData.groups, input.value);
+      groupsRoot.innerHTML = groups.map((group) => groupTemplate(group, activeStyle.family)).join("");
       const preferred = cellFor(selectedItem) ? selectedItem : { value: "P", group: "Uppercase Latin" };
       const first = cellFor(preferred) || groupsRoot.querySelector("[data-ct-glyph-set-cell]");
       if (first) {
@@ -484,39 +502,76 @@
           feature: first.dataset.ctGlyphFeature || "",
         };
         setActiveCell(selectedItem);
-        renderPreview(root, customItem || selectedItem, activeStyle, fontData.metrics);
+        renderPreview(root, selectedItem, activeStyle, fontData.metrics);
       } else {
-        renderPreview(root, customItem || selectedItem, activeStyle, fontData.metrics);
+        renderPreview(root, selectedItem, activeStyle, fontData.metrics);
       }
     }
 
-    styleSelect.innerHTML = styles.map((style) => `<option value="${escapeHtml(style.label)}">${escapeHtml(style.label)}</option>`).join("");
+    async function renderForStyle() {
+      fontData = await loadFont(activeStyle);
+      renderVisibleGroups();
+    }
+
+    function setDropdownOpen(isOpen) {
+      styleDropdown.classList.toggle("is-open", isOpen);
+      styleTrigger.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    function renderStyleDropdown() {
+      styleLabel.textContent = activeStyle.label;
+      styleMenu.innerHTML = styles
+        .map(
+          (style) => `
+            <button
+              class="ct-glyph-dropdown__option${style.label === activeStyle.label ? " is-active" : ""}"
+              type="button"
+              role="option"
+              aria-selected="${style.label === activeStyle.label ? "true" : "false"}"
+              data-ct-glyph-style-option="${escapeHtml(style.label)}"
+            >${escapeHtml(style.label)}</button>`
+        )
+        .join("");
+    }
+
+    renderStyleDropdown();
     renderPreview(root, activeItem, activeStyle, fontData.metrics);
 
-    styleSelect.addEventListener("change", () => {
-      activeStyle = styles.find((style) => style.label === styleSelect.value) || styles[0];
+    styleTrigger.addEventListener("click", () => {
+      setDropdownOpen(!styleDropdown.classList.contains("is-open"));
+    });
+
+    styleMenu.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-ct-glyph-style-option]");
+      if (!option) return;
+      activeStyle = styles.find((style) => style.label === option.dataset.ctGlyphStyleOption) || styles[0];
+      renderStyleDropdown();
+      setDropdownOpen(false);
+      styleTrigger.focus();
       renderForStyle();
     });
 
-    function syncCustomInput() {
-      const value = Array.from(input.value.trim()).slice(0, 8).join("");
-      if (!value) {
-        customItem = null;
-        activate(selectedItem);
-        return;
+    styleDropdown.addEventListener("focusout", (event) => {
+      if (!styleDropdown.contains(event.relatedTarget)) setDropdownOpen(false);
+    });
+
+    styleDropdown.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setDropdownOpen(false);
+        styleTrigger.focus();
       }
-      customItem = { value, group: "Custom input", custom: true };
-      activeItem = customItem;
-      renderPreview(root, customItem, activeStyle, fontData.metrics);
+    });
+
+    function syncGlyphFilter() {
+      renderVisibleGroups();
     }
 
-    input.addEventListener("input", syncCustomInput);
-    input.addEventListener("change", syncCustomInput);
+    input.addEventListener("input", syncGlyphFilter);
+    input.addEventListener("change", syncGlyphFilter);
 
     function handleGlyph(event) {
       const cell = event.target.closest("[data-ct-glyph-set-cell]");
       if (!cell || !groupsRoot.contains(cell)) return;
-      if (input.value.trim()) return;
       activate({
         value: cell.dataset.ctGlyph,
         group: cell.dataset.ctGlyphGroup,
