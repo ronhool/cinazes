@@ -22,7 +22,7 @@
   align-items:center;
   gap:clamp(18px, 2.6vw, 42px);
   min-height:clamp(48px, 6vw, 74px);
-  border-top:1px solid var(--ct-specimen-line);
+  border-top:0;
   padding:clamp(12px, 1.3vw, 18px) 0;
   font-size:13px;
   line-height:1;
@@ -294,6 +294,10 @@
     display:grid;
     grid-template-columns:1fr;
     gap:10px;
+  }
+
+  .ct-specimen-controls__right .ct-specimen-slider:not(.ct-specimen-slider--size){
+    display:none;
   }
 
   .ct-specimen-slider,
