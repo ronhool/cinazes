@@ -757,7 +757,7 @@
 
   function groupTemplate(group, family) {
     return `
-      <section class="ct-glyph-grid__group" aria-label="${escapeHtml(group.title)}">
+      <section class="ct-glyph-grid__group" aria-label="${escapeHtml(group.title)}" data-ct-glyph-group-panel="${escapeHtml(group.title)}">
         <div class="ct-glyph-grid__head">
           <h3>${escapeHtml(group.title)}</h3>
           <span>${group.glyphs.length} glyphs</span>
@@ -787,6 +787,20 @@
     return `
       <section class="ct-glyph-browser__section" aria-label="${escapeHtml(title)}">
         <h2 class="ct-glyph-browser__section-title">${escapeHtml(title)}</h2>
+        <div class="ct-glyph-tabs" role="tablist" aria-label="${escapeHtml(title)} glyph groups" data-ct-glyph-tabs>
+          ${groups
+            .map(
+              (group) => `
+                <button
+                  class="ct-glyph-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-ct-glyph-tab="${escapeHtml(group.title)}"
+                >${escapeHtml(group.title)}</button>`
+            )
+            .join("")}
+        </div>
         <div class="ct-glyph-browser__section-groups">
           ${groups.map((group) => groupTemplate(group, family)).join("")}
         </div>
@@ -796,7 +810,23 @@
   function groupsTemplate(groups, family) {
     const characters = groups.filter((group) => characterGroups.has(group.title));
     const features = groups.filter((group) => featureGroups.has(group.title));
-    return sectionTemplate("Characters", characters, family) + sectionTemplate("Features", features, family);
+    return `
+      <div class="ct-glyph-tabs ct-glyph-tabs--mobile" role="tablist" aria-label="Glyph groups" data-ct-glyph-tabs>
+        ${groups
+          .map(
+            (group) => `
+              <button
+                class="ct-glyph-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-ct-glyph-tab="${escapeHtml(group.title)}"
+              >${escapeHtml(group.title)}</button>`
+          )
+          .join("")}
+      </div>
+      ${sectionTemplate("Characters", characters, family)}
+      ${sectionTemplate("Features", features, family)}`;
   }
 
   function filteredGroups(groups, query) {
@@ -907,9 +937,26 @@
       renderPreview(root, activeItem, activeStyle, fontData.metrics);
     }
 
+    function setMobileActiveGroup(title) {
+      const tabs = Array.from(root.querySelectorAll("[data-ct-glyph-tab]"));
+      const panels = Array.from(root.querySelectorAll("[data-ct-glyph-group-panel]"));
+      const fallbackTitle = panels[0]?.dataset.ctGlyphGroupPanel || "";
+      const activeTitle = panels.some((panel) => panel.dataset.ctGlyphGroupPanel === title) ? title : fallbackTitle;
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.ctGlyphTab === activeTitle;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+      });
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.ctGlyphGroupPanel === activeTitle;
+        panel.classList.toggle("is-mobile-active", isActive);
+      });
+    }
+
     function renderVisibleGroups() {
       const groups = filteredGroups(fontData.groups, input.value);
       groupsRoot.innerHTML = groupsTemplate(groups, activeStyle.family);
+      setMobileActiveGroup(selectedItem.group);
       const preferred = cellFor(selectedItem) ? selectedItem : { value: "P", group: "Uppercase Latin" };
       const first = cellFor(preferred) || groupsRoot.querySelector("[data-ct-glyph-set-cell]");
       if (first) {
@@ -919,6 +966,7 @@
           feature: first.dataset.ctGlyphFeature || "",
         };
         setActiveCell(selectedItem);
+        setMobileActiveGroup(selectedItem.group);
         renderPreview(root, selectedItem, activeStyle, fontData.metrics);
       } else {
         renderPreview(root, selectedItem, activeStyle, fontData.metrics);
@@ -996,10 +1044,26 @@
       });
     }
 
+    function handleTab(event) {
+      const tab = event.target.closest("[data-ct-glyph-tab]");
+      if (!tab || !groupsRoot.contains(tab)) return;
+      setMobileActiveGroup(tab.dataset.ctGlyphTab);
+      const panel = root.querySelector(`[data-ct-glyph-group-panel="${CSS.escape(tab.dataset.ctGlyphTab)}"]`);
+      const first = panel?.querySelector("[data-ct-glyph-set-cell]");
+      if (first) {
+        activate({
+          value: first.dataset.ctGlyph,
+          group: first.dataset.ctGlyphGroup,
+          feature: first.dataset.ctGlyphFeature || "",
+        });
+      }
+    }
+
     groupsRoot.addEventListener("pointerover", handleGlyph);
     groupsRoot.addEventListener("mouseover", handleGlyph);
     groupsRoot.addEventListener("focusin", handleGlyph);
     groupsRoot.addEventListener("click", handleGlyph);
+    groupsRoot.addEventListener("click", handleTab);
     renderForStyle();
   }
 
