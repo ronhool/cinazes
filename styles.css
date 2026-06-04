@@ -823,8 +823,7 @@ a:hover{
   height:auto;
 }
 .case-media--video{
-  width:min(980px, 100%);
-  justify-self:start;
+  width:100%;
   background:transparent;
 }
 .case-media--video video{
