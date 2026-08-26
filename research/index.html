@@ -3,28 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Шрифты — CINAZES</title>
+    <title>Исследования — CINAZES</title>
     <meta
       name="description"
-      content="Типографическая лаборатория CINAZES: живой specimen, настройка ритма, размера, интерлиньяжа и характера формы."
+      content="Переводы классических и современных текстов о типографике."
     />
-    <meta name="robots" content="noindex,nofollow,noarchive" />
     <link rel="icon" href="../assets/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="preload" href="../assets/DK-Form.woff" as="font" type="font/woff" crossorigin />
-    <link rel="preload" href="../public/fonts/etude/Etude-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../public/fonts/triptih/Triptih-Fill.otf" as="font" type="font/otf" crossorigin />
-    <link rel="preload" href="../public/fonts/triptih/Triptih-Parth.otf" as="font" type="font/otf" crossorigin />
-    <link rel="preload" href="../public/fonts/triptih/Triptih-Stroke.otf" as="font" type="font/otf" crossorigin />
     <link rel="stylesheet" href="../styles.css?v=20260524c" />
-    <link rel="stylesheet" href="./fonts.css?v=20260524h" />
     <script defer src="../site-header.js"></script>
     <script defer src="../cookie-notice.js" data-site-root="../"></script>
-    <script defer src="../fonts/font-data.js?v=20260524b"></script>
-    <script defer src="./fonts.js?v=20260524c"></script>
   </head>
-  <body class="page-sticky-foot fonts-page">
-    <a class="skip" href="#font-lab">Перейти к содержанию</a>
+  <body class="page-sticky-foot lab-page research-page">
+    <a class="skip" href="#research">Перейти к содержанию</a>
 
     <header class="head head--compact">
       <div class="wrap-wide master-grid head-shell" data-mobile-menu>
@@ -44,7 +36,7 @@
                 <a href="../lab/sans-bullshit-sans-cyrillic/" role="menuitem">Sans Bullshit Sans Cyrillic</a>
               </div>
             </div>
-            <a href="../research/">исследования</a>
+            <a class="nav-active" href="./" aria-current="page">исследования</a>
           </div>
           <div class="nav-group nav-group--right" aria-label="Вторичная навигация">
             <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
@@ -75,7 +67,7 @@
                     <a href="../lab/sans-bullshit-sans-cyrillic/">Sans Bullshit Sans Cyrillic</a>
                   </div>
                 </div>
-                <a href="../research/">исследования</a>
+                <a class="nav-active" href="./">исследования</a>
                 <a href="https://t.me/typefeed" target="_blank" rel="noopener noreferrer">журнал</a>
                 <a href="../index.html#bio">обо мне</a>
               </div>
@@ -86,9 +78,84 @@
       </div>
     </header>
 
-    <main class="fonts-main" id="font-lab">
-      <h1 class="fonts-visually-hidden">Типографическая лаборатория CINAZES</h1>
-      <section class="font-wall" data-font-catalog aria-label="Типографическая стена"></section>
+    <main class="main lab-main research-main">
+      <div class="wrap-wide master-grid content-grid">
+        <section id="research" class="research-archive" aria-labelledby="research-title">
+          <div class="research-intro">
+            <h1 id="research-title">Исследования.</h1>
+            <p>
+              Переводы классических и современных текстов о типографике.
+            </p>
+          </div>
+
+          <div class="research-table">
+            <div class="research-table__head" aria-hidden="true">
+              <span>Год</span>
+              <span>Публикация</span>
+              <span>Тема</span>
+              <span>Формат</span>
+            </div>
+            <div class="research-table__body">
+              <a
+                class="research-row"
+                href="./letterletter-4/"
+                data-preview="../public/research/letterletter-4/cover.webp"
+              >
+                <span class="research-row__year">1986</span>
+                <span class="research-row__title">Letterletter 4</span>
+                <span class="research-row__theme">Ментальная концепция</span>
+                <span class="research-row__format">перевод</span>
+              </a>
+            </div>
+            <figure class="research-preview" data-research-preview aria-hidden="true">
+              <img alt="" data-research-preview-image />
+            </figure>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <footer id="contacts" class="foot">
+      <div class="wrap-wide master-grid content-grid">
+        <p class="site-copy">©чиназес. все права защищены · <a href="../privacy/">политика</a></p>
+      </div>
+    </footer>
+
+    <script>
+      const preview = document.querySelector("[data-research-preview]");
+      const previewImage = document.querySelector("[data-research-preview-image]");
+      const rows = document.querySelectorAll(".research-row[data-preview]");
+
+      function showPreview(src) {
+        if (!preview || !previewImage || !src) return;
+        previewImage.src = src;
+        preview.classList.add("is-visible");
+      }
+
+      function movePreview(event) {
+        if (!preview) return;
+        const gap = 24;
+        const width = preview.offsetWidth || 360;
+        const height = preview.offsetHeight || 200;
+        const x = Math.min(event.clientX + gap, window.innerWidth - width - gap);
+        const y = Math.min(event.clientY + gap, window.innerHeight - height - gap);
+        preview.style.setProperty("--preview-x", `${Math.max(gap, x)}px`);
+        preview.style.setProperty("--preview-y", `${Math.max(gap, y)}px`);
+      }
+
+      function hidePreview() {
+        if (!preview) return;
+        preview.classList.remove("is-visible");
+      }
+
+      for (const row of rows) {
+        row.addEventListener("mouseenter", (event) => {
+          showPreview(row.dataset.preview);
+          movePreview(event);
+        });
+        row.addEventListener("mousemove", movePreview);
+        row.addEventListener("mouseleave", hidePreview);
+      }
+    </script>
   </body>
 </html>

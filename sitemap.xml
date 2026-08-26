@@ -16,6 +16,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cinazes.ru/research/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cinazes.ru/research/letterletter-4/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://cinazes.ru/fonts/aa-noon/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

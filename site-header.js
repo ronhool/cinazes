@@ -101,7 +101,51 @@ function setupMobileMenu(menu) {
   });
 }
 
+function findNavLinkByText(selector, text) {
+  for (const link of document.querySelectorAll(selector)) {
+    if (link.textContent.trim() === text) return link;
+  }
+  return null;
+}
+
+function syncFontsNavActive() {
+  const path = window.location.pathname;
+  const isFontsSection =
+    path === "/fonts-test" ||
+    path.startsWith("/fonts-test/") ||
+    path.startsWith("/fonts/");
+  if (!isFontsSection) return;
+
+  const desktopLink = findNavLinkByText(".nav-group a", "шрифты");
+  if (desktopLink) desktopLink.classList.add("nav-active");
+}
+
+function syncMobileNavActive() {
+  const activeLink = document.querySelector(".nav-group a.nav-active");
+  if (activeLink) {
+    const href = activeLink.getAttribute("href");
+    if (href === "#") {
+      const mobileLink = findNavLinkByText(".head-mobile-nav a", activeLink.textContent.trim());
+      if (mobileLink) mobileLink.classList.add("nav-active");
+    } else {
+      for (const mobileLink of document.querySelectorAll(".head-mobile-nav a")) {
+        if (mobileLink.getAttribute("href") === href) {
+          mobileLink.classList.add("nav-active");
+        }
+      }
+    }
+  }
+
+  const activeTrigger = document.querySelector(".nav-trigger.nav-active");
+  if (activeTrigger) {
+    const mobileTrigger = document.querySelector(".mobile-lab-trigger");
+    if (mobileTrigger) mobileTrigger.classList.add("nav-active");
+  }
+}
+
 scheduleMoscowTime();
+syncFontsNavActive();
+syncMobileNavActive();
 
 for (const menu of document.querySelectorAll("[data-lab-menu]")) {
   setupLabMenu(menu);
