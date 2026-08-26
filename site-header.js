@@ -143,9 +143,24 @@ function syncMobileNavActive() {
   }
 }
 
+function syncYearRange() {
+  const startYear = 2015;
+  const currentYear = new Date().getFullYear();
+
+  const label =
+    currentYear > startYear
+      ? `${startYear}–${currentYear}`
+      : `${startYear}`;
+
+  for (const element of document.querySelectorAll("[data-year-range]")) {
+    element.textContent = label;
+  }
+}
+
 scheduleMoscowTime();
 syncFontsNavActive();
 syncMobileNavActive();
+syncYearRange();
 
 for (const menu of document.querySelectorAll("[data-lab-menu]")) {
   setupLabMenu(menu);
