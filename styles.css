@@ -1377,8 +1377,8 @@ a:hover{
 .policy-section li + li{
   margin-top:6px;
 }
-.policy-contact{
-  color:var(--fg);
+.policy-section .cookie-notice__button{
+  font-size:inherit;
 }
 
 @media (min-width: 1025px){
