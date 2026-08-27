@@ -1249,79 +1249,6 @@ a:hover{
   color:var(--accent);
 }
 
-.cookie-notice{
-  position:fixed;
-  left:50%;
-  bottom:16px;
-  z-index:60;
-  width:min(760px, calc(100% - 24px));
-  transform:translateX(-50%) translateY(14px);
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
-}
-.cookie-notice.is-visible{
-  opacity:1;
-  visibility:visible;
-  transform:translateX(-50%) translateY(0);
-  transition:opacity .2s ease, transform .2s ease;
-}
-.cookie-notice.is-hiding{
-  opacity:0;
-  transform:translateX(-50%) translateY(10px);
-}
-.cookie-notice__inner{
-  display:grid;
-  grid-template-columns:minmax(0, 1fr) auto;
-  gap:18px 24px;
-  align-items:end;
-  padding:16px 18px 18px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-.cookie-notice__copy{
-  display:grid;
-  gap:6px;
-  min-width:0;
-}
-.cookie-notice__title,
-.cookie-notice__text{
-  margin:0;
-  font-size:16px;
-  line-height:1.24;
-}
-.cookie-notice__text{
-  color:var(--muted);
-}
-.cookie-notice__actions{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:flex-end;
-  gap:10px 18px;
-}
-.cookie-notice__button,
-.cookie-notice__link{
-  appearance:none;
-  border:0;
-  background:transparent;
-  padding:0;
-  font:inherit;
-  font-size:16px;
-  line-height:1.1;
-  color:var(--fg);
-  cursor:pointer;
-  text-decoration:none;
-  white-space:nowrap;
-}
-.cookie-notice__button:hover,
-.cookie-notice__link:hover{
-  color:var(--accent);
-  text-decoration:none;
-}
-
 .foot{
   padding:0 0 40px;
   margin:0;
@@ -1377,10 +1304,6 @@ a:hover{
 .policy-section li + li{
   margin-top:6px;
 }
-.policy-section .cookie-notice__button{
-  font-size:inherit;
-}
-
 @media (min-width: 1025px){
   :root{
     --content-offset:clamp(272px, 28.2vw, 482px);
@@ -1841,25 +1764,6 @@ a:hover{
   .research-meta dd:nth-of-type(3){grid-column:1;grid-row:6;}
   .research-meta dt:nth-of-type(4){grid-column:1;grid-row:7;}
   .research-meta dd:nth-of-type(4){grid-column:1;grid-row:8;}
-
-  .cookie-notice{
-    width:calc(100% - 20px);
-    bottom:10px;
-  }
-  .cookie-notice__inner{
-    grid-template-columns:1fr;
-    gap:14px;
-    padding:14px 14px 16px;
-  }
-  .cookie-notice__title,
-  .cookie-notice__text,
-  .cookie-notice__button,
-  .cookie-notice__link{
-    font-size:15px;
-  }
-  .cookie-notice__actions{
-    justify-content:flex-start;
-  }
 }
 
 /* Tuned homepage v2 */
